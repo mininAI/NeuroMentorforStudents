@@ -2276,83 +2276,81 @@
     });
   });
 
-// ---- НОВАЯ ФУНКЦИЯ ДЛЯ GigaChat ----
-  const chatInput = document.getElementById('chatInput');
-  const sendBtn = document.getElementById('sendBtn');
-  const responseArea = document.getElementById('chatResponseArea');
+(function() {
+    // Ждём загрузки DOM
+    document.addEventListener('DOMContentLoaded', function() {
+      const input = document.getElementById('chatInput');
+      const btn = document.getElementById('sendBtn');
+      const area = document.getElementById('chatResponseArea');
 
-  // Функция отправки сообщения
-  async function sendMessageToAI() {
-    const message = chatInput.value.trim();
-    if (!message) return;
-
-    // Показываем сообщение пользователя в чате
-    const userBubble = document.createElement('div');
-    userBubble.className = 'chat-bubble';
-    userBubble.textContent = message;
-    responseArea.appendChild(userBubble);
-
-    // Очищаем поле ввода
-    chatInput.value = '';
-
-    // Показываем индикатор загрузки
-    const loadingBubble = document.createElement('div');
-    loadingBubble.className = 'chat-bubble';
-    loadingBubble.textContent = '⏳ Думаю...';
-    loadingBubble.id = 'loadingBubble';
-    responseArea.appendChild(loadingBubble);
-    responseArea.scrollTop = responseArea.scrollHeight;
-
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      });
-      const data = await response.json();
-
-      // Удаляем индикатор загрузки
-      const loading = document.getElementById('loadingBubble');
-      if (loading) loading.remove();
-
-      if (response.ok) {
-        // Показываем ответ ИИ
-        const aiBubble = document.createElement('div');
-        aiBubble.className = 'chat-bubble';
-        aiBubble.textContent = data.reply;
-        responseArea.appendChild(aiBubble);
-      } else {
-        // Ошибка
-        const errorBubble = document.createElement('div');
-        errorBubble.className = 'chat-bubble';
-        errorBubble.textContent = `❌ Ошибка: ${data.error || 'Неизвестная ошибка'}`;
-        responseArea.appendChild(errorBubble);
+      if (!input || !btn || !area) {
+        console.error('Элементы чата не найдены');
+        return;
       }
-    } catch (err) {
-      const loading = document.getElementById('loadingBubble');
-      if (loading) loading.remove();
-      const errorBubble = document.createElement('div');
-      errorBubble.className = 'chat-bubble';
-      errorBubble.textContent = '❌ Не удалось связаться с сервером. Проверьте интернет.';
-      responseArea.appendChild(errorBubble);
-    }
-    responseArea.scrollTop = responseArea.scrollHeight;
-  }
 
-  // Отправка по клику на кнопку
-  sendBtn.addEventListener('click', sendMessageToAI);
+      async function sendMessageToAI() {
+        const message = input.value.trim();
+        if (!message) return;
 
-  // Отправка по Enter
-  chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      sendMessageToAI();
-    }
-  });
+        // Показываем сообщение пользователя
+        const userBubble = document.createElement('div');
+        userBubble.className = 'chat-bubble';
+        userBubble.textContent = message;
+        area.appendChild(userBubble);
+        input.value = '';
 
-<script type="module">
-  import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics/dist/esm/index.js';
-  inject();
+        // Индикатор загрузки
+        const loading = document.createElement('div');
+        loading.className = 'chat-bubble';
+        loading.textContent = '⏳ Думаю...';
+        loading.id = 'loadingBubble';
+        area.appendChild(loading);
+        area.scrollTop = area.scrollHeight;
+
+        try {
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+          });
+          const data = await response.json();
+
+          // Удаляем индикатор загрузки
+          const loadEl = document.getElementById('loadingBubble');
+          if (loadEl) loadEl.remove();
+
+          if (response.ok) {
+            const aiBubble = document.createElement('div');
+            aiBubble.className = 'chat-bubble';
+            aiBubble.textContent = data.reply || '(пустой ответ)';
+            area.appendChild(aiBubble);
+          } else {
+            const errBubble = document.createElement('div');
+            errBubble.className = 'chat-bubble';
+            errBubble.textContent = '❌ Ошибка: ' + (data.error || 'неизвестная');
+            area.appendChild(errBubble);
+          }
+        } catch (e) {
+          const loadEl = document.getElementById('loadingBubble');
+          if (loadEl) loadEl.remove();
+          const errBubble = document.createElement('div');
+          errBubble.className = 'chat-bubble';
+          errBubble.textContent = '❌ Ошибка соединения: ' + e.message;
+          area.appendChild(errBubble);
+        }
+        area.scrollTop = area.scrollHeight;
+      }
+
+      // Привязываем обработчики
+      btn.addEventListener('click', sendMessageToAI);
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendMessageToAI();
+        }
+      });
+    });
+  })();
 </script>
 
 </body>
