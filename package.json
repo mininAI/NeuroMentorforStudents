@@ -1,0 +1,13 @@
+{
+  "name": "neurom mentor",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "gigachat": "^0.0.20"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}
