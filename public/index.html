@@ -2462,6 +2462,70 @@
         <div class="tab-content" id="research">
           <div class="research-layout">
             <div class="research-main">
+              <!-- Чат для исследовательского трека -->
+<div class="chat-area" style="margin-bottom: 24px;">
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-header-title">
+        <div class="chat-header-icon">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ringGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a8fa8"/>
+                <stop offset="100%" style="stop-color:#1a3a6b"/>
+              </linearGradient>
+              <path id="topArc2" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
+              <path id="bottomArc2" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
+            </defs>
+            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad2)" stroke-width="8"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
+            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
+              <textPath href="#topArc2" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
+            </text>
+            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
+              <textPath href="#bottomArc2" startOffset="50%" text-anchor="middle">for Students</textPath>
+            </text>
+            <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="0" y1="-32" x2="0" y2="-24"/>
+              <circle cx="0" cy="-34" r="3" fill="#fff"/>
+              <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
+              <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
+              <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
+              <line x1="-6" y1="-6" x2="6" y2="-6"/>
+              <rect x="-22" y="-18" width="4" height="10" rx="1"/>
+              <rect x="18" y="-18" width="4" height="10" rx="1"/>
+              <line x1="0" y1="2" x2="0" y2="8"/>
+              <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
+              <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
+              <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
+              <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
+              <circle cx="-24" cy="33" r="3" fill="#fff"/>
+              <circle cx="24" cy="33" r="3" fill="#fff"/>
+              <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+              <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+              <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
+              <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
+            </g>
+          </svg>
+        </div>
+        <span data-ru="Исследовательский наставник" data-en="Research Mentor">Исследовательский наставник</span>
+      </div>
+      <div class="chat-header-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="chat-body">
+      <div id="chatResponseAreaResearch"></div>
+      <div class="chat-bubble">🔬 Я — твой исследовательский наставник. Помогу с публикациями, оформлением статей, выбором журналов. Задавай вопросы!</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInputResearch" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
+      <button class="chat-btn chat-btn-emoji">😊</button>
+      <button class="chat-btn chat-btn-mic" id="sendBtnResearch">➤</button>
+    </div>
+  </div>
+</div>
+<!-- Конец чата -->
               <div
                 class="research-title"
                 data-ru="Исследовательский наставник — Навигатор журналов"
@@ -2907,6 +2971,70 @@
 
           <div class="prof-layout">
             <div class="prof-main">
+              <!-- Чат для профессионального трека -->
+<div class="chat-area" style="margin-bottom: 24px;">
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-header-title">
+        <div class="chat-header-icon">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a8fa8"/>
+                <stop offset="100%" style="stop-color:#1a3a6b"/>
+              </linearGradient>
+              <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
+              <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
+            </defs>
+            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
+            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
+              <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
+            </text>
+            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
+              <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
+            </text>
+            <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="0" y1="-32" x2="0" y2="-24"/>
+              <circle cx="0" cy="-34" r="3" fill="#fff"/>
+              <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
+              <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
+              <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
+              <line x1="-6" y1="-6" x2="6" y2="-6"/>
+              <rect x="-22" y="-18" width="4" height="10" rx="1"/>
+              <rect x="18" y="-18" width="4" height="10" rx="1"/>
+              <line x1="0" y1="2" x2="0" y2="8"/>
+              <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
+              <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
+              <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
+              <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
+              <circle cx="-24" cy="33" r="3" fill="#fff"/>
+              <circle cx="24" cy="33" r="3" fill="#fff"/>
+              <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+              <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+              <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
+              <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
+            </g>
+          </svg>
+        </div>
+        <span data-ru="Профессиональный наставник" data-en="Professional Mentor">Профессиональный наставник</span>
+      </div>
+      <div class="chat-header-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="chat-body">
+      <div id="chatResponseAreaProfessional"></div>
+      <div class="chat-bubble">💼 Я — твой профессиональный наставник. Помогу с практикой, интеграцией с LMS, методическими материалами и профилактикой выгорания. Чем могу помочь?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInputProfessional" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
+      <button class="chat-btn chat-btn-emoji">😊</button>
+      <button class="chat-btn chat-btn-mic" id="sendBtnProfessional">➤</button>
+    </div>
+  </div>
+</div>
+<!-- Конец чата -->
               <div class="integration-card">
                 <div
                   class="integration-title"
@@ -3467,93 +3595,95 @@
         });
       });
 
-      (function () {
-        document.addEventListener("DOMContentLoaded", function () {
-          const input = document.getElementById("chatInput");
-          const btn = document.getElementById("sendBtn");
-          const area = document.getElementById("chatResponseArea");
+      // Универсальная функция инициализации чата для любого трека
+function initChatForTrack(inputId, btnId, areaId, trackName) {
+  const input = document.getElementById(inputId);
+  const btn = document.getElementById(btnId);
+  const area = document.getElementById(areaId);
+  if (!input || !btn || !area) {
+    console.warn('Чат для ' + trackName + ' не инициализирован (элементы не найдены)');
+    return;
+  }
 
-          if (!input || !btn || !area) {
-            console.error("Элементы чата не найдены");
-            return;
-          }
+  async function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
 
-          async function sendMessageToAI() {
-            const message = input.value.trim();
-            if (!message) return;
+    const userBubble = document.createElement('div');
+    userBubble.className = 'chat-bubble';
+    userBubble.textContent = message;
+    area.appendChild(userBubble);
+    input.value = '';
 
-            const userBubble = document.createElement("div");
-            userBubble.className = "chat-bubble";
-            userBubble.textContent = message;
-            area.appendChild(userBubble);
-            input.value = "";
+    const loading = document.createElement('div');
+    loading.className = 'chat-bubble';
+    loading.textContent = '⏳ Думаю...';
+    loading.id = 'loadingBubble_' + trackName;
+    area.appendChild(loading);
+    area.scrollTop = area.scrollHeight;
 
-            const loading = document.createElement("div");
-            loading.className = "chat-bubble";
-            loading.textContent = "⏳ Думаю...";
-            loading.id = "loadingBubble";
-            area.appendChild(loading);
-            area.scrollTop = area.scrollHeight;
+    try {
+      const activeTab = document.querySelector('.tab.active');
+      const track = activeTab ? activeTab.dataset.tab : 'academic';
 
-            try {
-              const activeTab = document.querySelector(".tab.active");
-              const track = activeTab ? activeTab.dataset.tab : "academic";
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, track })
+      });
+      const data = await response.json();
 
-              const response = await fetch("/api/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message, track }),
-              });
-              const data = await response.json();
+      const loadEl = document.getElementById('loadingBubble_' + trackName);
+      if (loadEl) loadEl.remove();
 
-              const loadEl = document.getElementById("loadingBubble");
-              if (loadEl) loadEl.remove();
+      if (response.ok) {
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'chat-bubble';
+        aiBubble.textContent = data.reply || '(пустой ответ)';
+        area.appendChild(aiBubble);
 
-              if (response.ok) {
-                const aiBubble = document.createElement("div");
-                aiBubble.className = "chat-bubble";
-                aiBubble.textContent = data.reply || "(пустой ответ)";
-                area.appendChild(aiBubble);
+        if (data.sources && data.sources.length > 0) {
+          const sourceDiv = document.createElement('div');
+          sourceDiv.style.fontSize = '11px';
+          sourceDiv.style.color = '#666';
+          sourceDiv.style.marginTop = '6px';
+          sourceDiv.style.borderTop = '1px solid #eee';
+          sourceDiv.style.paddingTop = '6px';
+          sourceDiv.textContent = '📚 Источники: ' + data.sources.join('; ');
+          area.appendChild(sourceDiv);
+        }
+      } else {
+        const errBubble = document.createElement('div');
+        errBubble.className = 'chat-bubble';
+        errBubble.textContent = '❌ Ошибка: ' + (data.error || 'неизвестная');
+        area.appendChild(errBubble);
+      }
+    } catch (e) {
+      const loadEl = document.getElementById('loadingBubble_' + trackName);
+      if (loadEl) loadEl.remove();
+      const errBubble = document.createElement('div');
+      errBubble.className = 'chat-bubble';
+      errBubble.textContent = '❌ Ошибка соединения: ' + e.message;
+      area.appendChild(errBubble);
+    }
+    area.scrollTop = area.scrollHeight;
+  }
 
-                if (data.sources && data.sources.length > 0) {
-                  const sourceDiv = document.createElement("div");
-                  sourceDiv.style.fontSize = "11px";
-                  sourceDiv.style.color = "#666";
-                  sourceDiv.style.marginTop = "6px";
-                  sourceDiv.style.borderTop = "1px solid #eee";
-                  sourceDiv.style.paddingTop = "6px";
-                  sourceDiv.textContent =
-                    "📚 Источники: " + data.sources.join("; ");
-                  area.appendChild(sourceDiv);
-                }
-              } else {
-                const errBubble = document.createElement("div");
-                errBubble.className = "chat-bubble";
-                errBubble.textContent =
-                  "❌ Ошибка: " + (data.error || "неизвестная");
-                area.appendChild(errBubble);
-              }
-            } catch (e) {
-              const loadEl = document.getElementById("loadingBubble");
-              if (loadEl) loadEl.remove();
-              const errBubble = document.createElement("div");
-              errBubble.className = "chat-bubble";
-              errBubble.textContent = "❌ Ошибка соединения: " + e.message;
-              area.appendChild(errBubble);
-            }
-            area.scrollTop = area.scrollHeight;
-          }
+  btn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+}
 
-          // Привязываем обработчики
-          btn.addEventListener("click", sendMessageToAI);
-          input.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              sendMessageToAI();
-            }
-          });
-        }); // закрываем DOMContentLoaded
-      })(); // закрываем IIFE
+// Инициализация всех трёх треков
+document.addEventListener('DOMContentLoaded', function() {
+  initChatForTrack('chatInput', 'sendBtn', 'chatResponseArea', 'academic');
+  initChatForTrack('chatInputResearch', 'sendBtnResearch', 'chatResponseAreaResearch', 'research');
+  initChatForTrack('chatInputProfessional', 'sendBtnProfessional', 'chatResponseAreaProfessional', 'professional');
+});
     </script>
   </body>
 </html>
