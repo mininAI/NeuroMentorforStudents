@@ -1,21 +1,28 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-import { GigaChat } from 'gigachat';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+import { GigaChat } from "gigachat";
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   const { message, track } = req.body;
   if (!message) {
-    return res.status(400).json({ error: 'Сообщение не может быть пустым' });
+    return res.status(400).json({ error: "Сообщение не может быть пустым" });
   }
 
   const credentials = process.env.GIGACHAT_CREDENTIALS;
   if (!credentials) {
-    return res.status(500).json({ error: 'Ключ API не настроен' });
+    return res.status(500).json({ error: "Ключ API не настроен" });
   }
 
+  const universalRule = `
+  Важное правило: Никогда не используй плейсхолдеры (заполнители) в своих ответах, такие как "[указать предмет]", "[автор]", "[название]", "[дата]" и т.п.
+  Если тебе не хватает информации для точного ответа, всегда проси пользователя уточнить недостающие детали (например: «Уточните, пожалуйста, ваш профиль подготовки», «Назовите тему работы», «Укажите, какой предмет вас интересует»).
+  Если ты не знаешь точного ответа, дай общие рекомендации с указанием возможных вариантов, но без плейсхолдеров.
+`;
+  const languageInstruction =
+    "Отвечай на том же языке, на котором задан вопрос пользователя. Если пользователь написал на английском — отвечай на английском, если на русском — на русском.";
   // Системные промпты для каждого трека
   const systemPrompts = {
     academic: `
@@ -33,6 +40,12 @@ export default async function handler(req, res) {
       Пример хорошего ответа: "Согласно ФГОС 3++ по направлению 'Педагогическое образование', на 2-м курсе изучаются: Педагогика (4 з.е.), Психология (3 з.е.), Методика преподавания (3 з.е.). Рекомендую обратиться к учебникам: ..."
       
       Если у студента сложный вопрос (конфликт, этика, личные проблемы) — предложи обратиться к куратору.
+      В конце твоего ответа обязательно укажи источники, на которые ты опирался, в строгом формате:
+        === ИСТОЧНИКИ ===
+        - Источник 1
+        - Источник 2
+        ...
+        Если источников нет, просто не пиши этот блок.
     `,
     research: `
       Ты — исследовательский наставник NeuroMentor. Помогай студентам с:
@@ -48,6 +61,12 @@ export default async function handler(req, res) {
       - Если вопрос по исследованиям в педагогике — используй базу elibrary.ru.
       
       Пример хорошего ответа: "Для публикации в журнале 'Педагогика' (ВАК) необходимо: аннотация (до 200 слов), ключевые слова (5-7), объём статьи (до 25 000 знаков), оформление по ГОСТ 7.0.5-2008. Проверьте оригинальность текста (>85% по системе 'Антиплагиат')."
+      В конце твоего ответа обязательно укажи источники, на которые ты опирался, в строгом формате:
+        === ИСТОЧНИКИ ===
+        - Источник 1
+        - Источник 2
+        ...
+        Если источников нет, просто не пиши этот блок.
     `,
     professional: `
       Ты — профессиональный наставник NeuroMentor. Помогай студентам с:
@@ -63,55 +82,69 @@ export default async function handler(req, res) {
       - Если студенту нужна психологическая помощь — предложи обратиться к куратору.
       
       Пример хорошего ответа: "Для успешной преподавательской практики рекомендую: 1) Составить план урока за 3 дня до занятия. 2) Использовать метод 'Кейс-стади' для вовлечения студентов. 3) В Moodle создайте форум для обсуждения. 4) Не забывайте про перерывы — 5 минут каждые 45 минут работы."
-    `
+      В конце твоего ответа обязательно укажи источники, на которые ты опирался, в строгом формате:
+        === ИСТОЧНИКИ ===
+        - Источник 1
+        - Источник 2
+        ...
+        Если источников нет, просто не пиши этот блок.
+    `,
   };
 
   const systemPrompt = systemPrompts[track] || systemPrompts.academic;
+  const fullSystemPrompt =
+    languageInstruction + "\n\n" + universalRule + "\n\n" + systemPrompt;
 
   try {
     const client = new GigaChat({
       credentials,
-      scope: 'GIGACHAT_API_PERS',
-      model: 'GigaChat',
+      scope: "GIGACHAT_API_PERS",
+      model: "GigaChat",
       verify_ssl_certs: false,
     });
 
     const response = await client.chat({
       messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: message }
+        { role: "system", content: fullSystemPrompt },
+        { role: "user", content: message },
       ],
       temperature: 0.3,
       max_tokens: 1000,
     });
 
-    const reply = response.choices[0]?.message?.content || 'Извините, ответ не получен.';
+    const reply =
+      response.choices[0]?.message?.content || "Извините, ответ не получен.";
 
     // Добавляем демонстрационные источники для визуальной верификации
-    const sources = {
-      academic: [
-        'ФГОС 3++ по направлению "Педагогическое образование" (Приказ Минобрнауки № 1426 от 22.02.2018)',
-        'Приказ Минпросвещения РФ № 885 от 20.09.2022 "Об утверждении порядка организации образовательной деятельности"'
-      ],
-      research: [
-        'Постановление Правительства РФ № 178 от 26.04.2021 "О ВАК"',
-        'Приказ Минобрнауки РФ № 42 от 27.01.2021 "Об утверждении перечня ВАК"',
-        'ГОСТ 7.0.5-2008 "Библиографическая ссылка"'
-      ],
-      professional: [
-        'Приказ Минпросвещения РФ № 425 от 15.07.2022 "Об утверждении Порядка проведения практики"',
-        'Методические рекомендации по организации практики студентов (Письмо Минобрнауки РФ № 12-234 от 10.03.2023)'
-      ]
-    };
+
+
+    function extractSources(reply) {
+      const marker = "=== ИСТОЧНИКИ ===";
+      const index = reply.indexOf(marker);
+      if (index === -1) {
+        return { cleanReply: reply, sources: [] };
+      }
+      const cleanReply = reply.substring(0, index).trim();
+      const sourcesBlock = reply.substring(index + marker.length).trim();
+      // Разбиваем на строки, убираем маркеры списка "- " и пустые строки
+      const sources = sourcesBlock
+        .split("\n")
+        .map((line) => line.replace(/^-\s*/, "").trim())
+        .filter((line) => line.length > 0);
+      return { cleanReply, sources };
+    }
+
+    const { cleanReply, sources } = extractSources(reply);
 
     return res.status(200).json({
-      reply,
+      reply: cleanReply,
       track,
-      sources: sources[track] || sources.academic
+      sources: sources.length > 0 ? sources : sources[track] // fallback, если модель не указала источники
     });
-
   } catch (error) {
-    console.error('GigaChat error:', error);
-    return res.status(500).json({ error: error.message || 'Ошибка при обращении к GigaChat' });
+    console.error("GigaChat error:", error);
+    return res
+      .status(500)
+      .json({ error: error.message || "Ошибка при обращении к GigaChat" });
   }
 }
