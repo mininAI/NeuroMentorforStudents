@@ -1,2358 +1,3559 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeuroMentor | Minin.AI</title>
-<style>
-  :root {
-    --base-font-size: 16px;
-    --font-scale: 1;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    color: #333;
-    min-height: 100vh;
-    font-size: var(--base-font-size);
-    overflow-x: hidden;
-  }
-
-  /* Accessibility: Large Text Mode */
-  body.text-large {
-    --font-scale: 1.3;
-  }
-  body.text-large .top-navbar { padding: 14px 24px; }
-  body.text-large .logo-text-main { font-size: 22px; }
-  body.text-large .logo-text-sub { font-size: 14px; }
-  body.text-large .logo-svg { height: 56px; width: 56px; }
-  body.text-large .tab { padding: 18px 28px; font-size: 16px; }
-  body.text-large .chat-bubble { font-size: 16px; padding: 18px 22px; }
-  body.text-large .chat-section-title { font-size: 18px; }
-  body.text-large .chat-section li { font-size: 15px; }
-  body.text-large .research-title,
-  body.text-large .prof-title,
-  body.text-large .schedule-title,
-  body.text-large .materials-title,
-  body.text-large .burnout-title,
-  body.text-large .integration-title { font-size: 18px; }
-  body.text-large .journal-name { font-size: 17px; }
-  body.text-large .checklist-title { font-size: 17px; }
-  body.text-large .sidebar-title { font-size: 17px; }
-  body.text-large .profile-field { font-size: 15px; }
-  body.text-large .status-item { font-size: 14px; padding: 10px 14px; }
-  body.text-large .material-name { font-size: 15px; }
-  body.text-large .task-item { font-size: 14px; padding: 10px 14px; }
-  body.text-large .action-btn { font-size: 15px; padding: 12px; }
-  body.text-large .chat-input { font-size: 16px; }
-  body.text-large .search-box input { font-size: 15px; }
-  body.text-large .filter-label { font-size: 15px; }
-  body.text-large .filter-tag { font-size: 13px; padding: 7px 14px; }
-  body.text-large .view-req-btn { font-size: 14px; padding: 10px 18px; }
-  body.text-large .download-btn { font-size: 16px; padding: 14px; }
-  body.text-large .sync-btn { font-size: 15px; padding: 12px 24px; }
-  body.text-large .open-btn { font-size: 13px; padding: 8px 16px; }
-  body.text-large .calendar-date { font-size: 15px; padding: 10px 6px; }
-  body.text-large .bar-label { font-size: 12px; }
-  body.text-large .lang-btn { font-size: 15px; padding: 8px 16px; }
-  body.text-large .accessibility-btn { font-size: 18px; padding: 10px 16px; }
-  body.text-large .nav-icon { width: 42px; height: 42px; font-size: 18px; }
-  body.text-large .avatar { width: 42px; height: 42px; font-size: 16px; }
-
-  /* Accessibility: Inverted Colors Mode */
-  body.invert-colors {
-    background: #0a0a0a;
-    color: #f0f0f0;
-  }
-  body.invert-colors .top-navbar,
-  body.invert-colors .tabs,
-  body.invert-colors .side-nav,
-  body.invert-colors .chat-container,
-  body.invert-colors .chat-section,
-  body.invert-colors .sidebar-card,
-  body.invert-colors .checklist-card,
-  body.invert-colors .integration-card,
-  body.invert-colors .schedule-card,
-  body.invert-colors .materials-card,
-  body.invert-colors .burnout-card,
-  body.invert-colors .journal-card,
-  body.invert-colors .search-box,
-  body.invert-colors .material-item,
-  body.invert-colors .task-item,
-  body.invert-colors .nav-icon,
-  body.invert-colors .chat-bubble {
-    background: #1a1a1a;
-    color: #f0f0f0;
-    border-color: #333;
-  }
-  body.invert-colors .tab { color: #ccc; }
-  body.invert-colors .tab.active { color: #fff; border-bottom-color: #4a9eff; }
-  body.invert-colors .tab:hover:not(.active) { color: #4a9eff; }
-  body.invert-colors .logo-text-main,
-  body.invert-colors .research-title,
-  body.invert-colors .prof-title,
-  body.invert-colors .chat-section-title,
-  body.invert-colors .schedule-title,
-  body.invert-colors .materials-title,
-  body.invert-colors .burnout-title,
-  body.invert-colors .integration-title,
-  body.invert-colors .sidebar-title,
-  body.invert-colors .journal-name,
-  body.invert-colors .checklist-title,
-  body.invert-colors .material-name,
-  body.invert-colors .profile-university {
-    color: #4a9eff;
-  }
-  body.invert-colors .chat-section li,
-  body.invert-colors .checklist-items,
-  body.invert-colors .profile-label,
-  body.invert-colors .bar-label,
-  body.invert-colors .calendar-day,
-  body.invert-colors .calendar-date {
-    color: #ddd;
-  }
-  body.invert-colors .chat-input,
-  body.invert-colors .search-box input,
-  body.invert-colors .materials-search input {
-    background: #2a2a2a;
-    color: #f0f0f0;
-    border-color: #444;
-  }
-  body.invert-colors .filter-tag {
-    background: #2a2a2a;
-    color: #ddd;
-    border-color: #444;
-  }
-  body.invert-colors .filter-tag.active {
-    background: #4a9eff;
-    color: #000;
-    border-color: #4a9eff;
-  }
-  body.invert-colors .verified-tag,
-  body.invert-colors .view-req-btn,
-  body.invert-colors .download-btn,
-  body.invert-colors .sync-btn,
-  body.invert-colors .open-btn,
-  body.invert-colors .action-btn.primary,
-  body.invert-colors .section-number,
-  body.invert-colors .chat-btn-mic,
-  body.invert-colors .checklist-check,
-  body.invert-colors .side-nav-item.active {
-    background: #4a9eff;
-    color: #000;
-  }
-  body.invert-colors .action-btn.secondary {
-    background: #2a2a2a;
-    color: #4a9eff;
-  }
-  body.invert-colors .lang-btn {
-    background: #1a1a1a;
-    color: #4a9eff;
-    border-color: #4a9eff;
-  }
-  body.invert-colors .lang-btn:hover {
-    background: #4a9eff;
-    color: #000;
-  }
-  body.invert-colors .accessibility-btn {
-    background: #1a1a1a;
-    color: #4a9eff;
-    border-color: #4a9eff;
-  }
-  body.invert-colors .accessibility-btn:hover {
-    background: #4a9eff;
-    color: #000;
-  }
-  body.invert-colors .status-item.green { background: #2ecc71; }
-  body.invert-colors .status-item.blue { background: #4a9eff; }
-  body.invert-colors .status-item.red { background: #e74c3c; }
-  body.invert-colors .status-item.gray { background: #555; }
-  body.invert-colors .task-priority.high { background: #e74c3c; }
-  body.invert-colors .task-priority.medium { background: #f39c12; }
-  body.invert-colors .task-priority.low { background: #2ecc71; }
-  body.invert-colors .bar { background: #4a9eff; }
-  body.invert-colors .progress-bar-fill,
-  body.invert-colors .readiness-fill,
-  body.invert-colors .progress-bar-small-fill {
-    background: linear-gradient(90deg, #4a9eff, #6ab8ff);
-  }
-  body.invert-colors .progress-bar-container,
-  body.invert-colors .readiness-bar,
-  body.invert-colors .progress-bar-small {
-    background: #333;
-  }
-  body.invert-colors .calendar-date.selected {
-    background: #4a9eff;
-    color: #000;
-  }
-  body.invert-colors .calendar-date:hover { background: #2a2a2a; }
-  body.invert-colors .task-check {
-    border-color: #4a9eff;
-    color: #4a9eff;
-  }
-  body.invert-colors .task-check.checked {
-    background: #4a9eff;
-    color: #000;
-  }
-  body.invert-colors .verified-guideline-btn {
-    background: #2a2a2a;
-    color: #4a9eff;
-  }
-  body.invert-colors .integration-item {
-    background: #2a2a2a;
-  }
-  body.invert-colors .material-type {
-    color: #2ecc71;
-  }
-  body.invert-colors .material-type .dot {
-    background: #2ecc71;
-  }
-  body.invert-colors .integration-status {
-    color: #2ecc71;
-  }
-  body.invert-colors .integration-status .dot {
-    background: #2ecc71;
-  }
-  body.invert-colors .wellbeing-value { color: #2ecc71; }
-  body.invert-colors .wellbeing-heart { color: #e74c3c; }
-  body.invert-colors .nav-badge { background: #e74c3c; }
-  body.invert-colors .chat-header-icon { background: rgba(74, 158, 255, 0.2); }
-  body.invert-colors .chat-header-dots span { background: rgba(255,255,255,0.4); }
-  body.invert-colors .side-nav-item { color: #ccc; }
-  body.invert-colors .side-nav-item:hover { background: #2a2a2a; color: #4a9eff; }
-  body.invert-colors .side-nav-overlay { background: rgba(0,0,0,0.7); }
-  body.invert-colors .mobile-menu-btn { color: #4a9eff; }
-
-  /* Top Navbar */
-  .top-navbar {
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 10px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 700;
-    color: #2c3e6b;
-  }
-  .logo-svg {
-    height: 48px;
-    width: 48px;
-    flex-shrink: 0;
-  }
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-  .logo-text-main {
-    font-size: 18px;
-    font-weight: 800;
-    color: #2c3e6b;
-    letter-spacing: -0.3px;
-  }
-  .logo-text-sub {
-    font-size: 11px;
-    color: #4a6fa5;
-    font-weight: 500;
-  }
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .nav-icon {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: #f0f2f5;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    position: relative;
-  }
-  .nav-icon:hover { background: #e0e4ea; }
-  .nav-badge {
-    position: absolute;
-    top: 4px; right: 4px;
-    width: 8px; height: 8px;
-    background: #e74c3c;
-    border-radius: 50%;
-  }
-  .avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4a6fa5, #2c3e6b);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-  }
-
-  /* Language Button */
-  .lang-btn {
-    padding: 6px 14px;
-    border-radius: 16px;
-    border: 2px solid #2c3e6b;
-    background: #fff;
-    color: #2c3e6b;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .lang-btn:hover {
-    background: #2c3e6b;
-    color: #fff;
-  }
-  .lang-btn .lang-icon {
-    font-size: 14px;
-  }
-
-  /* Accessibility Button */
-  .accessibility-btn {
-    padding: 6px 14px;
-    border-radius: 16px;
-    border: 2px solid #2c3e6b;
-    background: #fff;
-    color: #2c3e6b;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .accessibility-btn:hover {
-    background: #2c3e6b;
-    color: #fff;
-  }
-  .accessibility-btn .acc-icon {
-    font-size: 14px;
-  }
-
-  /* Accessibility Dropdown */
-  .acc-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 8px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    min-width: 220px;
-    z-index: 200;
-    display: none;
-  }
-  body.invert-colors .acc-dropdown {
-    background: #1a1a1a;
-    border-color: #333;
-  }
-  .acc-dropdown.show { display: block; }
-  .acc-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    transition: background 0.2s;
-    margin-bottom: 6px;
-  }
-  body.invert-colors .acc-option {
-    color: #f0f0f0;
-  }
-  .acc-option:hover {
-    background: #f0f2f5;
-  }
-  body.invert-colors .acc-option:hover {
-    background: #2a2a2a;
-  }
-  .acc-option:last-child { margin-bottom: 0; }
-  .acc-toggle {
-    width: 40px;
-    height: 22px;
-    background: #ccc;
-    border-radius: 11px;
-    position: relative;
-    transition: background 0.3s;
-  }
-  .acc-toggle::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: left 0.3s;
-  }
-  .acc-toggle.active {
-    background: #2c3e6b;
-  }
-  body.invert-colors .acc-toggle.active {
-    background: #4a9eff;
-  }
-  .acc-toggle.active::after {
-    left: 20px;
-  }
-  .acc-label {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .acc-label-main {
-    font-weight: 600;
-  }
-  .acc-label-sub {
-    font-size: 11px;
-    color: #888;
-  }
-  body.invert-colors .acc-label-sub {
-    color: #aaa;
-  }
-
-  .acc-wrapper {
-    position: relative;
-  }
-
-  /* Tabs */
-  .tabs {
-    display: flex;
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 0 24px;
-    overflow-x: auto;
-  }
-  .tab {
-    padding: 14px 24px;
-    background: transparent;
-    color: #555;
-    border: none;
-    border-bottom: 3px solid transparent;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: all 0.2s;
-  }
-  .tab.active {
-    color: #2c3e6b;
-    border-bottom-color: #2c3e6b;
-  }
-  .tab:hover:not(.active) { color: #2c3e6b; }
-
-  /* Layout */
-  .app-layout {
-    display: flex;
-    min-height: calc(100vh - 110px);
-  }
-
-  /* Side Nav */
-  .side-nav {
-    width: 60px;
-    background: #fff;
-    border-right: 1px solid #e0e0e0;
-    padding: 16px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    position: sticky;
-    top: 110px;
-    height: calc(100vh - 110px);
-    overflow-y: auto;
-  }
-  .side-nav-item {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    font-size: 18px;
-    color: #666;
-    transition: all 0.2s;
-  }
-  .side-nav-item:hover { background: #f0f2f5; color: #2c3e6b; }
-  .side-nav-item.active { background: #2c3e6b; color: #fff; }
-
-  /* Main Content */
-  .main-content {
-    flex: 1;
-    padding: 24px;
-    overflow-x: hidden;
-  }
-
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  /* ============ ACADEMIC TRACK - CHAT ============ */
-  .chat-layout {
-    display: flex;
-    gap: 20px;
-  }
-  .chat-area {
-    flex: 1;
-    min-width: 0;
-  }
-  .chat-container {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 600px;
-  }
-  .chat-header {
-    background: #2c3e6b;
-    color: #fff;
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .chat-header-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .chat-header-icon {
-    width: 36px; height: 36px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    padding: 4px;
-  }
-  .chat-header-icon svg {
-    width: 100%;
-    height: 100%;
-  }
-  .chat-header-dots {
-    display: flex; gap: 4px;
-  }
-  .chat-header-dots span {
-    width: 6px; height: 6px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 50%;
-  }
-  .chat-body {
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto;
-  }
-  .chat-bubble {
-    background: #f5f7fa;
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 16px;
-    max-width: 90%;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .chat-section {
-    background: #fff;
-    border: 1px solid #e8eaed;
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 16px;
-  }
-  .chat-section-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 10px;
-  }
-  .chat-section ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  .chat-section li {
-    padding: 4px 0 4px 16px;
-    position: relative;
-    font-size: 13px;
-    color: #444;
-    line-height: 1.6;
-  }
-  .chat-section li::before {
-    content: '•';
-    position: absolute;
-    left: 2px;
-    color: #2c3e6b;
-    font-weight: bold;
-  }
-  .verified-tag {
-    display: inline-block;
-    background: #2c3e6b;
-    color: #fff;
-    padding: 2px 10px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-left: 6px;
-  }
-  .chat-input-area {
-    padding: 14px 20px;
-    border-top: 1px solid #e8eaed;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  .chat-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 1px solid #e0e0e0;
-    border-radius: 20px;
-    font-size: 14px;
-    outline: none;
-  }
-  .chat-input:focus { border-color: #2c3e6b; }
-  .chat-btn {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    transition: all 0.2s;
-  }
-  .chat-btn-emoji { background: #f0f2f5; color: #666; }
-  .chat-btn-emoji:hover { background: #e0e4ea; }
-  .chat-btn-mic { background: #2c3e6b; color: #fff; }
-  .chat-btn-mic:hover { background: #1e2d52; }
-
-  /* ============ SIDEBAR ============ */
-  .sidebar {
-    width: 280px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .sidebar-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .sidebar-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e8eaed;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sidebar-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4a6fa5, #2c3e6b);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-weight: 600;
-    font-size: 14px;
-  }
-  .profile-field {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 13px;
-  }
-  .profile-label { color: #666; }
-  .profile-value { font-weight: 600; color: #333; }
-  .profile-university {
-    font-size: 13px;
-    font-weight: 600;
-    color: #2c3e6b;
-    margin: 10px 0 8px;
-  }
-  .progress-bar-container {
-    width: 100%;
-    height: 8px;
-    background: #e8eaed;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 14px;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #2c3e6b, #4a6fa5);
-    border-radius: 4px;
-    width: 72%;
-  }
-  .status-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
-  }
-  .status-item.green { background: #27ae60; }
-  .status-item.blue { background: #2c3e6b; }
-  .status-item.red { background: #e74c3c; }
-  .status-item.gray { background: #6c757d; }
-  .status-icon {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px;
-  }
-
-  /* ============ RESEARCH TRACK ============ */
-  .research-layout {
-    display: flex;
-    gap: 20px;
-  }
-  .research-main { flex: 1; min-width: 0; }
-  .research-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 16px;
-  }
-  .search-box {
-    background: #fff;
-    border-radius: 10px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .search-box input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 13px;
-    color: #555;
-  }
-  .search-icon { color: #999; font-size: 14px; }
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 16px;
-    align-items: center;
-  }
-  .filter-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-  }
-  .filter-tag {
-    padding: 5px 12px;
-    border-radius: 14px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #555;
-    transition: all 0.2s;
-  }
-  .filter-tag.active {
-    background: #2c3e6b;
-    color: #fff;
-    border-color: #2c3e6b;
-  }
-  .filter-tag:hover:not(.active) { background: #f0f2f5; }
-
-  .journal-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .journal-info { flex: 1; min-width: 200px; }
-  .journal-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 8px;
-  }
-  .journal-tags {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .journal-tag {
-    padding: 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: 700;
-    background: #2c3e6b;
-    color: #fff;
-  }
-  .journal-tag.vak { background: #2c3e6b; }
-  .journal-tag.rsci { background: #4a6fa5; }
-  .journal-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: #555;
-  }
-  .impact-bar {
-    display: flex;
-    gap: 2px;
-  }
-  .impact-bar span {
-    width: 16px; height: 8px;
-    border-radius: 2px;
-    background: #e0e0e0;
-  }
-  .impact-bar.high span:nth-child(-n+4) { background: #27ae60; }
-  .impact-bar.medium span:nth-child(-n+3) { background: #f39c12; }
-  .impact-bar.low span:nth-child(-n+2) { background: #e74c3c; }
-  .view-req-btn {
-    background: #2c3e6b;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .view-req-btn:hover { background: #1e2d52; }
-
-  .checklist-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .checklist-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 16px;
-    line-height: 1.4;
-  }
-  .checklist-section {
-    margin-bottom: 16px;
-  }
-  .checklist-section-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #333;
-  }
-  .checklist-check {
-    width: 22px; height: 22px;
-    background: #2c3e6b;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    flex-shrink: 0;
-  }
-  .checklist-items {
-    padding-left: 30px;
-    font-size: 12px;
-    color: #555;
-    line-height: 1.8;
-  }
-  .verified-guideline-btn {
-    display: inline-block;
-    background: #f0f2f5;
-    color: #2c3e6b;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-top: 6px;
-    cursor: pointer;
-  }
-  .download-btn {
-    width: 100%;
-    background: #2c3e6b;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .download-btn:hover { background: #1e2d52; }
-  .readiness-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #333;
-    margin-top: 14px;
-    margin-bottom: 6px;
-  }
-  .readiness-bar {
-    width: 100%;
-    height: 8px;
-    background: #e8eaed;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .readiness-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #2c3e6b, #4a6fa5);
-    width: 65%;
-  }
-
-  /* ============ PROFESSIONAL TRACK ============ */
-  .prof-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #2c3e6b;
-    text-align: center;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .prof-title-logo {
-    width: 40px;
-    height: 40px;
-  }
-  .prof-layout {
-    display: flex;
-    gap: 20px;
-  }
-  .prof-main { flex: 1; min-width: 0; }
-
-  .integration-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .integration-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 14px;
-  }
-  .integration-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .integration-item {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .integration-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 700;
-  }
-  .integration-icon.moodle { background: #f98012; }
-  .integration-icon.mes { background: #2c3e6b; }
-  .integration-icon.lms { background: #27ae60; }
-  .integration-name { font-size: 13px; font-weight: 700; color: #333; }
-  .integration-status {
-    font-size: 11px;
-    color: #27ae60;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .integration-status .dot {
-    width: 6px; height: 6px;
-    background: #27ae60;
-    border-radius: 50%;
-  }
-  .sync-btn {
-    background: #2c3e6b;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-  }
-  .sync-btn:hover { background: #1e2d52; }
-
-  .schedule-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .schedule-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 12px;
-  }
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-  .calendar-day {
-    text-align: center;
-    font-size: 11px;
-    color: #999;
-    padding: 4px;
-    font-weight: 600;
-  }
-  .calendar-date {
-    text-align: center;
-    padding: 8px 4px;
-    font-size: 13px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #333;
-  }
-  .calendar-date:hover { background: #f0f2f5; }
-  .calendar-date.selected {
-    background: #2c3e6b;
-    color: #fff;
-    font-weight: 700;
-  }
-  .calendar-date.empty { visibility: hidden; }
-
-  .materials-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .materials-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 12px;
-  }
-  .materials-search {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .materials-search input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 13px;
-  }
-  .materials-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .material-tab {
-    padding: 6px 12px;
-    border-radius: 14px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #555;
-  }
-  .material-tab.active {
-    background: #2c3e6b;
-    color: #fff;
-    border-color: #2c3e6b;
-  }
-  .material-item {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .material-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 4px;
-  }
-  .material-type {
-    font-size: 11px;
-    color: #27ae60;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .material-type .dot {
-    width: 6px; height: 6px;
-    background: #27ae60;
-    border-radius: 50%;
-  }
-  .open-btn {
-    background: #2c3e6b;
-    color: #fff;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .open-btn:hover { background: #1e2d52; }
-
-  .burnout-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .burnout-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c3e6b;
-    margin-bottom: 14px;
-  }
-  .bar-chart {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    height: 120px;
-    padding: 10px 0;
-    border-bottom: 1px solid #e8eaed;
-    margin-bottom: 10px;
-  }
-  .bar-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex: 1;
-  }
-  .bar {
-    width: 20px;
-    background: #2c3e6b;
-    border-radius: 3px 3px 0 0;
-    transition: height 0.5s;
-  }
-  .bar-label {
-    font-size: 10px;
-    color: #666;
-    font-weight: 600;
-  }
-  .wellbeing-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 14px;
-  }
-  .wellbeing-heart { color: #e74c3c; font-size: 16px; }
-  .wellbeing-value { color: #27ae60; }
-  .task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    font-size: 12px;
-  }
-  .task-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .task-check {
-    width: 16px; height: 16px;
-    border: 2px solid #2c3e6b;
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    color: #2c3e6b;
-    font-size: 10px;
-    cursor: pointer;
-  }
-  .task-check.checked {
-    background: #2c3e6b;
-    color: #fff;
-  }
-  .task-priority {
-    padding: 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .task-priority.high { background: #e74c3c; }
-  .task-priority.medium { background: #f39c12; }
-  .task-priority.low { background: #27ae60; }
-  .action-btn {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-bottom: 8px;
-    transition: all 0.2s;
-  }
-  .action-btn.primary { background: #2c3e6b; color: #fff; }
-  .action-btn.primary:hover { background: #1e2d52; }
-  .action-btn.secondary { background: #f0f2f5; color: #2c3e6b; }
-  .action-btn.secondary:hover { background: #e0e4ea; }
-
-  /* Mobile hamburger */
-  .mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #2c3e6b;
-  }
-
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 1024px) {
-    .sidebar { width: 240px; }
-  }
-
-  @media (max-width: 900px) {
-    .side-nav { display: none; }
-    .chat-layout, .research-layout, .prof-layout {
-      flex-direction: column;
-    }
-    .sidebar { width: 100%; }
-    .mobile-menu-btn { display: block; }
-  }
-
-  @media (max-width: 600px) {
-    .top-navbar { 
-      padding: 8px 12px;
-      flex-wrap: wrap;
-    }
-    .logo {
-      gap: 6px;
-    }
-    .logo-text-main { font-size: 14px; }
-    .logo-text-sub { font-size: 9px; }
-    .logo-svg { height: 36px; width: 36px; }
-    .tabs { 
-      padding: 0 8px;
-    }
-    .tab { 
-      padding: 10px 12px; 
-      font-size: 12px;
-    }
-    .main-content { 
-      padding: 12px;
-    }
-    .chat-body { 
-      padding: 12px;
-    }
-    .chat-container {
-      min-height: auto;
-    }
-    .journal-card { 
-      flex-direction: column; 
-      align-items: flex-start;
-    }
-    .view-req-btn { 
-      width: 100%;
-    }
-    .integration-grid { 
-      grid-template-columns: 1fr;
-    }
-    .calendar-date { 
-      padding: 6px 2px; 
-      font-size: 11px;
-    }
-    .calendar-day {
-      font-size: 9px;
-    }
-    .nav-actions { 
-      gap: 6px;
-    }
-    .nav-icon { 
-      width: 32px; 
-      height: 32px; 
-      font-size: 14px;
-    }
-    .avatar { 
-      width: 32px; 
-      height: 32px; 
-      font-size: 12px;
-    }
-    .prof-title { 
-      font-size: 14px;
-    }
-    .prof-title-logo { 
-      width: 30px; 
-      height: 30px;
-    }
-    .lang-btn { 
-      padding: 4px 8px; 
-      font-size: 11px;
-    }
-    .lang-btn .lang-icon {
-      font-size: 12px;
-    }
-    .accessibility-btn { 
-      padding: 4px 8px; 
-      font-size: 11px;
-    }
-    .accessibility-btn .acc-icon {
-      font-size: 12px;
-    }
-    .acc-dropdown { 
-      min-width: 180px;
-      right: -20px;
-      padding: 8px;
-    }
-    .acc-option {
-      padding: 8px;
-      font-size: 12px;
-    }
-    .acc-label-sub {
-      font-size: 10px;
-    }
-    .acc-toggle {
-      width: 36px;
-      height: 20px;
-    }
-    .acc-toggle::after {
-      width: 16px;
-      height: 16px;
-    }
-    .acc-toggle.active::after {
-      left: 18px;
-    }
-    .chat-input-area {
-      padding: 10px 14px;
-    }
-    .chat-input {
-      padding: 8px 12px;
-      font-size: 13px;
-    }
-    .chat-btn {
-      width: 34px;
-      height: 34px;
-      font-size: 14px;
-    }
-    .sidebar-card {
-      padding: 14px;
-    }
-    .sidebar-title {
-      font-size: 14px;
-    }
-    .profile-field {
-      font-size: 12px;
-    }
-    .status-item {
-      font-size: 11px;
-      padding: 6px 10px;
-    }
-    .research-title,
-    .schedule-title,
-    .materials-title,
-    .burnout-title,
-    .integration-title {
-      font-size: 15px;
-    }
-    .journal-name {
-      font-size: 14px;
-    }
-    .checklist-title {
-      font-size: 14px;
-    }
-    .material-name {
-      font-size: 12px;
-    }
-    .task-item {
-      font-size: 11px;
-      padding: 8px 10px;
-    }
-    .action-btn {
-      font-size: 12px;
-      padding: 8px;
-    }
-    .bar-chart {
-      height: 100px;
-    }
-    .bar {
-      width: 16px;
-    }
-    .bar-label {
-      font-size: 9px;
-    }
-    .filter-tag {
-      padding: 4px 10px;
-      font-size: 10px;
-    }
-    .filter-label {
-      font-size: 12px;
-    }
-    .search-box {
-      padding: 10px 12px;
-    }
-    .search-box input {
-      font-size: 12px;
-    }
-    .materials-search {
-      padding: 8px 12px;
-    }
-    .materials-search input {
-      font-size: 12px;
-    }
-    .material-tab {
-      padding: 5px 10px;
-      font-size: 10px;
-    }
-    .open-btn {
-      padding: 5px 12px;
-      font-size: 10px;
-    }
-    .sync-btn {
-      padding: 8px 16px;
-      font-size: 12px;
-    }
-    .download-btn {
-      padding: 10px;
-      font-size: 13px;
-    }
-    .view-req-btn {
-      padding: 6px 14px;
-      font-size: 11px;
-    }
-    .chat-section {
-      padding: 14px;
-    }
-    .chat-section-title {
-      font-size: 14px;
-    }
-    .chat-section li {
-      font-size: 12px;
-    }
-    .chat-bubble {
-      font-size: 13px;
-      padding: 12px 14px;
-    }
-    .verified-tag {
-      font-size: 10px;
-      padding: 2px 8px;
-    }
-    .checklist-items {
-      font-size: 11px;
-      padding-left: 24px;
-    }
-    .verified-guideline-btn {
-      font-size: 10px;
-      padding: 3px 10px;
-    }
-    .readiness-label {
-      font-size: 11px;
-    }
-    .profile-university {
-      font-size: 12px;
-    }
-    .wellbeing-status {
-      font-size: 12px;
-    }
-    .task-priority {
-      font-size: 9px;
-      padding: 2px 8px;
-    }
-    .material-type {
-      font-size: 10px;
-    }
-    .integration-name {
-      font-size: 12px;
-    }
-    .integration-status {
-      font-size: 10px;
-    }
-  }
-
-  /* Side nav mobile */
-  .side-nav.mobile-open {
-    display: flex;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 200;
-    box-shadow: 2px 0 12px rgba(0,0,0,0.15);
-  }
-  .side-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 199;
-  }
-  .side-nav-overlay.active { display: block; }
-
-  @media (max-width: 900px) {
-    .side-nav {
-      position: fixed;
-      left: -70px;
-      top: 0;
-      height: 100vh;
-      z-index: 200;
-      transition: left 0.3s;
-    }
-    .side-nav.mobile-open { left: 0; }
-  }
-</style>
-</head>
-
-<body>
-
-<!-- Top Navbar -->
-<div class="top-navbar">
-  <div style="display:flex; align-items:center; gap:12px;">
-    <button class="mobile-menu-btn" onclick="toggleSideNav()"></button>
-    <div class="logo">
-      <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#1a8fa8"/>
-            <stop offset="50%" style="stop-color:#2c6fa5"/>
-            <stop offset="100%" style="stop-color:#1a3a6b"/>
-          </linearGradient>
-          <linearGradient id="innerRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#4ab8d4"/>
-            <stop offset="100%" style="stop-color:#2c6fa5"/>
-          </linearGradient>
-          <path id="topArc" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-          <path id="bottomArc" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
-        </defs>
-        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad)" stroke-width="8"/>
-        <circle cx="100" cy="100" r="70" fill="none" stroke="url(#innerRingGrad)" stroke-width="4"/>
-        <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#1a3a6b">
-          <textPath href="#topArc" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
-        </text>
-        <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#1a3a6b">
-          <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">for Students</textPath>
-        </text>
-        <g transform="translate(100,100)" stroke="#1a3a6b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="0" y1="-32" x2="0" y2="-24"/>
-          <circle cx="0" cy="-34" r="3" fill="#1a3a6b"/>
-          <rect x="-18" y="-24" width="36" height="26" rx="5" fill="#fff"/>
-          <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b"/>
-          <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b"/>
-          <line x1="-6" y1="-6" x2="6" y2="-6"/>
-          <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-          <rect x="18" y="-18" width="4" height="10" rx="1"/>
-          <line x1="0" y1="2" x2="0" y2="8"/>
-          <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff"/>
-          <rect x="-10" y="14" width="20" height="14" rx="2" fill="#e8f4f8"/>
-          <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-          <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-          <circle cx="-24" cy="33" r="3" fill="#1a3a6b"/>
-          <circle cx="24" cy="33" r="3" fill="#1a3a6b"/>
-          <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff"/>
-          <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff"/>
-          <rect x="-14" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
-          <rect x="2" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
-        </g>
-      </svg>
-      <div class="logo-text">
-        <span class="logo-text-main">NeuroMentor</span>
-        <span class="logo-text-sub">Minin.AI</span>
-      </div>
-    </div>
-  </div>
-  <div class="nav-actions">
-    <div class="nav-icon">✉<span class="nav-badge"></span></div>
-    <div class="nav-icon">🔔<span class="nav-badge"></span></div>
-    <button class="lang-btn" onclick="toggleLanguage()">
-      <span class="lang-icon">🌐</span>
-      <span id="langText">RU</span>
-    </button>
-    <div class="acc-wrapper">
-      <button class="accessibility-btn" onclick="toggleAccDropdown(event)">
-        <span class="acc-icon">♿</span>
-        <span data-ru="Доступность" data-en="Accessibility">Доступность</span>
-      </button>
-      <div class="acc-dropdown" id="accDropdown">
-        <div class="acc-option" onclick="toggleTextSize(event)">
-          <div class="acc-label">
-            <span class="acc-label-main" data-ru="Крупный текст" data-en="Large Text">Крупный текст</span>
-            <span class="acc-label-sub" data-ru="Увеличить шрифт" data-en="Increase font size">Увеличить шрифт</span>
-          </div>
-          <div class="acc-toggle" id="textSizeToggle"></div>
-        </div>
-        <div class="acc-option" onclick="toggleColorInversion(event)">
-          <div class="acc-label">
-            <span class="acc-label-main" data-ru="Инверсия цветов" data-en="Color Inversion">Инверсия цветов</span>
-            <span class="acc-label-sub" data-ru="Высокий контраст" data-en="High contrast">Высокий контраст</span>
-          </div>
-          <div class="acc-toggle" id="colorInvertToggle"></div>
-        </div>
-      </div>
-    </div>
-    <div class="avatar">АИ</div>
-  </div>
-</div>
-
-<!-- Tabs -->
-<div class="tabs">
-  <button class="tab active" data-tab="academic" data-ru="Академический трек" data-en="Academic Track">Академический трек</button>
-  <button class="tab" data-tab="research" data-ru="Исследовательский трек" data-en="Research Track">Исследовательский трек</button>
-  <button class="tab" data-tab="professional" data-ru="Профессиональный трек" data-en="Professional Track">Профессиональный трек</button>
-</div>
-
-<div class="app-layout">
-  <div class="side-nav-overlay" id="sideNavOverlay" onclick="toggleSideNav()"></div>
-  <div class="side-nav" id="sideNav">
-    <div class="side-nav-item active" title="Главная"></div>
-    <div class="side-nav-item" title="Библиотека">📖</div>
-    <div class="side-nav-item" title="Исследования">🔬</div>
-    <div class="side-nav-item" title="Задания">✅</div>
-    <div class="side-nav-item" title="Настройки">️</div>
-  </div>
-
-  <div class="main-content">
-
-    <!-- ============ ACADEMIC TRACK ============ -->
-    <div class="tab-content active" id="academic">
-      <div class="chat-layout">
-        <div class="chat-area">
-          <div class="chat-container">
-            <div class="chat-header">
-              <div class="chat-header-title">
-                <div class="chat-header-icon">
-                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="ringGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#1a8fa8"/>
-                        <stop offset="100%" style="stop-color:#1a3a6b"/>
-                      </linearGradient>
-                      <path id="topArc2" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-                      <path id="bottomArc2" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
-                    </defs>
-                    <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad2)" stroke-width="8"/>
-                    <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
-                    <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
-                      <textPath href="#topArc2" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
-                    </text>
-                    <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
-                      <textPath href="#bottomArc2" startOffset="50%" text-anchor="middle">for Students</textPath>
-                    </text>
-                    <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="0" y1="-32" x2="0" y2="-24"/>
-                      <circle cx="0" cy="-34" r="3" fill="#fff"/>
-                      <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
-                      <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
-                      <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
-                      <line x1="-6" y1="-6" x2="6" y2="-6"/>
-                      <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-                      <rect x="18" y="-18" width="4" height="10" rx="1"/>
-                      <line x1="0" y1="2" x2="0" y2="8"/>
-                      <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
-                      <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
-                      <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-                      <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-                      <circle cx="-24" cy="33" r="3" fill="#fff"/>
-                      <circle cx="24" cy="33" r="3" fill="#fff"/>
-                      <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-                      <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-                      <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
-                      <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
-                    </g>
-                  </svg>
-                </div>
-                <span data-ru="Учебный наставник" data-en="Learning Mentor">Учебный наставник</span>
-              </div>
-              <div class="chat-header-dots">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-            <div class="chat-body">
-              <div id="chatResponseArea">
-  		<!-- Сюда будут приходить ответы от GigaChat -->
-              </div>
-	      <div class="chat-bubble" data-ru="Вот ваш учебный план на семестр:" data-en="Here's your academic plan for the semester:">
-                Вот ваш учебный план на семестр:
-              </div>
-
-              <div class="chat-section">
-                <div class="chat-section-title" data-ru="1. Курсовая работа:" data-en="1. Coursework:">1. Курсовая работа:</div>
-                <ul>
-                  <li data-ru='Изучить "Педагогическую психологию" и "Разработку учебных программ".' data-en='Study "Educational Psychology" and "Curriculum Development".'>Изучить "Педагогическую психологию" и "Разработку учебных программ".</li>
-                  <li data-ru="Выполнять еженедельные задания." data-en="Complete weekly assignments.">Выполнять еженедельные задания.</li>
-                  <li data-ru="Обратиться к: Smith, J. (2020). Педагогическая психология. " data-en="Refer to: Smith, J. (2020). Educational Psychology. ">Обратиться к: Smith, J. (2020). Педагогическая психология. <span class="verified-tag" data-ru="Проверенный источник" data-en="Verified Source">Проверенный источник</span></li>
-                </ul>
-              </div>
-
-              <div class="chat-section">
-                <div class="chat-section-title" data-ru="2. Учебные цели:" data-en="2. Study Goals:">2. Учебные цели:</div>
-                <ul>
-                  <li data-ru="Подготовиться к предстоящим экзаменам по педагогике." data-en="Prepare for upcoming exams in Pedagogy.">Подготовиться к предстоящим экзаменам по педагогике.</li>
-                  <li data-ru="Сосредоточиться на методах управления классом." data-en="Focus on classroom management techniques.">Сосредоточиться на методах управления классом.</li>
-                  <li data-ru="Проверить: Johnson, L. (2019). Управление классом. " data-en="Check: Johnson, L. (2019). Classroom Management. ">Проверить: Johnson, L. (2019). Управление классом. <span class="verified-tag" data-ru="Проверенный источник" data-en="Verified Source">Проверенный источник</span></li>
-                </ul>
-              </div>
-
-              <div class="chat-section">
-                <div class="chat-section-title" data-ru="3. Развитие навыков:" data-en="3. Skill Development:">3. Развитие навыков:</div>
-                <ul>
-                  <li data-ru="Развивать преподавательские навыки через семинары." data-en="Enhance your teaching skills through workshops.">Развивать преподавательские навыки через семинары.</li>
-                  <li data-ru='Участвовать в семинаре "Эффективное преподавание" в следующем месяце.' data-en='Participate in the "Effective Teaching Seminar" next month.'>Участвовать в семинаре "Эффективное преподавание" в следующем месяце.</li>
-                  <li data-ru="Изучить: Brown, A. (2021). Эффективные методы преподавания. " data-en="Review: Brown, A. (2021). Effective Teaching Practices. ">Изучить: Brown, A. (2021). Эффективные методы преподавания. <span class="verified-tag" data-ru="Проверенный источник" data-en="Verified Source">Проверенный источник</span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="chat-input-area">
-  		<input type="text" class="chat-input" id="chatInput" data-placeholder-ru="Введите ваше сообщение..." data-placeholder-en="Type your message here..." placeholder="Введите ваше сообщение...">
-  		<button class="chat-btn chat-btn-emoji">😊</button>
-  		<button class="chat-btn chat-btn-mic" id="sendBtn">➤</button>
-	</div>
-          </div>
-        </div>
-
-        <div class="sidebar">
-          <div class="sidebar-card">
-            <div class="sidebar-title">
-              <span data-ru="Профиль студента" data-en="Student Profile">Профиль студента</span>
-              <div class="sidebar-avatar">АИ</div>
-            </div>
-            <div class="profile-field">
-              <span class="profile-label" data-ru="Программа:" data-en="Program:">Программа:</span>
-              <span class="profile-value" data-ru="Педагогика" data-en="Pedagogy">Педагогика</span>
-            </div>
-            <div class="profile-field">
-              <span class="profile-label" data-ru="Курс:" data-en="Year:">Курс:</span>
-              <span class="profile-value">2</span>
-            </div>
-            <div class="profile-university" data-ru="Университет Минина" data-en="Minin University">Университет Минина</div>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill"></div>
-            </div>
-            <div class="status-item green">
-              <div class="status-icon">✓</div>
-              <span data-ru="Верификация активна" data-en="Verification Active">Верификация активна</span>
-            </div>
-            <div class="status-item blue">
-              <div class="status-icon">✓</div>
-              <span data-ru="Куратор доступен" data-en="Human Curator Available">Куратор доступен</span>
-            </div>
-            <div class="status-item red">
-              <div class="status-icon">✕</div>
-              <span data-ru="Конфиденциальный режим" data-en="Confidential Mode On">Конфиденциальный режим</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ RESEARCH TRACK ============ -->
-    <div class="tab-content" id="research">
-      <div class="research-layout">
-        <div class="research-main">
-          <div class="research-title" data-ru="Исследовательский наставник — Навигатор журналов" data-en="Research Mentor — Journal Navigator">Исследовательский наставник — Навигатор журналов</div>
-
-          <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" data-placeholder-ru="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)" data-placeholder-en="Find Target Journal (VAK, RSCI, Student Journals)" placeholder="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)">
-          </div>
-
-          <div class="filters">
-            <span class="filter-label" data-ru="Область:" data-en="Field:">Область:</span>
-            <span class="filter-tag active" data-ru="Педагогика" data-en="Pedagogy">Педагогика</span>
-            <span class="filter-label" style="margin-left:8px;" data-ru="Индексируется:" data-en="Indexed:">Индексируется:</span>
-            <span class="filter-tag active">ВАК</span>
-            <span class="filter-tag active">РИНЦ</span>
-            <span class="filter-tag" data-ru="Открытый доступ" data-en="Open Access">Открытый доступ</span>
-            <span class="filter-tag">Scopus</span>
-          </div>
-
-          <div class="journal-card">
-            <div class="journal-info">
-              <div class="journal-name" data-ru="Журнал педагогических исследований" data-en="Journal of Educational Studies">Журнал педагогических исследований</div>
-              <div class="journal-tags">
-                <span class="journal-tag vak">ВАК</span>
-                <span class="journal-tag rsci">РИНЦ</span>
-              </div>
-              <div class="journal-meta">
-                <span><span data-ru="Импакт:" data-en="Impact:">Импакт:</span> <strong data-ru="Высокий" data-en="High">Высокий</strong></span>
-                <div class="impact-bar high"><span></span><span></span><span></span><span></span><span></span></div>
-                <span><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span> 25%</span>
-              </div>
-            </div>
-            <button class="view-req-btn" data-ru="Просмотреть требования" data-en="View Requirements">Просмотреть требования</button>
-          </div>
-
-          <div class="journal-card">
-            <div class="journal-info">
-              <div class="journal-name" data-ru="Образование и инновации" data-en="Education & Innovation">Образование и инновации</div>
-              <div class="journal-tags">
-                <span class="journal-tag vak">ВАК</span>
-                <span class="journal-tag rsci">РИНЦ</span>
-              </div>
-              <div class="journal-meta">
-                <span><span data-ru="Импакт:" data-en="Impact:">Импакт:</span> <strong data-ru="Средний" data-en="Medium">Средний</strong></span>
-                <div class="impact-bar medium"><span></span><span></span><span></span><span></span><span></span></div>
-                <span><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span> 18%</span>
-              </div>
-            </div>
-            <button class="view-req-btn" data-ru="Просмотреть требования" data-en="View Requirements">Просмотреть требования</button>
-          </div>
-
-          <div class="journal-card">
-            <div class="journal-info">
-              <div class="journal-name" data-ru="Педагогический исследовательский обзор" data-en="Pedagogical Research Review">Педагогический исследовательский обзор</div>
-              <div class="journal-tags">
-                <span class="journal-tag vak">ВАК</span>
-                <span class="journal-tag rsci">РИНЦ</span>
-              </div>
-              <div class="journal-meta">
-                <span><span data-ru="Импакт:" data-en="Impact:">Импакт:</span> <strong data-ru="Низкий" data-en="Low">Низкий</strong></span>
-                <div class="impact-bar low"><span></span><span></span><span></span><span></span><span></span></div>
-                <span><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span> 30%</span>
-              </div>
-            </div>
-            <button class="view-req-btn" data-ru="Просмотреть требования" data-en="View Requirements">Просмотреть требования</button>
-          </div>
-        </div>
-
-        <div class="sidebar">
-          <div class="checklist-card">
-            <div class="checklist-title" data-ru="Требования к подаче и методологический чеклист" data-en="Submission Requirements & Methodological Checklist">Требования к подаче и методологический чеклист</div>
-
-            <div class="checklist-section">
-              <div class="checklist-section-header">
-                <div class="checklist-check">✓</div>
-                <span data-ru="Требования к оформлению" data-en="Formatting Requirements">Требования к оформлению</span>
-              </div>
-              <div class="checklist-items">
-                <span data-ru="Шрифт: Times New Roman" data-en="Font: Times New Roman">Шрифт: Times New Roman</span><br>
-                <span data-ru="Стиль APA, макс. 8000 слов" data-en="APA Style, Max 8,000 Words">Стиль APA, макс. 8000 слов</span>
-              </div>
-              <div class="verified-guideline-btn" data-ru="+ Проверенное руководство" data-en="+ Verified Guideline">+ Проверенное руководство</div>
-            </div>
-
-            <div class="checklist-section">
-              <div class="checklist-section-header">
-                <div class="checklist-check">✓</div>
-                <span data-ru="Шаблон структуры статьи" data-en="Article Structure Template">Шаблон структуры статьи</span>
-              </div>
-              <div class="checklist-items">
-                • <span data-ru="Аннотация" data-en="Abstract">Аннотация</span><br>
-                • <span data-ru="Введение" data-en="Introduction">Введение</span><br>
-                • <span data-ru="Методы и результаты" data-en="Methods & Results">Методы и результаты</span><br>
-                • <span data-ru="Обсуждение и заключение" data-en="Discussion & Conclusion">Обсуждение и заключение</span>
-              </div>
-              <div class="verified-guideline-btn" data-ru="+ Проверенное руководство" data-en="+ Verified Guideline">+ Проверенное руководство</div>
-            </div>
-
-            <div class="checklist-section">
-              <div class="checklist-section-header">
-                <div class="checklist-check">✓</div>
-                <span data-ru="Этическое соответствие" data-en="Ethical Compliance">Этическое соответствие</span>
-              </div>
-              <div class="checklist-items">
-                ✓ <span data-ru="Проверка на плагиат" data-en="Plagiarism Check">Проверка на плагиат</span><br>
-                ✓ <span data-ru="Формы согласия включены" data-en="Consent Forms Included">Формы согласия включены</span><br>
-                ✓ <span data-ru="Правильные цитирования" data-en="Proper Citations">Правильные цитирования</span>
-              </div>
-              <div class="verified-guideline-btn" data-ru="+ Проверенное руководство" data-en="+ Verified Guideline">+ Проверенное руководство</div>
-            </div>
-
-            <button class="download-btn" data-ru="Скачать шаблон" data-en="Download Template">Скачать шаблон</button>
-
-            <div class="readiness-label" data-ru="Готовность к публикации — 65%" data-en="Publication Readiness — 65%">Готовность к публикации — 65%</div>
-            <div class="readiness-bar">
-              <div class="readiness-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ PROFESSIONAL TRACK ============ -->
-    <div class="tab-content" id="professional">
-      <div class="prof-title">
-        <svg class="prof-title-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#1a8fa8"/>
-              <stop offset="100%" style="stop-color:#1a3a6b"/>
-            </linearGradient>
-            <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-            <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
-          </defs>
-          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#4ab8d4" stroke-width="4"/>
-          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#1a3a6b">
-            <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
-          </text>
-          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#1a3a6b">
-            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
-          </text>
-          <g transform="translate(100,100)" stroke="#1a3a6b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="0" y1="-32" x2="0" y2="-24"/>
-            <circle cx="0" cy="-34" r="3" fill="#1a3a6b"/>
-            <rect x="-18" y="-24" width="36" height="26" rx="5" fill="#fff"/>
-            <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b"/>
-            <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b"/>
-            <line x1="-6" y1="-6" x2="6" y2="-6"/>
-            <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-            <rect x="18" y="-18" width="4" height="10" rx="1"/>
-            <line x1="0" y1="2" x2="0" y2="8"/>
-            <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff"/>
-            <rect x="-10" y="14" width="20" height="14" rx="2" fill="#e8f4f8"/>
-            <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-            <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-            <circle cx="-24" cy="33" r="3" fill="#1a3a6b"/>
-            <circle cx="24" cy="33" r="3" fill="#1a3a6b"/>
-            <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff"/>
-            <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff"/>
-            <rect x="-14" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
-            <rect x="2" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
-          </g>
-        </svg>
-        <span data-ru="Наставник студента — Преподавательская практика и благополучие" data-en="Student's Mentor — Teaching Practice & Wellbeing">Наставник студента — Преподавательская практика и благополучие</span>
-      </div>
-
-      <div class="prof-layout">
-        <div class="prof-main">
-          <div class="integration-card">
-            <div class="integration-title" data-ru="Интеграция преподавательской практики" data-en="Teaching Practice Integration">Интеграция преподавательской практики</div>
-            <div class="integration-grid">
-              <div class="integration-item">
-                <div class="integration-icon moodle">M</div>
-                <div>
-                  <div class="integration-name">Moodle</div>
-                  <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
-                </div>
-              </div>
-              <div class="integration-item">
-                <div class="integration-icon mes">MES</div>
-                <div>
-                  <div class="integration-name">MES</div>
-                  <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
-                </div>
-              </div>
-              <div class="integration-item">
-                <div class="integration-icon lms">LMS</div>
-                <div>
-                  <div class="integration-name" data-ru="Университетская LMS" data-en="University LMS">Университетская LMS</div>
-                  <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
-                </div>
-              </div>
-            </div>
-            <button class="sync-btn" data-ru="Синхронизировать план урока" data-en="Sync Lesson Plan">Синхронизировать план урока</button>
-          </div>
-
-          <div class="schedule-card">
-            <div class="schedule-title" data-ru="Предстоящее расписание практики" data-en="Upcoming Practice Schedule">Предстоящее расписание практики</div>
-            <div class="calendar">
-              <div class="calendar-day" data-ru="Вс" data-en="Sun">Вс</div>
-              <div class="calendar-day" data-ru="Пн" data-en="Mon">Пн</div>
-              <div class="calendar-day" data-ru="Вт" data-en="Tue">Вт</div>
-              <div class="calendar-day" data-ru="Ср" data-en="Wed">Ср</div>
-              <div class="calendar-day" data-ru="Чт" data-en="Thu">Чт</div>
-              <div class="calendar-day" data-ru="Пт" data-en="Fri">Пт</div>
-              <div class="calendar-day" data-ru="Сб" data-en="Sat">Сб</div>
-
-              <div class="calendar-date empty"></div>
-              <div class="calendar-date empty"></div>
-              <div class="calendar-date empty"></div>
-              <div class="calendar-date">1</div>
-              <div class="calendar-date">2</div>
-              <div class="calendar-date">3</div>
-              <div class="calendar-date">4</div>
-
-              <div class="calendar-date">5</div>
-              <div class="calendar-date">6</div>
-              <div class="calendar-date">7</div>
-              <div class="calendar-date">8</div>
-              <div class="calendar-date">9</div>
-              <div class="calendar-date selected">10</div>
-              <div class="calendar-date">11</div>
-
-              <div class="calendar-date">12</div>
-              <div class="calendar-date">13</div>
-              <div class="calendar-date">14</div>
-              <div class="calendar-date">15</div>
-              <div class="calendar-date">16</div>
-              <div class="calendar-date">17</div>
-              <div class="calendar-date">18</div>
-            </div>
-          </div>
-
-          <div class="materials-card">
-            <div class="materials-title" data-ru="Библиотека методических материалов" data-en="Methodological Materials Library">Библиотека методических материалов</div>
-            <div class="materials-search">
-              <span>🔍</span>
-              <input type="text" data-placeholder-ru="Найти сценарий урока или учебный материал" data-placeholder-en="Find Lesson Scenario or Teaching Material" placeholder="Найти сценарий урока или учебный материал">
-            </div>
-            <div class="materials-tabs">
-              <div class="material-tab active" data-ru="Начальная школа" data-en="Primary School">Начальная школа</div>
-              <div class="material-tab" data-ru="Средняя школа" data-en="Secondary School">Средняя школа</div>
-              <div class="material-tab" data-ru="Инструменты оценки" data-en="Assessment Tools">Инструменты оценки</div>
-              <div class="material-tab" data-ru="Интерактивные задания" data-en="Interactive Activities">Интерактивные задания</div>
-            </div>
-
-            <div class="material-item">
-              <div>
-                <div class="material-name" data-ru="План урока: Навыки критического мышления" data-en="Lesson Plan: Critical Thinking Skills">План урока: Навыки критического мышления</div>
-                <div class="material-type"><span class="dot"></span> <span data-ru="Сценарий · Утверждённый методический ресурс" data-en="Scenario · Approved Methodical Resource">Сценарий · Утверждённый методический ресурс</span></div>
-              </div>
-              <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
-            </div>
-
-            <div class="material-item">
-              <div>
-                <div class="material-name" data-ru="Оценка: Форма обратной связи от студентов" data-en="Assessment: Student Feedback Form">Оценка: Форма обратной связи от студентов</div>
-                <div class="material-type"><span class="dot"></span> <span data-ru="Оценка · Утверждённый методический ресурс" data-en="Assessment · Approved Methodical Resource">Оценка · Утверждённый методический ресурс</span></div>
-              </div>
-              <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
-            </div>
-
-            <div class="material-item">
-              <div>
-                <div class="material-name" data-ru="Интерактивная игра: Командное задание" data-en="Interactive Game: Teamwork Challenge">Интерактивная игра: Командное задание</div>
-                <div class="material-type"><span class="dot"></span> <span data-ru="Рабочий лист · Утверждённый методический ресурс" data-en="Worksheet · Approved Methodical Resource">Рабочий лист · Утверждённый методический ресурс</span></div>
-              </div>
-              <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
-            </div>
-          </div>
-
-          <div class="burnout-card">
-            <div class="burnout-title" data-ru="Профилактика выгорания и управление временем" data-en="Burnout Prevention & Time Management">Профилактика выгорания и управление временем</div>
-            <div class="bar-chart">
-              <div class="bar-item"><div class="bar" style="height:60px;"></div><div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div></div>
-              <div class="bar-item"><div class="bar" style="height:80px;"></div><div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div></div>
-              <div class="bar-item"><div class="bar" style="height:45px;"></div><div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div></div>
-              <div class="bar-item"><div class="bar" style="height:90px;"></div><div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div></div>
-              <div class="bar-item"><div class="bar" style="height:70px;"></div><div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div></div>
-              <div class="bar-item"><div class="bar" style="height:30px;"></div><div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div></div>
-              <div class="bar-item"><div class="bar" style="height:20px;"></div><div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div></div>
-            </div>
-
-            <div class="wellbeing-status">
-              <span class="wellbeing-heart">❤</span>
-              <span data-ru="Статус благополучия:" data-en="Wellbeing Status:">Статус благополучия:</span>
-              <span class="wellbeing-value" data-ru="Сбалансирован" data-en="Balanced">Сбалансирован</span>
-            </div>
-
-            <div class="task-item">
-              <div class="task-left">
-                <div class="task-check checked">✓</div>
-                <span data-ru="Проверить задания" data-en="Grade Assignments">Проверить задания</span>
-              </div>
-              <span class="task-priority high" data-ru="Высокий" data-en="High">Высокий</span>
-            </div>
-            <div class="task-item">
-              <div class="task-left">
-                <div class="task-check">✓</div>
-                <span data-ru="Подготовить слайды урока" data-en="Prepare Lesson Slides">Подготовить слайды урока</span>
-              </div>
-              <span class="task-priority medium" data-ru="Средний" data-en="Medium">Средний</span>
-            </div>
-            <div class="task-item">
-              <div class="task-left">
-                <div class="task-check checked">✓</div>
-                <span data-ru="Просмотреть отчёты студентов" data-en="Review Student Reports">Просмотреть отчёты студентов</span>
-              </div>
-              <span class="task-priority low" data-ru="Низкий" data-en="Low">Низкий</span>
-            </div>
-
-            <button class="action-btn primary" data-ru="Рефлексия практики" data-en="Reflect on Practice">Рефлексия практики</button>
-            <button class="action-btn secondary" data-ru="Самопроверка стресса" data-en="Stress Self-Check">Самопроверка стресса</button>
-            <button class="action-btn secondary" data-ru="Запросить куратора" data-en="Request Human Curator">Запросить куратора</button>
-          </div>
-        </div>
-
-        <div class="sidebar">
-          <div class="sidebar-card">
-            <div class="sidebar-title">
-              <span data-ru="Профиль студента" data-en="Student Profile">Профиль студента</span>
-              <div class="sidebar-avatar">АИ</div>
-            </div>
-            <div class="profile-field">
-              <span class="profile-label" data-ru="Программа:" data-en="Program:">Программа:</span>
-              <span class="profile-value" data-ru="Педагогика" data-en="Pedagogy">Педагогика</span>
-            </div>
-            <div class="profile-field">
-              <span class="profile-label" data-ru="Курс:" data-en="Year:">Курс:</span>
-              <span class="profile-value">2</span>
-            </div>
-            <div class="profile-university" data-ru="Университет Минина" data-en="Minin University">Университет Минина</div>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill"></div>
-            </div>
-            <div class="status-item green">
-              <div class="status-icon">✓</div>
-              <span data-ru="Верификация активна" data-en="Verification Active">Верификация активна</span>
-            </div>
-            <div class="status-item blue">
-              <div class="status-icon">✓</div>
-              <span data-ru="Куратор доступен" data-en="Human Curator Available">Куратор доступен</span>
-            </div>
-            <div class="status-item gray">
-              <div class="status-icon">🔒</div>
-              <span data-ru="Конфиденциальный режим" data-en="Confidential Mode On">Конфиденциальный режим</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  let currentLang = 'ru';
-  let isTextLarge = false;
-  let isColorInverted = false;
-
-  function toggleLanguage() {
-    currentLang = currentLang === 'ru' ? 'en' : 'ru';
-    document.getElementById('langText').textContent = currentLang === 'ru' ? 'RU' : 'EN';
-    document.documentElement.lang = currentLang;
-
-    document.querySelectorAll('[data-ru][data-en]').forEach(el => {
-      el.textContent = el.getAttribute(`data-${currentLang}`);
-    });
-
-    document.querySelectorAll('[data-placeholder-ru][data-placeholder-en]').forEach(el => {
-      el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
-    });
-
-    document.title = currentLang === 'ru' ? 'NeuroMentor | Minin.AI' : 'NeuroMentor | Minin.AI';
-  }
-
-  function toggleAccDropdown(event) {
-    event.stopPropagation();
-    const dropdown = document.getElementById('accDropdown');
-    dropdown.classList.toggle('show');
-  }
-
-  function toggleTextSize(event) {
-    event.stopPropagation();
-    isTextLarge = !isTextLarge;
-    document.body.classList.toggle('text-large', isTextLarge);
-    document.getElementById('textSizeToggle').classList.toggle('active', isTextLarge);
-  }
-
-  function toggleColorInversion(event) {
-    event.stopPropagation();
-    isColorInverted = !isColorInverted;
-    document.body.classList.toggle('invert-colors', isColorInverted);
-    document.getElementById('colorInvertToggle').classList.toggle('active', isColorInverted);
-  }
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (event) => {
-    const dropdown = document.getElementById('accDropdown');
-    const accWrapper = document.querySelector('.acc-wrapper');
-    if (!accWrapper.contains(event.target)) {
-      dropdown.classList.remove('show');
-    }
-  });
-
-  // Tab switching
-  const tabs = document.querySelectorAll('.tab');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
-      tab.classList.add('active');
-      const targetId = tab.getAttribute('data-tab');
-      document.getElementById(targetId).classList.add('active');
-    });
-  });
-
-  // Filter tags toggle
-  document.querySelectorAll('.filter-tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-      tag.classList.toggle('active');
-    });
-  });
-
-  // Material tabs toggle
-  document.querySelectorAll('.material-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.material-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-
-  // Task check toggle
-  document.querySelectorAll('.task-check').forEach(check => {
-    check.addEventListener('click', () => {
-      check.classList.toggle('checked');
-      if (check.classList.contains('checked')) {
-        check.textContent = '✓';
-      } else {
-        check.textContent = '';
-      }
-    });
-  });
-
-  // Calendar date selection
-  document.querySelectorAll('.calendar-date:not(.empty)').forEach(date => {
-    date.addEventListener('click', () => {
-      document.querySelectorAll('.calendar-date').forEach(d => d.classList.remove('selected'));
-      date.classList.add('selected');
-    });
-  });
-
-  // Side nav toggle (mobile)
-  function toggleSideNav() {
-    const sideNav = document.getElementById('sideNav');
-    const overlay = document.getElementById('sideNavOverlay');
-    sideNav.classList.toggle('mobile-open');
-    overlay.classList.toggle('active');
-  }
-
-  // Side nav item selection
-  document.querySelectorAll('.side-nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.side-nav-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-
-(function() {
-    // Ждём загрузки DOM
-    document.addEventListener('DOMContentLoaded', function() {
-      const input = document.getElementById('chatInput');
-      const btn = document.getElementById('sendBtn');
-      const area = document.getElementById('chatResponseArea');
-
-      if (!input || !btn || !area) {
-        console.error('Элементы чата не найдены');
-        return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroMentor | Minin.AI</title>
+    <style>
+      :root {
+        --base-font-size: 16px;
+        --font-scale: 1;
       }
 
-      async function sendMessageToAI() {
-        const message = input.value.trim();
-        if (!message) return;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f2f5;
+        color: #333;
+        min-height: 100vh;
+        font-size: var(--base-font-size);
+        overflow-x: hidden;
+      }
 
-        // Показываем сообщение пользователя
-        const userBubble = document.createElement('div');
-        userBubble.className = 'chat-bubble';
-        userBubble.textContent = message;
-        area.appendChild(userBubble);
-        input.value = '';
+      /* Accessibility: Large Text Mode */
+      body.text-large {
+        --font-scale: 1.3;
+      }
+      body.text-large .top-navbar {
+        padding: 14px 24px;
+      }
+      body.text-large .logo-text-main {
+        font-size: 22px;
+      }
+      body.text-large .logo-text-sub {
+        font-size: 14px;
+      }
+      body.text-large .logo-svg {
+        height: 56px;
+        width: 56px;
+      }
+      body.text-large .tab {
+        padding: 18px 28px;
+        font-size: 16px;
+      }
+      body.text-large .chat-bubble {
+        font-size: 16px;
+        padding: 18px 22px;
+      }
+      body.text-large .chat-section-title {
+        font-size: 18px;
+      }
+      body.text-large .chat-section li {
+        font-size: 15px;
+      }
+      body.text-large .research-title,
+      body.text-large .prof-title,
+      body.text-large .schedule-title,
+      body.text-large .materials-title,
+      body.text-large .burnout-title,
+      body.text-large .integration-title {
+        font-size: 18px;
+      }
+      body.text-large .journal-name {
+        font-size: 17px;
+      }
+      body.text-large .checklist-title {
+        font-size: 17px;
+      }
+      body.text-large .sidebar-title {
+        font-size: 17px;
+      }
+      body.text-large .profile-field {
+        font-size: 15px;
+      }
+      body.text-large .status-item {
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+      body.text-large .material-name {
+        font-size: 15px;
+      }
+      body.text-large .task-item {
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+      body.text-large .action-btn {
+        font-size: 15px;
+        padding: 12px;
+      }
+      body.text-large .chat-input {
+        font-size: 16px;
+      }
+      body.text-large .search-box input {
+        font-size: 15px;
+      }
+      body.text-large .filter-label {
+        font-size: 15px;
+      }
+      body.text-large .filter-tag {
+        font-size: 13px;
+        padding: 7px 14px;
+      }
+      body.text-large .view-req-btn {
+        font-size: 14px;
+        padding: 10px 18px;
+      }
+      body.text-large .download-btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+      body.text-large .sync-btn {
+        font-size: 15px;
+        padding: 12px 24px;
+      }
+      body.text-large .open-btn {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+      body.text-large .calendar-date {
+        font-size: 15px;
+        padding: 10px 6px;
+      }
+      body.text-large .bar-label {
+        font-size: 12px;
+      }
+      body.text-large .lang-btn {
+        font-size: 15px;
+        padding: 8px 16px;
+      }
+      body.text-large .accessibility-btn {
+        font-size: 18px;
+        padding: 10px 16px;
+      }
+      body.text-large .nav-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+      }
+      body.text-large .avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
 
-        // Индикатор загрузки
-        const loading = document.createElement('div');
-        loading.className = 'chat-bubble';
-        loading.textContent = '⏳ Думаю...';
-        loading.id = 'loadingBubble';
-        area.appendChild(loading);
-        area.scrollTop = area.scrollHeight;
+      /* Accessibility: Inverted Colors Mode */
+      body.invert-colors {
+        background: #0a0a0a;
+        color: #f0f0f0;
+      }
+      body.invert-colors .top-navbar,
+      body.invert-colors .tabs,
+      body.invert-colors .side-nav,
+      body.invert-colors .chat-container,
+      body.invert-colors .chat-section,
+      body.invert-colors .sidebar-card,
+      body.invert-colors .checklist-card,
+      body.invert-colors .integration-card,
+      body.invert-colors .schedule-card,
+      body.invert-colors .materials-card,
+      body.invert-colors .burnout-card,
+      body.invert-colors .journal-card,
+      body.invert-colors .search-box,
+      body.invert-colors .material-item,
+      body.invert-colors .task-item,
+      body.invert-colors .nav-icon,
+      body.invert-colors .chat-bubble {
+        background: #1a1a1a;
+        color: #f0f0f0;
+        border-color: #333;
+      }
+      body.invert-colors .tab {
+        color: #ccc;
+      }
+      body.invert-colors .tab.active {
+        color: #fff;
+        border-bottom-color: #4a9eff;
+      }
+      body.invert-colors .tab:hover:not(.active) {
+        color: #4a9eff;
+      }
+      body.invert-colors .logo-text-main,
+      body.invert-colors .research-title,
+      body.invert-colors .prof-title,
+      body.invert-colors .chat-section-title,
+      body.invert-colors .schedule-title,
+      body.invert-colors .materials-title,
+      body.invert-colors .burnout-title,
+      body.invert-colors .integration-title,
+      body.invert-colors .sidebar-title,
+      body.invert-colors .journal-name,
+      body.invert-colors .checklist-title,
+      body.invert-colors .material-name,
+      body.invert-colors .profile-university {
+        color: #4a9eff;
+      }
+      body.invert-colors .chat-section li,
+      body.invert-colors .checklist-items,
+      body.invert-colors .profile-label,
+      body.invert-colors .bar-label,
+      body.invert-colors .calendar-day,
+      body.invert-colors .calendar-date {
+        color: #ddd;
+      }
+      body.invert-colors .chat-input,
+      body.invert-colors .search-box input,
+      body.invert-colors .materials-search input {
+        background: #2a2a2a;
+        color: #f0f0f0;
+        border-color: #444;
+      }
+      body.invert-colors .filter-tag {
+        background: #2a2a2a;
+        color: #ddd;
+        border-color: #444;
+      }
+      body.invert-colors .filter-tag.active {
+        background: #4a9eff;
+        color: #000;
+        border-color: #4a9eff;
+      }
+      body.invert-colors .verified-tag,
+      body.invert-colors .view-req-btn,
+      body.invert-colors .download-btn,
+      body.invert-colors .sync-btn,
+      body.invert-colors .open-btn,
+      body.invert-colors .action-btn.primary,
+      body.invert-colors .section-number,
+      body.invert-colors .chat-btn-mic,
+      body.invert-colors .checklist-check,
+      body.invert-colors .side-nav-item.active {
+        background: #4a9eff;
+        color: #000;
+      }
+      body.invert-colors .action-btn.secondary {
+        background: #2a2a2a;
+        color: #4a9eff;
+      }
+      body.invert-colors .lang-btn {
+        background: #1a1a1a;
+        color: #4a9eff;
+        border-color: #4a9eff;
+      }
+      body.invert-colors .lang-btn:hover {
+        background: #4a9eff;
+        color: #000;
+      }
+      body.invert-colors .accessibility-btn {
+        background: #1a1a1a;
+        color: #4a9eff;
+        border-color: #4a9eff;
+      }
+      body.invert-colors .accessibility-btn:hover {
+        background: #4a9eff;
+        color: #000;
+      }
+      body.invert-colors .status-item.green {
+        background: #2ecc71;
+      }
+      body.invert-colors .status-item.blue {
+        background: #4a9eff;
+      }
+      body.invert-colors .status-item.red {
+        background: #e74c3c;
+      }
+      body.invert-colors .status-item.gray {
+        background: #555;
+      }
+      body.invert-colors .task-priority.high {
+        background: #e74c3c;
+      }
+      body.invert-colors .task-priority.medium {
+        background: #f39c12;
+      }
+      body.invert-colors .task-priority.low {
+        background: #2ecc71;
+      }
+      body.invert-colors .bar {
+        background: #4a9eff;
+      }
+      body.invert-colors .progress-bar-fill,
+      body.invert-colors .readiness-fill,
+      body.invert-colors .progress-bar-small-fill {
+        background: linear-gradient(90deg, #4a9eff, #6ab8ff);
+      }
+      body.invert-colors .progress-bar-container,
+      body.invert-colors .readiness-bar,
+      body.invert-colors .progress-bar-small {
+        background: #333;
+      }
+      body.invert-colors .calendar-date.selected {
+        background: #4a9eff;
+        color: #000;
+      }
+      body.invert-colors .calendar-date:hover {
+        background: #2a2a2a;
+      }
+      body.invert-colors .task-check {
+        border-color: #4a9eff;
+        color: #4a9eff;
+      }
+      body.invert-colors .task-check.checked {
+        background: #4a9eff;
+        color: #000;
+      }
+      body.invert-colors .verified-guideline-btn {
+        background: #2a2a2a;
+        color: #4a9eff;
+      }
+      body.invert-colors .integration-item {
+        background: #2a2a2a;
+      }
+      body.invert-colors .material-type {
+        color: #2ecc71;
+      }
+      body.invert-colors .material-type .dot {
+        background: #2ecc71;
+      }
+      body.invert-colors .integration-status {
+        color: #2ecc71;
+      }
+      body.invert-colors .integration-status .dot {
+        background: #2ecc71;
+      }
+      body.invert-colors .wellbeing-value {
+        color: #2ecc71;
+      }
+      body.invert-colors .wellbeing-heart {
+        color: #e74c3c;
+      }
+      body.invert-colors .nav-badge {
+        background: #e74c3c;
+      }
+      body.invert-colors .chat-header-icon {
+        background: rgba(74, 158, 255, 0.2);
+      }
+      body.invert-colors .chat-header-dots span {
+        background: rgba(255, 255, 255, 0.4);
+      }
+      body.invert-colors .side-nav-item {
+        color: #ccc;
+      }
+      body.invert-colors .side-nav-item:hover {
+        background: #2a2a2a;
+        color: #4a9eff;
+      }
+      body.invert-colors .side-nav-overlay {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      body.invert-colors .mobile-menu-btn {
+        color: #4a9eff;
+      }
 
-        try {
-          const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message })
-          });
-          const data = await response.json();
+      /* Top Navbar */
+      .top-navbar {
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #2c3e6b;
+      }
+      .logo-svg {
+        height: 48px;
+        width: 48px;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+      .logo-text-main {
+        font-size: 18px;
+        font-weight: 800;
+        color: #2c3e6b;
+        letter-spacing: -0.3px;
+      }
+      .logo-text-sub {
+        font-size: 11px;
+        color: #4a6fa5;
+        font-weight: 500;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .nav-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #f0f2f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        position: relative;
+      }
+      .nav-icon:hover {
+        background: #e0e4ea;
+      }
+      .nav-badge {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 8px;
+        height: 8px;
+        background: #e74c3c;
+        border-radius: 50%;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4a6fa5, #2c3e6b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+      }
 
-          // Удаляем индикатор загрузки
-          const loadEl = document.getElementById('loadingBubble');
-          if (loadEl) loadEl.remove();
+      /* Language Button */
+      .lang-btn {
+        padding: 6px 14px;
+        border-radius: 16px;
+        border: 2px solid #2c3e6b;
+        background: #fff;
+        color: #2c3e6b;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .lang-btn:hover {
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .lang-btn .lang-icon {
+        font-size: 14px;
+      }
 
-          if (response.ok) {
-            const aiBubble = document.createElement('div');
-            aiBubble.className = 'chat-bubble';
-            aiBubble.textContent = data.reply || '(пустой ответ)';
-            area.appendChild(aiBubble);
-          } else {
-            const errBubble = document.createElement('div');
-            errBubble.className = 'chat-bubble';
-            errBubble.textContent = '❌ Ошибка: ' + (data.error || 'неизвестная');
-            area.appendChild(errBubble);
-          }
-        } catch (e) {
-          const loadEl = document.getElementById('loadingBubble');
-          if (loadEl) loadEl.remove();
-          const errBubble = document.createElement('div');
-          errBubble.className = 'chat-bubble';
-          errBubble.textContent = '❌ Ошибка соединения: ' + e.message;
-          area.appendChild(errBubble);
+      /* Accessibility Button */
+      .accessibility-btn {
+        padding: 6px 14px;
+        border-radius: 16px;
+        border: 2px solid #2c3e6b;
+        background: #fff;
+        color: #2c3e6b;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .accessibility-btn:hover {
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .accessibility-btn .acc-icon {
+        font-size: 14px;
+      }
+
+      /* Accessibility Dropdown */
+      .acc-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        min-width: 220px;
+        z-index: 200;
+        display: none;
+      }
+      body.invert-colors .acc-dropdown {
+        background: #1a1a1a;
+        border-color: #333;
+      }
+      .acc-dropdown.show {
+        display: block;
+      }
+      .acc-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        transition: background 0.2s;
+        margin-bottom: 6px;
+      }
+      body.invert-colors .acc-option {
+        color: #f0f0f0;
+      }
+      .acc-option:hover {
+        background: #f0f2f5;
+      }
+      body.invert-colors .acc-option:hover {
+        background: #2a2a2a;
+      }
+      .acc-option:last-child {
+        margin-bottom: 0;
+      }
+      .acc-toggle {
+        width: 40px;
+        height: 22px;
+        background: #ccc;
+        border-radius: 11px;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .acc-toggle::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        transition: left 0.3s;
+      }
+      .acc-toggle.active {
+        background: #2c3e6b;
+      }
+      body.invert-colors .acc-toggle.active {
+        background: #4a9eff;
+      }
+      .acc-toggle.active::after {
+        left: 20px;
+      }
+      .acc-label {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .acc-label-main {
+        font-weight: 600;
+      }
+      .acc-label-sub {
+        font-size: 11px;
+        color: #888;
+      }
+      body.invert-colors .acc-label-sub {
+        color: #aaa;
+      }
+
+      .acc-wrapper {
+        position: relative;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0 24px;
+        overflow-x: auto;
+      }
+      .tab {
+        padding: 14px 24px;
+        background: transparent;
+        color: #555;
+        border: none;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+      .tab.active {
+        color: #2c3e6b;
+        border-bottom-color: #2c3e6b;
+      }
+      .tab:hover:not(.active) {
+        color: #2c3e6b;
+      }
+
+      /* Layout */
+      .app-layout {
+        display: flex;
+        min-height: calc(100vh - 110px);
+      }
+
+      /* Side Nav */
+      .side-nav {
+        width: 60px;
+        background: #fff;
+        border-right: 1px solid #e0e0e0;
+        padding: 16px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        position: sticky;
+        top: 110px;
+        height: calc(100vh - 110px);
+        overflow-y: auto;
+      }
+      .side-nav-item {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        color: #666;
+        transition: all 0.2s;
+      }
+      .side-nav-item:hover {
+        background: #f0f2f5;
+        color: #2c3e6b;
+      }
+      .side-nav-item.active {
+        background: #2c3e6b;
+        color: #fff;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: 24px;
+        overflow-x: hidden;
+      }
+
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+
+      /* ============ ACADEMIC TRACK - CHAT ============ */
+      .chat-layout {
+        display: flex;
+        gap: 20px;
+      }
+      .chat-area {
+        flex: 1;
+        min-width: 0;
+      }
+      .chat-container {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 600px;
+      }
+      .chat-header {
+        background: #2c3e6b;
+        color: #fff;
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .chat-header-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .chat-header-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+      }
+      .chat-header-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+      .chat-header-dots {
+        display: flex;
+        gap: 4px;
+      }
+      .chat-header-dots span {
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+      }
+      .chat-body {
+        padding: 20px;
+        flex: 1;
+        overflow-y: auto;
+      }
+      .chat-bubble {
+        background: #f5f7fa;
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-bottom: 16px;
+        max-width: 90%;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .chat-section {
+        background: #fff;
+        border: 1px solid #e8eaed;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .chat-section-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 10px;
+      }
+      .chat-section ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .chat-section li {
+        padding: 4px 0 4px 16px;
+        position: relative;
+        font-size: 13px;
+        color: #444;
+        line-height: 1.6;
+      }
+      .chat-section li::before {
+        content: "•";
+        position: absolute;
+        left: 2px;
+        color: #2c3e6b;
+        font-weight: bold;
+      }
+      .verified-tag {
+        display: inline-block;
+        background: #2c3e6b;
+        color: #fff;
+        padding: 2px 10px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-left: 6px;
+      }
+      .chat-input-area {
+        padding: 14px 20px;
+        border-top: 1px solid #e8eaed;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .chat-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+      }
+      .chat-input:focus {
+        border-color: #2c3e6b;
+      }
+      .chat-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: all 0.2s;
+      }
+      .chat-btn-emoji {
+        background: #f0f2f5;
+        color: #666;
+      }
+      .chat-btn-emoji:hover {
+        background: #e0e4ea;
+      }
+      .chat-btn-mic {
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .chat-btn-mic:hover {
+        background: #1e2d52;
+      }
+
+      /* ============ SIDEBAR ============ */
+      .sidebar {
+        width: 280px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .sidebar-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .sidebar-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e8eaed;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sidebar-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4a6fa5, #2c3e6b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .profile-field {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        font-size: 13px;
+      }
+      .profile-label {
+        color: #666;
+      }
+      .profile-value {
+        font-weight: 600;
+        color: #333;
+      }
+      .profile-university {
+        font-size: 13px;
+        font-weight: 600;
+        color: #2c3e6b;
+        margin: 10px 0 8px;
+      }
+      .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background: #e8eaed;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 14px;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2c3e6b, #4a6fa5);
+        border-radius: 4px;
+        width: 72%;
+      }
+      .status-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .status-item.green {
+        background: #27ae60;
+      }
+      .status-item.blue {
+        background: #2c3e6b;
+      }
+      .status-item.red {
+        background: #e74c3c;
+      }
+      .status-item.gray {
+        background: #6c757d;
+      }
+      .status-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+
+      /* ============ RESEARCH TRACK ============ */
+      .research-layout {
+        display: flex;
+        gap: 20px;
+      }
+      .research-main {
+        flex: 1;
+        min-width: 0;
+      }
+      .research-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 16px;
+      }
+      .search-box {
+        background: #fff;
+        border-radius: 10px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .search-box input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 13px;
+        color: #555;
+      }
+      .search-icon {
+        color: #999;
+        font-size: 14px;
+      }
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+        align-items: center;
+      }
+      .filter-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+      }
+      .filter-tag {
+        padding: 5px 12px;
+        border-radius: 14px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #555;
+        transition: all 0.2s;
+      }
+      .filter-tag.active {
+        background: #2c3e6b;
+        color: #fff;
+        border-color: #2c3e6b;
+      }
+      .filter-tag:hover:not(.active) {
+        background: #f0f2f5;
+      }
+
+      .journal-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 18px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .journal-info {
+        flex: 1;
+        min-width: 200px;
+      }
+      .journal-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 8px;
+      }
+      .journal-tags {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .journal-tag {
+        padding: 3px 10px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .journal-tag.vak {
+        background: #2c3e6b;
+      }
+      .journal-tag.rsci {
+        background: #4a6fa5;
+      }
+      .journal-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        color: #555;
+      }
+      .impact-bar {
+        display: flex;
+        gap: 2px;
+      }
+      .impact-bar span {
+        width: 16px;
+        height: 8px;
+        border-radius: 2px;
+        background: #e0e0e0;
+      }
+      .impact-bar.high span:nth-child(-n + 4) {
+        background: #27ae60;
+      }
+      .impact-bar.medium span:nth-child(-n + 3) {
+        background: #f39c12;
+      }
+      .impact-bar.low span:nth-child(-n + 2) {
+        background: #e74c3c;
+      }
+      .view-req-btn {
+        background: #2c3e6b;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .view-req-btn:hover {
+        background: #1e2d52;
+      }
+
+      .checklist-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .checklist-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 16px;
+        line-height: 1.4;
+      }
+      .checklist-section {
+        margin-bottom: 16px;
+      }
+      .checklist-section-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #333;
+      }
+      .checklist-check {
+        width: 22px;
+        height: 22px;
+        background: #2c3e6b;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 11px;
+        flex-shrink: 0;
+      }
+      .checklist-items {
+        padding-left: 30px;
+        font-size: 12px;
+        color: #555;
+        line-height: 1.8;
+      }
+      .verified-guideline-btn {
+        display: inline-block;
+        background: #f0f2f5;
+        color: #2c3e6b;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: 6px;
+        cursor: pointer;
+      }
+      .download-btn {
+        width: 100%;
+        background: #2c3e6b;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .download-btn:hover {
+        background: #1e2d52;
+      }
+      .readiness-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        margin-top: 14px;
+        margin-bottom: 6px;
+      }
+      .readiness-bar {
+        width: 100%;
+        height: 8px;
+        background: #e8eaed;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .readiness-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #2c3e6b, #4a6fa5);
+        width: 65%;
+      }
+
+      /* ============ PROFESSIONAL TRACK ============ */
+      .prof-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #2c3e6b;
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .prof-title-logo {
+        width: 40px;
+        height: 40px;
+      }
+      .prof-layout {
+        display: flex;
+        gap: 20px;
+      }
+      .prof-main {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .integration-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .integration-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 14px;
+      }
+      .integration-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .integration-item {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .integration-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 700;
+      }
+      .integration-icon.moodle {
+        background: #f98012;
+      }
+      .integration-icon.mes {
+        background: #2c3e6b;
+      }
+      .integration-icon.lms {
+        background: #27ae60;
+      }
+      .integration-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #333;
+      }
+      .integration-status {
+        font-size: 11px;
+        color: #27ae60;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .integration-status .dot {
+        width: 6px;
+        height: 6px;
+        background: #27ae60;
+        border-radius: 50%;
+      }
+      .sync-btn {
+        background: #2c3e6b;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+      }
+      .sync-btn:hover {
+        background: #1e2d52;
+      }
+
+      .schedule-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .schedule-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 12px;
+      }
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+      }
+      .calendar-day {
+        text-align: center;
+        font-size: 11px;
+        color: #999;
+        padding: 4px;
+        font-weight: 600;
+      }
+      .calendar-date {
+        text-align: center;
+        padding: 8px 4px;
+        font-size: 13px;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #333;
+      }
+      .calendar-date:hover {
+        background: #f0f2f5;
+      }
+      .calendar-date.selected {
+        background: #2c3e6b;
+        color: #fff;
+        font-weight: 700;
+      }
+      .calendar-date.empty {
+        visibility: hidden;
+      }
+
+      .materials-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .materials-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 12px;
+      }
+      .materials-search {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .materials-search input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 13px;
+      }
+      .materials-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .material-tab {
+        padding: 6px 12px;
+        border-radius: 14px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #555;
+      }
+      .material-tab.active {
+        background: #2c3e6b;
+        color: #fff;
+        border-color: #2c3e6b;
+      }
+      .material-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .material-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 4px;
+      }
+      .material-type {
+        font-size: 11px;
+        color: #27ae60;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .material-type .dot {
+        width: 6px;
+        height: 6px;
+        background: #27ae60;
+        border-radius: 50%;
+      }
+      .open-btn {
+        background: #2c3e6b;
+        color: #fff;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .open-btn:hover {
+        background: #1e2d52;
+      }
+
+      .burnout-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .burnout-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2c3e6b;
+        margin-bottom: 14px;
+      }
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        height: 120px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e8eaed;
+        margin-bottom: 10px;
+      }
+      .bar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+      }
+      .bar {
+        width: 20px;
+        background: #2c3e6b;
+        border-radius: 3px 3px 0 0;
+        transition: height 0.5s;
+      }
+      .bar-label {
+        font-size: 10px;
+        color: #666;
+        font-weight: 600;
+      }
+      .wellbeing-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 14px;
+      }
+      .wellbeing-heart {
+        color: #e74c3c;
+        font-size: 16px;
+      }
+      .wellbeing-value {
+        color: #27ae60;
+      }
+      .task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        font-size: 12px;
+      }
+      .task-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .task-check {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #2c3e6b;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2c3e6b;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .task-check.checked {
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .task-priority {
+        padding: 3px 10px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .task-priority.high {
+        background: #e74c3c;
+      }
+      .task-priority.medium {
+        background: #f39c12;
+      }
+      .task-priority.low {
+        background: #27ae60;
+      }
+      .action-btn {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 8px;
+        transition: all 0.2s;
+      }
+      .action-btn.primary {
+        background: #2c3e6b;
+        color: #fff;
+      }
+      .action-btn.primary:hover {
+        background: #1e2d52;
+      }
+      .action-btn.secondary {
+        background: #f0f2f5;
+        color: #2c3e6b;
+      }
+      .action-btn.secondary:hover {
+        background: #e0e4ea;
+      }
+
+      /* Mobile hamburger */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #2c3e6b;
+      }
+
+      /* ============ RESPONSIVE ============ */
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: 240px;
         }
-        area.scrollTop = area.scrollHeight;
       }
 
-      // Привязываем обработчики
-      btn.addEventListener('click', sendMessageToAI);
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          sendMessageToAI();
+      @media (max-width: 900px) {
+        .side-nav {
+          display: none;
+        }
+        .chat-layout,
+        .research-layout,
+        .prof-layout {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .top-navbar {
+          padding: 8px 12px;
+          flex-wrap: wrap;
+        }
+        .logo {
+          gap: 6px;
+        }
+        .logo-text-main {
+          font-size: 14px;
+        }
+        .logo-text-sub {
+          font-size: 9px;
+        }
+        .logo-svg {
+          height: 36px;
+          width: 36px;
+        }
+        .tabs {
+          padding: 0 8px;
+        }
+        .tab {
+          padding: 10px 12px;
+          font-size: 12px;
+        }
+        .main-content {
+          padding: 12px;
+        }
+        .chat-body {
+          padding: 12px;
+        }
+        .chat-container {
+          min-height: auto;
+        }
+        .journal-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .view-req-btn {
+          width: 100%;
+        }
+        .integration-grid {
+          grid-template-columns: 1fr;
+        }
+        .calendar-date {
+          padding: 6px 2px;
+          font-size: 11px;
+        }
+        .calendar-day {
+          font-size: 9px;
+        }
+        .nav-actions {
+          gap: 6px;
+        }
+        .nav-icon {
+          width: 32px;
+          height: 32px;
+          font-size: 14px;
+        }
+        .avatar {
+          width: 32px;
+          height: 32px;
+          font-size: 12px;
+        }
+        .prof-title {
+          font-size: 14px;
+        }
+        .prof-title-logo {
+          width: 30px;
+          height: 30px;
+        }
+        .lang-btn {
+          padding: 4px 8px;
+          font-size: 11px;
+        }
+        .lang-btn .lang-icon {
+          font-size: 12px;
+        }
+        .accessibility-btn {
+          padding: 4px 8px;
+          font-size: 11px;
+        }
+        .accessibility-btn .acc-icon {
+          font-size: 12px;
+        }
+        .acc-dropdown {
+          min-width: 180px;
+          right: -20px;
+          padding: 8px;
+        }
+        .acc-option {
+          padding: 8px;
+          font-size: 12px;
+        }
+        .acc-label-sub {
+          font-size: 10px;
+        }
+        .acc-toggle {
+          width: 36px;
+          height: 20px;
+        }
+        .acc-toggle::after {
+          width: 16px;
+          height: 16px;
+        }
+        .acc-toggle.active::after {
+          left: 18px;
+        }
+        .chat-input-area {
+          padding: 10px 14px;
+        }
+        .chat-input {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+        .chat-btn {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+        }
+        .sidebar-card {
+          padding: 14px;
+        }
+        .sidebar-title {
+          font-size: 14px;
+        }
+        .profile-field {
+          font-size: 12px;
+        }
+        .status-item {
+          font-size: 11px;
+          padding: 6px 10px;
+        }
+        .research-title,
+        .schedule-title,
+        .materials-title,
+        .burnout-title,
+        .integration-title {
+          font-size: 15px;
+        }
+        .journal-name {
+          font-size: 14px;
+        }
+        .checklist-title {
+          font-size: 14px;
+        }
+        .material-name {
+          font-size: 12px;
+        }
+        .task-item {
+          font-size: 11px;
+          padding: 8px 10px;
+        }
+        .action-btn {
+          font-size: 12px;
+          padding: 8px;
+        }
+        .bar-chart {
+          height: 100px;
+        }
+        .bar {
+          width: 16px;
+        }
+        .bar-label {
+          font-size: 9px;
+        }
+        .filter-tag {
+          padding: 4px 10px;
+          font-size: 10px;
+        }
+        .filter-label {
+          font-size: 12px;
+        }
+        .search-box {
+          padding: 10px 12px;
+        }
+        .search-box input {
+          font-size: 12px;
+        }
+        .materials-search {
+          padding: 8px 12px;
+        }
+        .materials-search input {
+          font-size: 12px;
+        }
+        .material-tab {
+          padding: 5px 10px;
+          font-size: 10px;
+        }
+        .open-btn {
+          padding: 5px 12px;
+          font-size: 10px;
+        }
+        .sync-btn {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+        .download-btn {
+          padding: 10px;
+          font-size: 13px;
+        }
+        .view-req-btn {
+          padding: 6px 14px;
+          font-size: 11px;
+        }
+        .chat-section {
+          padding: 14px;
+        }
+        .chat-section-title {
+          font-size: 14px;
+        }
+        .chat-section li {
+          font-size: 12px;
+        }
+        .chat-bubble {
+          font-size: 13px;
+          padding: 12px 14px;
+        }
+        .verified-tag {
+          font-size: 10px;
+          padding: 2px 8px;
+        }
+        .checklist-items {
+          font-size: 11px;
+          padding-left: 24px;
+        }
+        .verified-guideline-btn {
+          font-size: 10px;
+          padding: 3px 10px;
+        }
+        .readiness-label {
+          font-size: 11px;
+        }
+        .profile-university {
+          font-size: 12px;
+        }
+        .wellbeing-status {
+          font-size: 12px;
+        }
+        .task-priority {
+          font-size: 9px;
+          padding: 2px 8px;
+        }
+        .material-type {
+          font-size: 10px;
+        }
+        .integration-name {
+          font-size: 12px;
+        }
+        .integration-status {
+          font-size: 10px;
+        }
+      }
+
+      /* Side nav mobile */
+      .side-nav.mobile-open {
+        display: flex;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 200;
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+      }
+      .side-nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 199;
+      }
+      .side-nav-overlay.active {
+        display: block;
+      }
+
+      @media (max-width: 900px) {
+        .side-nav {
+          position: fixed;
+          left: -70px;
+          top: 0;
+          height: 100vh;
+          z-index: 200;
+          transition: left 0.3s;
+        }
+        .side-nav.mobile-open {
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button class="mobile-menu-btn" onclick="toggleSideNav()"></button>
+        <div class="logo">
+          <svg
+            class="logo-svg"
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color: #1a8fa8" />
+                <stop offset="50%" style="stop-color: #2c6fa5" />
+                <stop offset="100%" style="stop-color: #1a3a6b" />
+              </linearGradient>
+              <linearGradient
+                id="innerRingGrad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #4ab8d4" />
+                <stop offset="100%" style="stop-color: #2c6fa5" />
+              </linearGradient>
+              <path
+                id="topArc"
+                d="M 30,100 A 70,70 0 0,1 170,100"
+                fill="none"
+              />
+              <path
+                id="bottomArc"
+                d="M 30,100 A 70,70 0 0,0 170,100"
+                fill="none"
+              />
+            </defs>
+            <circle
+              cx="100"
+              cy="100"
+              r="95"
+              fill="none"
+              stroke="url(#ringGrad)"
+              stroke-width="8"
+            />
+            <circle
+              cx="100"
+              cy="100"
+              r="70"
+              fill="none"
+              stroke="url(#innerRingGrad)"
+              stroke-width="4"
+            />
+            <text
+              font-family="Segoe UI, Arial, sans-serif"
+              font-weight="800"
+              font-size="24"
+              fill="#1a3a6b"
+            >
+              <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+                NeuroMentor
+              </textPath>
+            </text>
+            <text
+              font-family="Segoe UI, Arial, sans-serif"
+              font-weight="800"
+              font-size="22"
+              fill="#1a3a6b"
+            >
+              <textPath
+                href="#bottomArc"
+                startOffset="50%"
+                text-anchor="middle"
+              >
+                for Students
+              </textPath>
+            </text>
+            <g
+              transform="translate(100,100)"
+              stroke="#1a3a6b"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="0" y1="-32" x2="0" y2="-24" />
+              <circle cx="0" cy="-34" r="3" fill="#1a3a6b" />
+              <rect x="-18" y="-24" width="36" height="26" rx="5" fill="#fff" />
+              <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b" />
+              <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b" />
+              <line x1="-6" y1="-6" x2="6" y2="-6" />
+              <rect x="-22" y="-18" width="4" height="10" rx="1" />
+              <rect x="18" y="-18" width="4" height="10" rx="1" />
+              <line x1="0" y1="2" x2="0" y2="8" />
+              <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff" />
+              <rect
+                x="-10"
+                y="14"
+                width="20"
+                height="14"
+                rx="2"
+                fill="#e8f4f8"
+              />
+              <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
+              <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+              <circle cx="-24" cy="33" r="3" fill="#1a3a6b" />
+              <circle cx="24" cy="33" r="3" fill="#1a3a6b" />
+              <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff" />
+              <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff" />
+              <rect
+                x="-14"
+                y="50"
+                width="12"
+                height="5"
+                rx="2"
+                fill="#1a3a6b"
+              />
+              <rect x="2" y="50" width="12" height="5" rx="2" fill="#1a3a6b" />
+            </g>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-text-main">NeuroMentor</span>
+            <span class="logo-text-sub">Minin.AI</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-icon">✉<span class="nav-badge"></span></div>
+        <div class="nav-icon">🔔<span class="nav-badge"></span></div>
+        <button class="lang-btn" onclick="toggleLanguage()">
+          <span class="lang-icon">🌐</span>
+          <span id="langText">RU</span>
+        </button>
+        <div class="acc-wrapper">
+          <button class="accessibility-btn" onclick="toggleAccDropdown(event)">
+            <span class="acc-icon">♿</span>
+            <span data-ru="Доступность" data-en="Accessibility"
+              >Доступность</span
+            >
+          </button>
+          <div class="acc-dropdown" id="accDropdown">
+            <div class="acc-option" onclick="toggleTextSize(event)">
+              <div class="acc-label">
+                <span
+                  class="acc-label-main"
+                  data-ru="Крупный текст"
+                  data-en="Large Text"
+                  >Крупный текст</span
+                >
+                <span
+                  class="acc-label-sub"
+                  data-ru="Увеличить шрифт"
+                  data-en="Increase font size"
+                  >Увеличить шрифт</span
+                >
+              </div>
+              <div class="acc-toggle" id="textSizeToggle"></div>
+            </div>
+            <div class="acc-option" onclick="toggleColorInversion(event)">
+              <div class="acc-label">
+                <span
+                  class="acc-label-main"
+                  data-ru="Инверсия цветов"
+                  data-en="Color Inversion"
+                  >Инверсия цветов</span
+                >
+                <span
+                  class="acc-label-sub"
+                  data-ru="Высокий контраст"
+                  data-en="High contrast"
+                  >Высокий контраст</span
+                >
+              </div>
+              <div class="acc-toggle" id="colorInvertToggle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="avatar">АИ</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button
+        class="tab active"
+        data-tab="academic"
+        data-ru="Академический трек"
+        data-en="Academic Track"
+      >
+        Академический трек
+      </button>
+      <button
+        class="tab"
+        data-tab="research"
+        data-ru="Исследовательский трек"
+        data-en="Research Track"
+      >
+        Исследовательский трек
+      </button>
+      <button
+        class="tab"
+        data-tab="professional"
+        data-ru="Профессиональный трек"
+        data-en="Professional Track"
+      >
+        Профессиональный трек
+      </button>
+    </div>
+
+    <div class="app-layout">
+      <div
+        class="side-nav-overlay"
+        id="sideNavOverlay"
+        onclick="toggleSideNav()"
+      ></div>
+      <div class="side-nav" id="sideNav">
+        <div class="side-nav-item active" title="Главная"></div>
+        <div class="side-nav-item" title="Библиотека">📖</div>
+        <div class="side-nav-item" title="Исследования">🔬</div>
+        <div class="side-nav-item" title="Задания">✅</div>
+        <div class="side-nav-item" title="Настройки">️</div>
+      </div>
+
+      <div class="main-content">
+        <!-- ============ ACADEMIC TRACK ============ -->
+        <div class="tab-content active" id="academic">
+          <div class="chat-layout">
+            <div class="chat-area">
+              <div class="chat-container">
+                <div class="chat-header">
+                  <div class="chat-header-title">
+                    <div class="chat-header-icon">
+                      <svg
+                        viewBox="0 0 200 200"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="ringGrad2"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                          >
+                            <stop offset="0%" style="stop-color: #1a8fa8" />
+                            <stop offset="100%" style="stop-color: #1a3a6b" />
+                          </linearGradient>
+                          <path
+                            id="topArc2"
+                            d="M 30,100 A 70,70 0 0,1 170,100"
+                            fill="none"
+                          />
+                          <path
+                            id="bottomArc2"
+                            d="M 30,100 A 70,70 0 0,0 170,100"
+                            fill="none"
+                          />
+                        </defs>
+                        <circle
+                          cx="100"
+                          cy="100"
+                          r="95"
+                          fill="none"
+                          stroke="url(#ringGrad2)"
+                          stroke-width="8"
+                        />
+                        <circle
+                          cx="100"
+                          cy="100"
+                          r="70"
+                          fill="none"
+                          stroke="rgba(255,255,255,0.4)"
+                          stroke-width="4"
+                        />
+                        <text
+                          font-family="Segoe UI, Arial, sans-serif"
+                          font-weight="800"
+                          font-size="24"
+                          fill="#fff"
+                        >
+                          <textPath
+                            href="#topArc2"
+                            startOffset="50%"
+                            text-anchor="middle"
+                          >
+                            NeuroMentor
+                          </textPath>
+                        </text>
+                        <text
+                          font-family="Segoe UI, Arial, sans-serif"
+                          font-weight="800"
+                          font-size="22"
+                          fill="#fff"
+                        >
+                          <textPath
+                            href="#bottomArc2"
+                            startOffset="50%"
+                            text-anchor="middle"
+                          >
+                            for Students
+                          </textPath>
+                        </text>
+                        <g
+                          transform="translate(100,100)"
+                          stroke="#fff"
+                          stroke-width="3"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <line x1="0" y1="-32" x2="0" y2="-24" />
+                          <circle cx="0" cy="-34" r="3" fill="#fff" />
+                          <rect
+                            x="-18"
+                            y="-24"
+                            width="36"
+                            height="26"
+                            rx="5"
+                            fill="rgba(255,255,255,0.1)"
+                          />
+                          <circle cx="-7" cy="-14" r="2.5" fill="#fff" />
+                          <circle cx="7" cy="-14" r="2.5" fill="#fff" />
+                          <line x1="-6" y1="-6" x2="6" y2="-6" />
+                          <rect x="-22" y="-18" width="4" height="10" rx="1" />
+                          <rect x="18" y="-18" width="4" height="10" rx="1" />
+                          <line x1="0" y1="2" x2="0" y2="8" />
+                          <rect
+                            x="-20"
+                            y="8"
+                            width="40"
+                            height="30"
+                            rx="5"
+                            fill="rgba(255,255,255,0.1)"
+                          />
+                          <rect
+                            x="-10"
+                            y="14"
+                            width="20"
+                            height="14"
+                            rx="2"
+                            fill="rgba(255,255,255,0.2)"
+                          />
+                          <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
+                          <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+                          <circle cx="-24" cy="33" r="3" fill="#fff" />
+                          <circle cx="24" cy="33" r="3" fill="#fff" />
+                          <rect
+                            x="-12"
+                            y="38"
+                            width="8"
+                            height="14"
+                            rx="3"
+                            fill="rgba(255,255,255,0.1)"
+                          />
+                          <rect
+                            x="4"
+                            y="38"
+                            width="8"
+                            height="14"
+                            rx="3"
+                            fill="rgba(255,255,255,0.1)"
+                          />
+                          <rect
+                            x="-14"
+                            y="50"
+                            width="12"
+                            height="5"
+                            rx="2"
+                            fill="#fff"
+                          />
+                          <rect
+                            x="2"
+                            y="50"
+                            width="12"
+                            height="5"
+                            rx="2"
+                            fill="#fff"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span data-ru="Учебный наставник" data-en="Learning Mentor"
+                      >Учебный наставник</span
+                    >
+                  </div>
+                  <div class="chat-header-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="chat-body">
+                  <div id="chatResponseArea">
+                    <!-- Сюда будут приходить ответы от GigaChat -->
+                  </div>
+                  <div
+                    class="chat-bubble"
+                    data-ru="Вот ваш учебный план на семестр:"
+                    data-en="Here's your academic plan for the semester:"
+                  >
+                    Вот ваш учебный план на семестр:
+                  </div>
+
+                  <div class="chat-section">
+                    <div
+                      class="chat-section-title"
+                      data-ru="1. Курсовая работа:"
+                      data-en="1. Coursework:"
+                    >
+                      1. Курсовая работа:
+                    </div>
+                    <ul>
+                      <li
+                        data-ru='Изучить "Педагогическую психологию" и "Разработку учебных программ".'
+                        data-en='Study "Educational Psychology" and "Curriculum Development".'
+                      >
+                        Изучить "Педагогическую психологию" и "Разработку
+                        учебных программ".
+                      </li>
+                      <li
+                        data-ru="Выполнять еженедельные задания."
+                        data-en="Complete weekly assignments."
+                      >
+                        Выполнять еженедельные задания.
+                      </li>
+                      <li
+                        data-ru="Обратиться к: Smith, J. (2020). Педагогическая психология. "
+                        data-en="Refer to: Smith, J. (2020). Educational Psychology. "
+                      >
+                        Обратиться к: Smith, J. (2020). Педагогическая
+                        психология.
+                        <span
+                          class="verified-tag"
+                          data-ru="Проверенный источник"
+                          data-en="Verified Source"
+                          >Проверенный источник</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="chat-section">
+                    <div
+                      class="chat-section-title"
+                      data-ru="2. Учебные цели:"
+                      data-en="2. Study Goals:"
+                    >
+                      2. Учебные цели:
+                    </div>
+                    <ul>
+                      <li
+                        data-ru="Подготовиться к предстоящим экзаменам по педагогике."
+                        data-en="Prepare for upcoming exams in Pedagogy."
+                      >
+                        Подготовиться к предстоящим экзаменам по педагогике.
+                      </li>
+                      <li
+                        data-ru="Сосредоточиться на методах управления классом."
+                        data-en="Focus on classroom management techniques."
+                      >
+                        Сосредоточиться на методах управления классом.
+                      </li>
+                      <li
+                        data-ru="Проверить: Johnson, L. (2019). Управление классом. "
+                        data-en="Check: Johnson, L. (2019). Classroom Management. "
+                      >
+                        Проверить: Johnson, L. (2019). Управление классом.
+                        <span
+                          class="verified-tag"
+                          data-ru="Проверенный источник"
+                          data-en="Verified Source"
+                          >Проверенный источник</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="chat-section">
+                    <div
+                      class="chat-section-title"
+                      data-ru="3. Развитие навыков:"
+                      data-en="3. Skill Development:"
+                    >
+                      3. Развитие навыков:
+                    </div>
+                    <ul>
+                      <li
+                        data-ru="Развивать преподавательские навыки через семинары."
+                        data-en="Enhance your teaching skills through workshops."
+                      >
+                        Развивать преподавательские навыки через семинары.
+                      </li>
+                      <li
+                        data-ru='Участвовать в семинаре "Эффективное преподавание" в следующем месяце.'
+                        data-en='Participate in the "Effective Teaching Seminar" next month.'
+                      >
+                        Участвовать в семинаре "Эффективное преподавание" в
+                        следующем месяце.
+                      </li>
+                      <li
+                        data-ru="Изучить: Brown, A. (2021). Эффективные методы преподавания. "
+                        data-en="Review: Brown, A. (2021). Effective Teaching Practices. "
+                      >
+                        Изучить: Brown, A. (2021). Эффективные методы
+                        преподавания.
+                        <span
+                          class="verified-tag"
+                          data-ru="Проверенный источник"
+                          data-en="Verified Source"
+                          >Проверенный источник</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="chat-input-area">
+                  <input
+                    type="text"
+                    class="chat-input"
+                    id="chatInput"
+                    data-placeholder-ru="Введите ваше сообщение..."
+                    data-placeholder-en="Type your message here..."
+                    placeholder="Введите ваше сообщение..."
+                  />
+                  <button class="chat-btn chat-btn-emoji">😊</button>
+                  <button class="chat-btn chat-btn-mic" id="sendBtn">➤</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar">
+              <div class="sidebar-card">
+                <div class="sidebar-title">
+                  <span data-ru="Профиль студента" data-en="Student Profile"
+                    >Профиль студента</span
+                  >
+                  <div class="sidebar-avatar">АИ</div>
+                </div>
+                <div class="profile-field">
+                  <span
+                    class="profile-label"
+                    data-ru="Программа:"
+                    data-en="Program:"
+                    >Программа:</span
+                  >
+                  <span
+                    class="profile-value"
+                    data-ru="Педагогика"
+                    data-en="Pedagogy"
+                    >Педагогика</span
+                  >
+                </div>
+                <div class="profile-field">
+                  <span class="profile-label" data-ru="Курс:" data-en="Year:"
+                    >Курс:</span
+                  >
+                  <span class="profile-value">2</span>
+                </div>
+                <div
+                  class="profile-university"
+                  data-ru="Университет Минина"
+                  data-en="Minin University"
+                >
+                  Университет Минина
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill"></div>
+                </div>
+                <div class="status-item green">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Верификация активна"
+                    data-en="Verification Active"
+                    >Верификация активна</span
+                  >
+                </div>
+                <div class="status-item blue">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Куратор доступен"
+                    data-en="Human Curator Available"
+                    >Куратор доступен</span
+                  >
+                </div>
+                <div class="status-item red">
+                  <div class="status-icon">✕</div>
+                  <span
+                    data-ru="Конфиденциальный режим"
+                    data-en="Confidential Mode On"
+                    >Конфиденциальный режим</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ RESEARCH TRACK ============ -->
+        <div class="tab-content" id="research">
+          <div class="research-layout">
+            <div class="research-main">
+              <div
+                class="research-title"
+                data-ru="Исследовательский наставник — Навигатор журналов"
+                data-en="Research Mentor — Journal Navigator"
+              >
+                Исследовательский наставник — Навигатор журналов
+              </div>
+
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  data-placeholder-ru="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)"
+                  data-placeholder-en="Find Target Journal (VAK, RSCI, Student Journals)"
+                  placeholder="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)"
+                />
+              </div>
+
+              <div class="filters">
+                <span class="filter-label" data-ru="Область:" data-en="Field:"
+                  >Область:</span
+                >
+                <span
+                  class="filter-tag active"
+                  data-ru="Педагогика"
+                  data-en="Pedagogy"
+                  >Педагогика</span
+                >
+                <span
+                  class="filter-label"
+                  style="margin-left: 8px"
+                  data-ru="Индексируется:"
+                  data-en="Indexed:"
+                  >Индексируется:</span
+                >
+                <span class="filter-tag active">ВАК</span>
+                <span class="filter-tag active">РИНЦ</span>
+                <span
+                  class="filter-tag"
+                  data-ru="Открытый доступ"
+                  data-en="Open Access"
+                  >Открытый доступ</span
+                >
+                <span class="filter-tag">Scopus</span>
+              </div>
+
+              <div class="journal-card">
+                <div class="journal-info">
+                  <div
+                    class="journal-name"
+                    data-ru="Журнал педагогических исследований"
+                    data-en="Journal of Educational Studies"
+                  >
+                    Журнал педагогических исследований
+                  </div>
+                  <div class="journal-tags">
+                    <span class="journal-tag vak">ВАК</span>
+                    <span class="journal-tag rsci">РИНЦ</span>
+                  </div>
+                  <div class="journal-meta">
+                    <span
+                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
+                      <strong data-ru="Высокий" data-en="High"
+                        >Высокий</strong
+                      ></span
+                    >
+                    <div class="impact-bar high">
+                      <span></span><span></span><span></span><span></span
+                      ><span></span>
+                    </div>
+                    <span
+                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
+                      25%</span
+                    >
+                  </div>
+                </div>
+                <button
+                  class="view-req-btn"
+                  data-ru="Просмотреть требования"
+                  data-en="View Requirements"
+                >
+                  Просмотреть требования
+                </button>
+              </div>
+
+              <div class="journal-card">
+                <div class="journal-info">
+                  <div
+                    class="journal-name"
+                    data-ru="Образование и инновации"
+                    data-en="Education & Innovation"
+                  >
+                    Образование и инновации
+                  </div>
+                  <div class="journal-tags">
+                    <span class="journal-tag vak">ВАК</span>
+                    <span class="journal-tag rsci">РИНЦ</span>
+                  </div>
+                  <div class="journal-meta">
+                    <span
+                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
+                      <strong data-ru="Средний" data-en="Medium"
+                        >Средний</strong
+                      ></span
+                    >
+                    <div class="impact-bar medium">
+                      <span></span><span></span><span></span><span></span
+                      ><span></span>
+                    </div>
+                    <span
+                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
+                      18%</span
+                    >
+                  </div>
+                </div>
+                <button
+                  class="view-req-btn"
+                  data-ru="Просмотреть требования"
+                  data-en="View Requirements"
+                >
+                  Просмотреть требования
+                </button>
+              </div>
+
+              <div class="journal-card">
+                <div class="journal-info">
+                  <div
+                    class="journal-name"
+                    data-ru="Педагогический исследовательский обзор"
+                    data-en="Pedagogical Research Review"
+                  >
+                    Педагогический исследовательский обзор
+                  </div>
+                  <div class="journal-tags">
+                    <span class="journal-tag vak">ВАК</span>
+                    <span class="journal-tag rsci">РИНЦ</span>
+                  </div>
+                  <div class="journal-meta">
+                    <span
+                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
+                      <strong data-ru="Низкий" data-en="Low"
+                        >Низкий</strong
+                      ></span
+                    >
+                    <div class="impact-bar low">
+                      <span></span><span></span><span></span><span></span
+                      ><span></span>
+                    </div>
+                    <span
+                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
+                      30%</span
+                    >
+                  </div>
+                </div>
+                <button
+                  class="view-req-btn"
+                  data-ru="Просмотреть требования"
+                  data-en="View Requirements"
+                >
+                  Просмотреть требования
+                </button>
+              </div>
+            </div>
+
+            <div class="sidebar">
+              <div class="checklist-card">
+                <div
+                  class="checklist-title"
+                  data-ru="Требования к подаче и методологический чеклист"
+                  data-en="Submission Requirements & Methodological Checklist"
+                >
+                  Требования к подаче и методологический чеклист
+                </div>
+
+                <div class="checklist-section">
+                  <div class="checklist-section-header">
+                    <div class="checklist-check">✓</div>
+                    <span
+                      data-ru="Требования к оформлению"
+                      data-en="Formatting Requirements"
+                      >Требования к оформлению</span
+                    >
+                  </div>
+                  <div class="checklist-items">
+                    <span
+                      data-ru="Шрифт: Times New Roman"
+                      data-en="Font: Times New Roman"
+                      >Шрифт: Times New Roman</span
+                    ><br />
+                    <span
+                      data-ru="Стиль APA, макс. 8000 слов"
+                      data-en="APA Style, Max 8,000 Words"
+                      >Стиль APA, макс. 8000 слов</span
+                    >
+                  </div>
+                  <div
+                    class="verified-guideline-btn"
+                    data-ru="+ Проверенное руководство"
+                    data-en="+ Verified Guideline"
+                  >
+                    + Проверенное руководство
+                  </div>
+                </div>
+
+                <div class="checklist-section">
+                  <div class="checklist-section-header">
+                    <div class="checklist-check">✓</div>
+                    <span
+                      data-ru="Шаблон структуры статьи"
+                      data-en="Article Structure Template"
+                      >Шаблон структуры статьи</span
+                    >
+                  </div>
+                  <div class="checklist-items">
+                    •
+                    <span data-ru="Аннотация" data-en="Abstract">Аннотация</span
+                    ><br />
+                    •
+                    <span data-ru="Введение" data-en="Introduction"
+                      >Введение</span
+                    ><br />
+                    •
+                    <span
+                      data-ru="Методы и результаты"
+                      data-en="Methods & Results"
+                      >Методы и результаты</span
+                    ><br />
+                    •
+                    <span
+                      data-ru="Обсуждение и заключение"
+                      data-en="Discussion & Conclusion"
+                      >Обсуждение и заключение</span
+                    >
+                  </div>
+                  <div
+                    class="verified-guideline-btn"
+                    data-ru="+ Проверенное руководство"
+                    data-en="+ Verified Guideline"
+                  >
+                    + Проверенное руководство
+                  </div>
+                </div>
+
+                <div class="checklist-section">
+                  <div class="checklist-section-header">
+                    <div class="checklist-check">✓</div>
+                    <span
+                      data-ru="Этическое соответствие"
+                      data-en="Ethical Compliance"
+                      >Этическое соответствие</span
+                    >
+                  </div>
+                  <div class="checklist-items">
+                    ✓
+                    <span
+                      data-ru="Проверка на плагиат"
+                      data-en="Plagiarism Check"
+                      >Проверка на плагиат</span
+                    ><br />
+                    ✓
+                    <span
+                      data-ru="Формы согласия включены"
+                      data-en="Consent Forms Included"
+                      >Формы согласия включены</span
+                    ><br />
+                    ✓
+                    <span
+                      data-ru="Правильные цитирования"
+                      data-en="Proper Citations"
+                      >Правильные цитирования</span
+                    >
+                  </div>
+                  <div
+                    class="verified-guideline-btn"
+                    data-ru="+ Проверенное руководство"
+                    data-en="+ Verified Guideline"
+                  >
+                    + Проверенное руководство
+                  </div>
+                </div>
+
+                <button
+                  class="download-btn"
+                  data-ru="Скачать шаблон"
+                  data-en="Download Template"
+                >
+                  Скачать шаблон
+                </button>
+
+                <div
+                  class="readiness-label"
+                  data-ru="Готовность к публикации — 65%"
+                  data-en="Publication Readiness — 65%"
+                >
+                  Готовность к публикации — 65%
+                </div>
+                <div class="readiness-bar">
+                  <div class="readiness-fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ PROFESSIONAL TRACK ============ -->
+        <div class="tab-content" id="professional">
+          <div class="prof-title">
+            <svg
+              class="prof-title-logo"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient
+                  id="ringGrad3"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" style="stop-color: #1a8fa8" />
+                  <stop offset="100%" style="stop-color: #1a3a6b" />
+                </linearGradient>
+                <path
+                  id="topArc3"
+                  d="M 30,100 A 70,70 0 0,1 170,100"
+                  fill="none"
+                />
+                <path
+                  id="bottomArc3"
+                  d="M 30,100 A 70,70 0 0,0 170,100"
+                  fill="none"
+                />
+              </defs>
+              <circle
+                cx="100"
+                cy="100"
+                r="95"
+                fill="none"
+                stroke="url(#ringGrad3)"
+                stroke-width="8"
+              />
+              <circle
+                cx="100"
+                cy="100"
+                r="70"
+                fill="none"
+                stroke="#4ab8d4"
+                stroke-width="4"
+              />
+              <text
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="800"
+                font-size="24"
+                fill="#1a3a6b"
+              >
+                <textPath
+                  href="#topArc3"
+                  startOffset="50%"
+                  text-anchor="middle"
+                >
+                  NeuroMentor
+                </textPath>
+              </text>
+              <text
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="800"
+                font-size="22"
+                fill="#1a3a6b"
+              >
+                <textPath
+                  href="#bottomArc3"
+                  startOffset="50%"
+                  text-anchor="middle"
+                >
+                  for Students
+                </textPath>
+              </text>
+              <g
+                transform="translate(100,100)"
+                stroke="#1a3a6b"
+                stroke-width="3"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="0" y1="-32" x2="0" y2="-24" />
+                <circle cx="0" cy="-34" r="3" fill="#1a3a6b" />
+                <rect
+                  x="-18"
+                  y="-24"
+                  width="36"
+                  height="26"
+                  rx="5"
+                  fill="#fff"
+                />
+                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b" />
+                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b" />
+                <line x1="-6" y1="-6" x2="6" y2="-6" />
+                <rect x="-22" y="-18" width="4" height="10" rx="1" />
+                <rect x="18" y="-18" width="4" height="10" rx="1" />
+                <line x1="0" y1="2" x2="0" y2="8" />
+                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff" />
+                <rect
+                  x="-10"
+                  y="14"
+                  width="20"
+                  height="14"
+                  rx="2"
+                  fill="#e8f4f8"
+                />
+                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
+                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+                <circle cx="-24" cy="33" r="3" fill="#1a3a6b" />
+                <circle cx="24" cy="33" r="3" fill="#1a3a6b" />
+                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff" />
+                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff" />
+                <rect
+                  x="-14"
+                  y="50"
+                  width="12"
+                  height="5"
+                  rx="2"
+                  fill="#1a3a6b"
+                />
+                <rect
+                  x="2"
+                  y="50"
+                  width="12"
+                  height="5"
+                  rx="2"
+                  fill="#1a3a6b"
+                />
+              </g>
+            </svg>
+            <span
+              data-ru="Наставник студента — Преподавательская практика и благополучие"
+              data-en="Student's Mentor — Teaching Practice & Wellbeing"
+              >Наставник студента — Преподавательская практика и
+              благополучие</span
+            >
+          </div>
+
+          <div class="prof-layout">
+            <div class="prof-main">
+              <div class="integration-card">
+                <div
+                  class="integration-title"
+                  data-ru="Интеграция преподавательской практики"
+                  data-en="Teaching Practice Integration"
+                >
+                  Интеграция преподавательской практики
+                </div>
+                <div class="integration-grid">
+                  <div class="integration-item">
+                    <div class="integration-icon moodle">M</div>
+                    <div>
+                      <div class="integration-name">Moodle</div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="integration-item">
+                    <div class="integration-icon mes">MES</div>
+                    <div>
+                      <div class="integration-name">MES</div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="integration-item">
+                    <div class="integration-icon lms">LMS</div>
+                    <div>
+                      <div
+                        class="integration-name"
+                        data-ru="Университетская LMS"
+                        data-en="University LMS"
+                      >
+                        Университетская LMS
+                      </div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="sync-btn"
+                  data-ru="Синхронизировать план урока"
+                  data-en="Sync Lesson Plan"
+                >
+                  Синхронизировать план урока
+                </button>
+              </div>
+
+              <div class="schedule-card">
+                <div
+                  class="schedule-title"
+                  data-ru="Предстоящее расписание практики"
+                  data-en="Upcoming Practice Schedule"
+                >
+                  Предстоящее расписание практики
+                </div>
+                <div class="calendar">
+                  <div class="calendar-day" data-ru="Вс" data-en="Sun">Вс</div>
+                  <div class="calendar-day" data-ru="Пн" data-en="Mon">Пн</div>
+                  <div class="calendar-day" data-ru="Вт" data-en="Tue">Вт</div>
+                  <div class="calendar-day" data-ru="Ср" data-en="Wed">Ср</div>
+                  <div class="calendar-day" data-ru="Чт" data-en="Thu">Чт</div>
+                  <div class="calendar-day" data-ru="Пт" data-en="Fri">Пт</div>
+                  <div class="calendar-day" data-ru="Сб" data-en="Sat">Сб</div>
+
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date">1</div>
+                  <div class="calendar-date">2</div>
+                  <div class="calendar-date">3</div>
+                  <div class="calendar-date">4</div>
+
+                  <div class="calendar-date">5</div>
+                  <div class="calendar-date">6</div>
+                  <div class="calendar-date">7</div>
+                  <div class="calendar-date">8</div>
+                  <div class="calendar-date">9</div>
+                  <div class="calendar-date selected">10</div>
+                  <div class="calendar-date">11</div>
+
+                  <div class="calendar-date">12</div>
+                  <div class="calendar-date">13</div>
+                  <div class="calendar-date">14</div>
+                  <div class="calendar-date">15</div>
+                  <div class="calendar-date">16</div>
+                  <div class="calendar-date">17</div>
+                  <div class="calendar-date">18</div>
+                </div>
+              </div>
+
+              <div class="materials-card">
+                <div
+                  class="materials-title"
+                  data-ru="Библиотека методических материалов"
+                  data-en="Methodological Materials Library"
+                >
+                  Библиотека методических материалов
+                </div>
+                <div class="materials-search">
+                  <span>🔍</span>
+                  <input
+                    type="text"
+                    data-placeholder-ru="Найти сценарий урока или учебный материал"
+                    data-placeholder-en="Find Lesson Scenario or Teaching Material"
+                    placeholder="Найти сценарий урока или учебный материал"
+                  />
+                </div>
+                <div class="materials-tabs">
+                  <div
+                    class="material-tab active"
+                    data-ru="Начальная школа"
+                    data-en="Primary School"
+                  >
+                    Начальная школа
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Средняя школа"
+                    data-en="Secondary School"
+                  >
+                    Средняя школа
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Инструменты оценки"
+                    data-en="Assessment Tools"
+                  >
+                    Инструменты оценки
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Интерактивные задания"
+                    data-en="Interactive Activities"
+                  >
+                    Интерактивные задания
+                  </div>
+                </div>
+
+                <div class="material-item">
+                  <div>
+                    <div
+                      class="material-name"
+                      data-ru="План урока: Навыки критического мышления"
+                      data-en="Lesson Plan: Critical Thinking Skills"
+                    >
+                      План урока: Навыки критического мышления
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Сценарий · Утверждённый методический ресурс"
+                        data-en="Scenario · Approved Methodical Resource"
+                        >Сценарий · Утверждённый методический ресурс</span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
+                </div>
+
+                <div class="material-item">
+                  <div>
+                    <div
+                      class="material-name"
+                      data-ru="Оценка: Форма обратной связи от студентов"
+                      data-en="Assessment: Student Feedback Form"
+                    >
+                      Оценка: Форма обратной связи от студентов
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Оценка · Утверждённый методический ресурс"
+                        data-en="Assessment · Approved Methodical Resource"
+                        >Оценка · Утверждённый методический ресурс</span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
+                </div>
+
+                <div class="material-item">
+                  <div>
+                    <div
+                      class="material-name"
+                      data-ru="Интерактивная игра: Командное задание"
+                      data-en="Interactive Game: Teamwork Challenge"
+                    >
+                      Интерактивная игра: Командное задание
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Рабочий лист · Утверждённый методический ресурс"
+                        data-en="Worksheet · Approved Methodical Resource"
+                        >Рабочий лист · Утверждённый методический ресурс</span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
+                </div>
+              </div>
+
+              <div class="burnout-card">
+                <div
+                  class="burnout-title"
+                  data-ru="Профилактика выгорания и управление временем"
+                  data-en="Burnout Prevention & Time Management"
+                >
+                  Профилактика выгорания и управление временем
+                </div>
+                <div class="bar-chart">
+                  <div class="bar-item">
+                    <div class="bar" style="height: 60px"></div>
+                    <div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 80px"></div>
+                    <div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 45px"></div>
+                    <div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 90px"></div>
+                    <div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 70px"></div>
+                    <div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 30px"></div>
+                    <div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 20px"></div>
+                    <div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div>
+                  </div>
+                </div>
+
+                <div class="wellbeing-status">
+                  <span class="wellbeing-heart">❤</span>
+                  <span
+                    data-ru="Статус благополучия:"
+                    data-en="Wellbeing Status:"
+                    >Статус благополучия:</span
+                  >
+                  <span
+                    class="wellbeing-value"
+                    data-ru="Сбалансирован"
+                    data-en="Balanced"
+                    >Сбалансирован</span
+                  >
+                </div>
+
+                <div class="task-item">
+                  <div class="task-left">
+                    <div class="task-check checked">✓</div>
+                    <span
+                      data-ru="Проверить задания"
+                      data-en="Grade Assignments"
+                      >Проверить задания</span
+                    >
+                  </div>
+                  <span
+                    class="task-priority high"
+                    data-ru="Высокий"
+                    data-en="High"
+                    >Высокий</span
+                  >
+                </div>
+                <div class="task-item">
+                  <div class="task-left">
+                    <div class="task-check">✓</div>
+                    <span
+                      data-ru="Подготовить слайды урока"
+                      data-en="Prepare Lesson Slides"
+                      >Подготовить слайды урока</span
+                    >
+                  </div>
+                  <span
+                    class="task-priority medium"
+                    data-ru="Средний"
+                    data-en="Medium"
+                    >Средний</span
+                  >
+                </div>
+                <div class="task-item">
+                  <div class="task-left">
+                    <div class="task-check checked">✓</div>
+                    <span
+                      data-ru="Просмотреть отчёты студентов"
+                      data-en="Review Student Reports"
+                      >Просмотреть отчёты студентов</span
+                    >
+                  </div>
+                  <span class="task-priority low" data-ru="Низкий" data-en="Low"
+                    >Низкий</span
+                  >
+                </div>
+
+                <button
+                  class="action-btn primary"
+                  data-ru="Рефлексия практики"
+                  data-en="Reflect on Practice"
+                >
+                  Рефлексия практики
+                </button>
+                <button
+                  class="action-btn secondary"
+                  data-ru="Самопроверка стресса"
+                  data-en="Stress Self-Check"
+                >
+                  Самопроверка стресса
+                </button>
+                <button
+                  class="action-btn secondary"
+                  data-ru="Запросить куратора"
+                  data-en="Request Human Curator"
+                >
+                  Запросить куратора
+                </button>
+              </div>
+            </div>
+
+            <div class="sidebar">
+              <div class="sidebar-card">
+                <div class="sidebar-title">
+                  <span data-ru="Профиль студента" data-en="Student Profile"
+                    >Профиль студента</span
+                  >
+                  <div class="sidebar-avatar">АИ</div>
+                </div>
+                <div class="profile-field">
+                  <span
+                    class="profile-label"
+                    data-ru="Программа:"
+                    data-en="Program:"
+                    >Программа:</span
+                  >
+                  <span
+                    class="profile-value"
+                    data-ru="Педагогика"
+                    data-en="Pedagogy"
+                    >Педагогика</span
+                  >
+                </div>
+                <div class="profile-field">
+                  <span class="profile-label" data-ru="Курс:" data-en="Year:"
+                    >Курс:</span
+                  >
+                  <span class="profile-value">2</span>
+                </div>
+                <div
+                  class="profile-university"
+                  data-ru="Университет Минина"
+                  data-en="Minin University"
+                >
+                  Университет Минина
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill"></div>
+                </div>
+                <div class="status-item green">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Верификация активна"
+                    data-en="Verification Active"
+                    >Верификация активна</span
+                  >
+                </div>
+                <div class="status-item blue">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Куратор доступен"
+                    data-en="Human Curator Available"
+                    >Куратор доступен</span
+                  >
+                </div>
+                <div class="status-item gray">
+                  <div class="status-icon">🔒</div>
+                  <span
+                    data-ru="Конфиденциальный режим"
+                    data-en="Confidential Mode On"
+                    >Конфиденциальный режим</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentLang = "ru";
+      let isTextLarge = false;
+      let isColorInverted = false;
+
+      function toggleLanguage() {
+        currentLang = currentLang === "ru" ? "en" : "ru";
+        document.getElementById("langText").textContent =
+          currentLang === "ru" ? "RU" : "EN";
+        document.documentElement.lang = currentLang;
+
+        document.querySelectorAll("[data-ru][data-en]").forEach((el) => {
+          el.textContent = el.getAttribute(`data-${currentLang}`);
+        });
+
+        document
+          .querySelectorAll("[data-placeholder-ru][data-placeholder-en]")
+          .forEach((el) => {
+            el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
+          });
+
+        document.title =
+          currentLang === "ru"
+            ? "NeuroMentor | Minin.AI"
+            : "NeuroMentor | Minin.AI";
+      }
+
+      function toggleAccDropdown(event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById("accDropdown");
+        dropdown.classList.toggle("show");
+      }
+
+      function toggleTextSize(event) {
+        event.stopPropagation();
+        isTextLarge = !isTextLarge;
+        document.body.classList.toggle("text-large", isTextLarge);
+        document
+          .getElementById("textSizeToggle")
+          .classList.toggle("active", isTextLarge);
+      }
+
+      function toggleColorInversion(event) {
+        event.stopPropagation();
+        isColorInverted = !isColorInverted;
+        document.body.classList.toggle("invert-colors", isColorInverted);
+        document
+          .getElementById("colorInvertToggle")
+          .classList.toggle("active", isColorInverted);
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (event) => {
+        const dropdown = document.getElementById("accDropdown");
+        const accWrapper = document.querySelector(".acc-wrapper");
+        if (!accWrapper.contains(event.target)) {
+          dropdown.classList.remove("show");
         }
       });
-    });
-  })();
-</script>
 
-</body>
+      // Tab switching
+      const tabs = document.querySelectorAll(".tab");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
+          tab.classList.add("active");
+          const targetId = tab.getAttribute("data-tab");
+          document.getElementById(targetId).classList.add("active");
+        });
+      });
+
+      // Filter tags toggle
+      document.querySelectorAll(".filter-tag").forEach((tag) => {
+        tag.addEventListener("click", () => {
+          tag.classList.toggle("active");
+        });
+      });
+
+      // Material tabs toggle
+      document.querySelectorAll(".material-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document
+            .querySelectorAll(".material-tab")
+            .forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+        });
+      });
+
+      // Task check toggle
+      document.querySelectorAll(".task-check").forEach((check) => {
+        check.addEventListener("click", () => {
+          check.classList.toggle("checked");
+          if (check.classList.contains("checked")) {
+            check.textContent = "✓";
+          } else {
+            check.textContent = "";
+          }
+        });
+      });
+
+      // Calendar date selection
+      document
+        .querySelectorAll(".calendar-date:not(.empty)")
+        .forEach((date) => {
+          date.addEventListener("click", () => {
+            document
+              .querySelectorAll(".calendar-date")
+              .forEach((d) => d.classList.remove("selected"));
+            date.classList.add("selected");
+          });
+        });
+
+      // Side nav toggle (mobile)
+      function toggleSideNav() {
+        const sideNav = document.getElementById("sideNav");
+        const overlay = document.getElementById("sideNavOverlay");
+        sideNav.classList.toggle("mobile-open");
+        overlay.classList.toggle("active");
+      }
+
+      // Side nav item selection
+      document.querySelectorAll(".side-nav-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          document
+            .querySelectorAll(".side-nav-item")
+            .forEach((i) => i.classList.remove("active"));
+          item.classList.add("active");
+        });
+      });
+
+      (function () {
+        document.addEventListener("DOMContentLoaded", function () {
+          const input = document.getElementById("chatInput");
+          const btn = document.getElementById("sendBtn");
+          const area = document.getElementById("chatResponseArea");
+
+          if (!input || !btn || !area) {
+            console.error("Элементы чата не найдены");
+            return;
+          }
+
+          async function sendMessageToAI() {
+            const message = input.value.trim();
+            if (!message) return;
+
+            const userBubble = document.createElement("div");
+            userBubble.className = "chat-bubble";
+            userBubble.textContent = message;
+            area.appendChild(userBubble);
+            input.value = "";
+
+            const loading = document.createElement("div");
+            loading.className = "chat-bubble";
+            loading.textContent = "⏳ Думаю...";
+            loading.id = "loadingBubble";
+            area.appendChild(loading);
+            area.scrollTop = area.scrollHeight;
+
+            try {
+              const activeTab = document.querySelector(".tab.active");
+              const track = activeTab ? activeTab.dataset.tab : "academic";
+
+              const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message, track }),
+              });
+              const data = await response.json();
+
+              const loadEl = document.getElementById("loadingBubble");
+              if (loadEl) loadEl.remove();
+
+              if (response.ok) {
+                const aiBubble = document.createElement("div");
+                aiBubble.className = "chat-bubble";
+                aiBubble.textContent = data.reply || "(пустой ответ)";
+                area.appendChild(aiBubble);
+
+                if (data.sources && data.sources.length > 0) {
+                  const sourceDiv = document.createElement("div");
+                  sourceDiv.style.fontSize = "11px";
+                  sourceDiv.style.color = "#666";
+                  sourceDiv.style.marginTop = "6px";
+                  sourceDiv.style.borderTop = "1px solid #eee";
+                  sourceDiv.style.paddingTop = "6px";
+                  sourceDiv.textContent =
+                    "📚 Источники: " + data.sources.join("; ");
+                  area.appendChild(sourceDiv);
+                }
+              } else {
+                const errBubble = document.createElement("div");
+                errBubble.className = "chat-bubble";
+                errBubble.textContent =
+                  "❌ Ошибка: " + (data.error || "неизвестная");
+                area.appendChild(errBubble);
+              }
+            } catch (e) {
+              const loadEl = document.getElementById("loadingBubble");
+              if (loadEl) loadEl.remove();
+              const errBubble = document.createElement("div");
+              errBubble.className = "chat-bubble";
+              errBubble.textContent = "❌ Ошибка соединения: " + e.message;
+              area.appendChild(errBubble);
+            }
+            area.scrollTop = area.scrollHeight;
+          }
+
+          // Привязываем обработчики
+          btn.addEventListener("click", sendMessageToAI);
+          input.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              sendMessageToAI();
+            }
+          });
+        }); // закрываем DOMContentLoaded
+      })(); // закрываем IIFE
+    </script>
+  </body>
 </html>
-
