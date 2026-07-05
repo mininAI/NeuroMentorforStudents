@@ -2754,6 +2754,8 @@
                   type="text"
                   id="journalSearch"
                   placeholder="Поиск по названию или ISSN..."
+                  data-placeholder-ru="Поиск по названию или ISSN..."
+                  data-placeholder-en="Search by title or ISSN..."
                 />
               </div>
 
@@ -3822,11 +3824,21 @@
             el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
           });
 
+        document.querySelectorAll(".source-block").forEach((el) => {
+          const label = currentLang === "ru" ? "📚 Источники: " : "📚 Sources: ";
+          const sourcesText = el.textContent.replace(
+            /^📚 (Источники|Sources):\s*/,
+            "",
+          );
+          el.textContent = label + sourcesText;
+        });
+
         document.title =
           currentLang === "ru"
             ? "NeuroMentor | Minin.AI"
             : "NeuroMentor | Minin.AI";
         updateLoadingText();
+        renderJournals();
       }
 
       function toggleAccDropdown(event) {
@@ -4072,6 +4084,27 @@
         return [value];
       }
 
+      function getLabel(key) {
+        const labels = {
+          noTitle: { ru: "Без названия", en: "Untitled" },
+          noJournals: {
+            ru: "Нет журналов по выбранным фильтрам",
+            en: "No journals match the selected filters",
+          },
+          level: { ru: "Уровень:", en: "Level:" },
+          dateAdded: { ru: "Дата включения:", en: "Date added:" },
+          from: { ru: "с", en: "since" },
+          of: { ru: "из", en: "of" },
+          showMore: { ru: "Показать ещё 10", en: "Show 10 more" },
+          shown: { ru: "Показано:", en: "Shown:" },
+          viewRequirements: {
+            ru: "Просмотреть требования",
+            en: "View requirements",
+          },
+        };
+        return (labels[key] && labels[key][currentLang]) || labels[key]?.ru || key;
+      }
+
       async function loadJournals() {
         try {
           const response = await fetch("/data/journals.json");
@@ -4128,9 +4161,9 @@
           if (loadMoreBtn) loadMoreBtn.style.display = "none";
           const counter = document.getElementById("journalsCounter");
           if (counter)
-            counter.textContent = `Показано: 0 из ${filteredJournals.length}`;
+            counter.textContent = `${getLabel("shown")} 0 ${getLabel("of")} ${filteredJournals.length}`;
           container.innerHTML =
-            '<p style="text-align:center; color:#999;">Нет журналов по выбранным фильтрам</p>';
+            `<p style="text-align:center; color:#999;">${getLabel("noJournals")}</p>`;
           return;
         }
 
@@ -4141,8 +4174,8 @@
           const card = document.createElement("div");
           card.className = "journal-card";
 
-          const titles = j.title || ["Без названия"];
-          const title = titles[0] || "Без названия";
+          const titles = j.title || [getLabel("noTitle")];
+          const title = titles[0] || getLabel("noTitle");
           const issn = (j.issn || [])[0] || "";
           const level = j.level_2025 ? `К${j.level_2025}` : "—";
           const dateAccepted = j.dateAccepted || "";
@@ -4152,14 +4185,14 @@
         <div class="journal-name">${title}</div>
         <div class="journal-tags">
           ${issn ? `<span class="journal-tag rsci">ISSN: ${issn}</span>` : ""}
-          ${level !== "—" ? `<span class="journal-tag vak">Уровень: ${level}</span>` : ""}
-          ${dateAccepted ? `<span class="journal-tag" style="background:#4a6fa5;">с ${dateAccepted}</span>` : ""}
+          ${level !== "—" ? `<span class="journal-tag vak">${getLabel("level")} ${level}</span>` : ""}
+          ${dateAccepted ? `<span class="journal-tag" style="background:#4a6fa5;">${getLabel("from")} ${dateAccepted}</span>` : ""}
         </div>
         <div class="journal-meta">
-          ${dateAccepted ? `Дата включения: ${dateAccepted}` : ""}
+          ${dateAccepted ? `${getLabel("dateAdded")} ${dateAccepted}` : ""}
         </div>
       </div>
-      <button class="view-req-btn" onclick="alert('Подробнее о журнале: ${title}')">Просмотреть требования</button>
+      <button class="view-req-btn" onclick="alert('Подробнее о журнале: ${title}')">${getLabel("viewRequirements")}</button>
     `;
           container.appendChild(card);
         });
@@ -4170,11 +4203,12 @@
             loadMoreBtn.style.display = "none";
           } else {
             loadMoreBtn.style.display = "inline-block";
+            loadMoreBtn.textContent = getLabel("showMore");
           }
         }
         const counter = document.getElementById("journalsCounter");
         if (counter) {
-          counter.textContent = `Показано: ${Math.min(end, filteredJournals.length)} из ${filteredJournals.length}`;
+          counter.textContent = `${getLabel("shown")} ${Math.min(end, filteredJournals.length)} ${getLabel("of")} ${filteredJournals.length}`;
         }
       }
 
