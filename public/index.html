@@ -723,6 +723,7 @@
         padding: 20px;
         flex: 1;
         overflow-y: auto;
+        max-height: 400px;
       }
       .chat-bubble {
         background: #f5f7fa;
@@ -2253,15 +2254,17 @@
                   </div>
                 </div>
                 <div class="chat-body">
-                  <div id="chatResponseArea">
-                    <!-- Сюда будут приходить ответы от GigaChat -->
-                  </div>
                   <div
                     class="chat-bubble"
-                    data-ru="Вот ваш учебный план на семестр:"
-                    data-en="Here's your academic plan for the semester:"
+                    data-ru="🎓 Я — твой академический наставник. Помогу с учебным планом, курсовыми, экзаменами и учебными материалами. Задавай вопросы!"
+                    data-en="🎓 I am your academic mentor. I will help with curriculum, coursework, exams and learning materials. Ask questions!"
                   >
-                    Вот ваш учебный план на семестр:
+                    🎓 Я — твой академический наставник. Помогу с учебным
+                    планом, курсовыми, экзаменами и учебными материалами.
+                    Задавай вопросы!
+                  </div>
+                  <div id="chatResponseArea">
+                    <!-- Сюда будут приходить ответы от GigaChat -->
                   </div>
 
                   <div class="chat-section">
@@ -2463,69 +2466,206 @@
           <div class="research-layout">
             <div class="research-main">
               <!-- Чат для исследовательского трека -->
-<div class="chat-area" style="margin-bottom: 24px;">
-  <div class="chat-container">
-    <div class="chat-header">
-      <div class="chat-header-title">
-        <div class="chat-header-icon">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="ringGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#1a8fa8"/>
-                <stop offset="100%" style="stop-color:#1a3a6b"/>
-              </linearGradient>
-              <path id="topArc2" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-              <path id="bottomArc2" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
-            </defs>
-            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad2)" stroke-width="8"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
-            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
-              <textPath href="#topArc2" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
-            </text>
-            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
-              <textPath href="#bottomArc2" startOffset="50%" text-anchor="middle">for Students</textPath>
-            </text>
-            <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="0" y1="-32" x2="0" y2="-24"/>
-              <circle cx="0" cy="-34" r="3" fill="#fff"/>
-              <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
-              <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
-              <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
-              <line x1="-6" y1="-6" x2="6" y2="-6"/>
-              <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-              <rect x="18" y="-18" width="4" height="10" rx="1"/>
-              <line x1="0" y1="2" x2="0" y2="8"/>
-              <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
-              <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
-              <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-              <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-              <circle cx="-24" cy="33" r="3" fill="#fff"/>
-              <circle cx="24" cy="33" r="3" fill="#fff"/>
-              <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-              <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-              <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
-              <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
-            </g>
-          </svg>
-        </div>
-        <span data-ru="Исследовательский наставник" data-en="Research Mentor">Исследовательский наставник</span>
-      </div>
-      <div class="chat-header-dots">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="chat-body">
-      <div id="chatResponseAreaResearch"></div>
-      <div class="chat-bubble">🔬 Я — твой исследовательский наставник. Помогу с публикациями, оформлением статей, выбором журналов. Задавай вопросы!</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" class="chat-input" id="chatInputResearch" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
-      <button class="chat-btn chat-btn-emoji">😊</button>
-      <button class="chat-btn chat-btn-mic" id="sendBtnResearch">➤</button>
-    </div>
-  </div>
-</div>
-<!-- Конец чата -->
+              <div class="chat-area" style="margin-bottom: 24px">
+                <div class="chat-container">
+                  <div class="chat-header">
+                    <div class="chat-header-title">
+                      <div class="chat-header-icon">
+                        <svg
+                          viewBox="0 0 200 200"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <defs>
+                            <linearGradient
+                              id="ringGrad2"
+                              x1="0%"
+                              y1="0%"
+                              x2="100%"
+                              y2="100%"
+                            >
+                              <stop offset="0%" style="stop-color: #1a8fa8" />
+                              <stop offset="100%" style="stop-color: #1a3a6b" />
+                            </linearGradient>
+                            <path
+                              id="topArc2"
+                              d="M 30,100 A 70,70 0 0,1 170,100"
+                              fill="none"
+                            />
+                            <path
+                              id="bottomArc2"
+                              d="M 30,100 A 70,70 0 0,0 170,100"
+                              fill="none"
+                            />
+                          </defs>
+                          <circle
+                            cx="100"
+                            cy="100"
+                            r="95"
+                            fill="none"
+                            stroke="url(#ringGrad2)"
+                            stroke-width="8"
+                          />
+                          <circle
+                            cx="100"
+                            cy="100"
+                            r="70"
+                            fill="none"
+                            stroke="rgba(255,255,255,0.4)"
+                            stroke-width="4"
+                          />
+                          <text
+                            font-family="Segoe UI, Arial, sans-serif"
+                            font-weight="800"
+                            font-size="24"
+                            fill="#fff"
+                          >
+                            <textPath
+                              href="#topArc2"
+                              startOffset="50%"
+                              text-anchor="middle"
+                            >
+                              NeuroMentor
+                            </textPath>
+                          </text>
+                          <text
+                            font-family="Segoe UI, Arial, sans-serif"
+                            font-weight="800"
+                            font-size="22"
+                            fill="#fff"
+                          >
+                            <textPath
+                              href="#bottomArc2"
+                              startOffset="50%"
+                              text-anchor="middle"
+                            >
+                              for Students
+                            </textPath>
+                          </text>
+                          <g
+                            transform="translate(100,100)"
+                            stroke="#fff"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <line x1="0" y1="-32" x2="0" y2="-24" />
+                            <circle cx="0" cy="-34" r="3" fill="#fff" />
+                            <rect
+                              x="-18"
+                              y="-24"
+                              width="36"
+                              height="26"
+                              rx="5"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <circle cx="-7" cy="-14" r="2.5" fill="#fff" />
+                            <circle cx="7" cy="-14" r="2.5" fill="#fff" />
+                            <line x1="-6" y1="-6" x2="6" y2="-6" />
+                            <rect
+                              x="-22"
+                              y="-18"
+                              width="4"
+                              height="10"
+                              rx="1"
+                            />
+                            <rect x="18" y="-18" width="4" height="10" rx="1" />
+                            <line x1="0" y1="2" x2="0" y2="8" />
+                            <rect
+                              x="-20"
+                              y="8"
+                              width="40"
+                              height="30"
+                              rx="5"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="-10"
+                              y="14"
+                              width="20"
+                              height="14"
+                              rx="2"
+                              fill="rgba(255,255,255,0.2)"
+                            />
+                            <path
+                              d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"
+                            />
+                            <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+                            <circle cx="-24" cy="33" r="3" fill="#fff" />
+                            <circle cx="24" cy="33" r="3" fill="#fff" />
+                            <rect
+                              x="-12"
+                              y="38"
+                              width="8"
+                              height="14"
+                              rx="3"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="4"
+                              y="38"
+                              width="8"
+                              height="14"
+                              rx="3"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="-14"
+                              y="50"
+                              width="12"
+                              height="5"
+                              rx="2"
+                              fill="#fff"
+                            />
+                            <rect
+                              x="2"
+                              y="50"
+                              width="12"
+                              height="5"
+                              rx="2"
+                              fill="#fff"
+                            />
+                          </g>
+                        </svg>
+                      </div>
+                      <span
+                        data-ru="Исследовательский наставник"
+                        data-en="Research Mentor"
+                        >Исследовательский наставник</span
+                      >
+                    </div>
+                    <div class="chat-header-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="chat-body">
+                    <div
+                      class="chat-bubble"
+                      data-ru="🔬 Я — твой исследовательский наставник. Помогу с публикациями, оформлением статей, выбором журналов. Задавай вопросы!"
+                      data-en="🔬 I am your research mentor. I will help with publications, article formatting, journal selection. Ask questions!"
+                    >
+                      🔬 Я — твой исследовательский наставник. Помогу с
+                      публикациями, оформлением статей, выбором журналов.
+                      Задавай вопросы!
+                    </div>
+                    <div id="chatResponseAreaResearch"></div>
+                  </div>
+                  <div class="chat-input-area">
+                    <input
+                      type="text"
+                      class="chat-input"
+                      id="chatInputResearch"
+                      data-placeholder-ru="Введите ваш запрос..."
+                      data-placeholder-en="Type your query..."
+                    />
+                    <button class="chat-btn chat-btn-emoji">😊</button>
+                    <button class="chat-btn chat-btn-mic" id="sendBtnResearch">
+                      ➤
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Конец чата -->
               <div
                 class="research-title"
                 data-ru="Исследовательский наставник — Навигатор журналов"
@@ -2534,35 +2674,143 @@
                 Исследовательский наставник — Навигатор журналов
               </div>
 
-
-
               <!-- Поиск по названию/ISSN -->
-<div class="search-box">
-  <span class="search-icon">🔍</span>
-  <input type="text" id="journalSearch" placeholder="Поиск по названию или ISSN...">
-</div>
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  id="journalSearch"
+                  placeholder="Поиск по названию или ISSN..."
+                />
+              </div>
 
-<!-- Фильтры по уровню -->
-<div class="filters">
-  <span class="filter-label">Уровень:</span>
-  <span class="filter-tag active" data-level="">Все</span>
-  <span class="filter-tag" data-level="1">К1</span>
-  <span class="filter-tag" data-level="2">К2</span>
-  <span class="filter-tag" data-level="3">К3</span>
-  <span class="filter-tag" data-level="4">К4</span>
-</div>
+              <!-- Фильтры по уровню -->
+              <div class="filters">
+                <span class="filter-label" data-ru="Уровень:" data-en="Level:"
+                  >Уровень:</span
+                >
+                <span
+                  class="filter-tag active"
+                  data-level=""
+                  data-ru="Все"
+                  data-en="All"
+                  >Все</span
+                >
+                <span
+                  class="filter-tag"
+                  data-level="1"
+                  data-ru="К1"
+                  data-en="K1"
+                  >К1</span
+                >
+                <span
+                  class="filter-tag"
+                  data-level="2"
+                  data-ru="К2"
+                  data-en="K2"
+                  >К2</span
+                >
+                <span
+                  class="filter-tag"
+                  data-level="3"
+                  data-ru="К3"
+                  data-en="K3"
+                  >К3</span
+                >
+                <span
+                  class="filter-tag"
+                  data-level="4"
+                  data-ru="К4"
+                  data-en="K4"
+                  >К4</span
+                >
+              </div>
 
-<!-- Контейнер для динамического списка журналов -->
-<div id="journalsContainer">
-  <div id="journalsList" class="journals-list"></div>
-  <div id="journalsPagination" style="text-align:center; margin-top: 20px;">
-    <button id="loadMoreBtn" class="view-req-btn" style="padding: 10px 24px;">Показать ещё 50</button>
-    <span id="journalsCounter" style="margin-left: 15px; font-size: 13px; color: #666;"></span>
-  </div>
-</div>
-
+              <!-- Контейнер для динамического списка журналов -->
+              <div id="journalsContainer">
+                <div id="journalsList" class="journals-list"></div>
+                <div
+                  id="journalsPagination"
+                  style="text-align: center; margin-top: 20px"
+                >
+                  <button
+                    id="loadMoreBtn"
+                    class="view-req-btn"
+                    style="padding: 10px 24px"
+                  >
+                    Показать ещё 50
+                  </button>
+                  <span
+                    id="journalsCounter"
+                    style="margin-left: 15px; font-size: 13px; color: #666"
+                  ></span>
+                </div>
+              </div>
+            </div>
 
             <div class="sidebar">
+              <div class="sidebar-card">
+                <div class="sidebar-title">
+                  <span data-ru="Профиль студента" data-en="Student Profile"
+                    >Профиль студента</span
+                  >
+                  <div class="sidebar-avatar">АИ</div>
+                </div>
+                <div class="profile-field">
+                  <span
+                    class="profile-label"
+                    data-ru="Программа:"
+                    data-en="Program:"
+                    >Программа:</span
+                  >
+                  <span
+                    class="profile-value"
+                    data-ru="Педагогика"
+                    data-en="Pedagogy"
+                    >Педагогика</span
+                  >
+                </div>
+                <div class="profile-field">
+                  <span class="profile-label" data-ru="Курс:" data-en="Year:"
+                    >Курс:</span
+                  >
+                  <span class="profile-value">2</span>
+                </div>
+                <div
+                  class="profile-university"
+                  data-ru="Университет Минина"
+                  data-en="Minin University"
+                >
+                  Университет Минина
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill"></div>
+                </div>
+                <div class="status-item green">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Верификация активна"
+                    data-en="Verification Active"
+                    >Верификация активна</span
+                  >
+                </div>
+                <div class="status-item blue">
+                  <div class="status-icon">✓</div>
+                  <span
+                    data-ru="Куратор доступен"
+                    data-en="Human Curator Available"
+                    >Куратор доступен</span
+                  >
+                </div>
+                <div class="status-item gray">
+                  <div class="status-icon">🔒</div>
+                  <span
+                    data-ru="Конфиденциальный режим"
+                    data-en="Confidential Mode On"
+                    >Конфиденциальный режим</span
+                  >
+                </div>
+              </div>
               <div class="checklist-card">
                 <div
                   class="checklist-title"
@@ -2702,151 +2950,422 @@
           </div>
         </div>
 
-        </div>
-
-      <!-- ============ PROFESSIONAL TRACK ============ -->
+        <!-- ============ PROFESSIONAL TRACK ============ -->
         <div class="tab-content" id="professional">
           <div class="prof-title">
-            <svg class="prof-title-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              class="prof-title-logo"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <defs>
-                <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#1a8fa8"/>
-                  <stop offset="100%" style="stop-color:#1a3a6b"/>
+                <linearGradient
+                  id="ringGrad3"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" style="stop-color: #1a8fa8" />
+                  <stop offset="100%" style="stop-color: #1a3a6b" />
                 </linearGradient>
-                <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-                <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
+                <path
+                  id="topArc3"
+                  d="M 30,100 A 70,70 0 0,1 170,100"
+                  fill="none"
+                />
+                <path
+                  id="bottomArc3"
+                  d="M 30,100 A 70,70 0 0,0 170,100"
+                  fill="none"
+                />
               </defs>
-              <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#4ab8d4" stroke-width="4"/>
-              <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#1a3a6b">
-                <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
+              <circle
+                cx="100"
+                cy="100"
+                r="95"
+                fill="none"
+                stroke="url(#ringGrad3)"
+                stroke-width="8"
+              />
+              <circle
+                cx="100"
+                cy="100"
+                r="70"
+                fill="none"
+                stroke="#4ab8d4"
+                stroke-width="4"
+              />
+              <text
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="800"
+                font-size="24"
+                fill="#1a3a6b"
+              >
+                <textPath
+                  href="#topArc3"
+                  startOffset="50%"
+                  text-anchor="middle"
+                >
+                  NeuroMentor
+                </textPath>
               </text>
-              <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#1a3a6b">
-                <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
+              <text
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="800"
+                font-size="22"
+                fill="#1a3a6b"
+              >
+                <textPath
+                  href="#bottomArc3"
+                  startOffset="50%"
+                  text-anchor="middle"
+                >
+                  for Students
+                </textPath>
               </text>
-              <g transform="translate(100,100)" stroke="#1a3a6b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="0" y1="-32" x2="0" y2="-24"/>
-                <circle cx="0" cy="-34" r="3" fill="#1a3a6b"/>
-                <rect x="-18" y="-24" width="36" height="26" rx="5" fill="#fff"/>
-                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b"/>
-                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b"/>
-                <line x1="-6" y1="-6" x2="6" y2="-6"/>
-                <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-                <rect x="18" y="-18" width="4" height="10" rx="1"/>
-                <line x1="0" y1="2" x2="0" y2="8"/>
-                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff"/>
-                <rect x="-10" y="14" width="20" height="14" rx="2" fill="#e8f4f8"/>
-                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-                <circle cx="-24" cy="33" r="3" fill="#1a3a6b"/>
-                <circle cx="24" cy="33" r="3" fill="#1a3a6b"/>
-                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff"/>
-                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff"/>
-                <rect x="-14" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
-                <rect x="2" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
+              <g
+                transform="translate(100,100)"
+                stroke="#1a3a6b"
+                stroke-width="3"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="0" y1="-32" x2="0" y2="-24" />
+                <circle cx="0" cy="-34" r="3" fill="#1a3a6b" />
+                <rect
+                  x="-18"
+                  y="-24"
+                  width="36"
+                  height="26"
+                  rx="5"
+                  fill="#fff"
+                />
+                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b" />
+                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b" />
+                <line x1="-6" y1="-6" x2="6" y2="-6" />
+                <rect x="-22" y="-18" width="4" height="10" rx="1" />
+                <rect x="18" y="-18" width="4" height="10" rx="1" />
+                <line x1="0" y1="2" x2="0" y2="8" />
+                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff" />
+                <rect
+                  x="-10"
+                  y="14"
+                  width="20"
+                  height="14"
+                  rx="2"
+                  fill="#e8f4f8"
+                />
+                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
+                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+                <circle cx="-24" cy="33" r="3" fill="#1a3a6b" />
+                <circle cx="24" cy="33" r="3" fill="#1a3a6b" />
+                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff" />
+                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff" />
+                <rect
+                  x="-14"
+                  y="50"
+                  width="12"
+                  height="5"
+                  rx="2"
+                  fill="#1a3a6b"
+                />
+                <rect
+                  x="2"
+                  y="50"
+                  width="12"
+                  height="5"
+                  rx="2"
+                  fill="#1a3a6b"
+                />
               </g>
             </svg>
-            <span data-ru="Наставник студента — Преподавательская практика и благополучие" data-en="Student's Mentor — Teaching Practice & Wellbeing">Наставник студента — Преподавательская практика и благополучие</span>
+            <span
+              data-ru="Наставник студента — Преподавательская практика и благополучие"
+              data-en="Student's Mentor — Teaching Practice & Wellbeing"
+              >Наставник студента — Преподавательская практика и
+              благополучие</span
+            >
           </div>
 
           <div class="prof-layout">
             <div class="prof-main">
               <!-- Чат для профессионального трека -->
-              <div class="chat-area" style="margin-bottom: 24px;">
+              <div class="chat-area" style="margin-bottom: 24px">
                 <div class="chat-container">
                   <div class="chat-header">
                     <div class="chat-header-title">
                       <div class="chat-header-icon">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                          viewBox="0 0 200 200"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
                           <defs>
-                            <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                              <stop offset="0%" style="stop-color:#1a8fa8"/>
-                              <stop offset="100%" style="stop-color:#1a3a6b"/>
+                            <linearGradient
+                              id="ringGrad3"
+                              x1="0%"
+                              y1="0%"
+                              x2="100%"
+                              y2="100%"
+                            >
+                              <stop offset="0%" style="stop-color: #1a8fa8" />
+                              <stop offset="100%" style="stop-color: #1a3a6b" />
                             </linearGradient>
-                            <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-                            <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
+                            <path
+                              id="topArc3"
+                              d="M 30,100 A 70,70 0 0,1 170,100"
+                              fill="none"
+                            />
+                            <path
+                              id="bottomArc3"
+                              d="M 30,100 A 70,70 0 0,0 170,100"
+                              fill="none"
+                            />
                           </defs>
-                          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
-                          <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
-                          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
-                            <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
+                          <circle
+                            cx="100"
+                            cy="100"
+                            r="95"
+                            fill="none"
+                            stroke="url(#ringGrad3)"
+                            stroke-width="8"
+                          />
+                          <circle
+                            cx="100"
+                            cy="100"
+                            r="70"
+                            fill="none"
+                            stroke="rgba(255,255,255,0.4)"
+                            stroke-width="4"
+                          />
+                          <text
+                            font-family="Segoe UI, Arial, sans-serif"
+                            font-weight="800"
+                            font-size="24"
+                            fill="#fff"
+                          >
+                            <textPath
+                              href="#topArc3"
+                              startOffset="50%"
+                              text-anchor="middle"
+                            >
+                              NeuroMentor
+                            </textPath>
                           </text>
-                          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
-                            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
+                          <text
+                            font-family="Segoe UI, Arial, sans-serif"
+                            font-weight="800"
+                            font-size="22"
+                            fill="#fff"
+                          >
+                            <textPath
+                              href="#bottomArc3"
+                              startOffset="50%"
+                              text-anchor="middle"
+                            >
+                              for Students
+                            </textPath>
                           </text>
-                          <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="0" y1="-32" x2="0" y2="-24"/>
-                            <circle cx="0" cy="-34" r="3" fill="#fff"/>
-                            <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
-                            <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
-                            <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
-                            <line x1="-6" y1="-6" x2="6" y2="-6"/>
-                            <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-                            <rect x="18" y="-18" width="4" height="10" rx="1"/>
-                            <line x1="0" y1="2" x2="0" y2="8"/>
-                            <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
-                            <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
-                            <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-                            <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-                            <circle cx="-24" cy="33" r="3" fill="#fff"/>
-                            <circle cx="24" cy="33" r="3" fill="#fff"/>
-                            <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-                            <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-                            <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
-                            <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
+                          <g
+                            transform="translate(100,100)"
+                            stroke="#fff"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <line x1="0" y1="-32" x2="0" y2="-24" />
+                            <circle cx="0" cy="-34" r="3" fill="#fff" />
+                            <rect
+                              x="-18"
+                              y="-24"
+                              width="36"
+                              height="26"
+                              rx="5"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <circle cx="-7" cy="-14" r="2.5" fill="#fff" />
+                            <circle cx="7" cy="-14" r="2.5" fill="#fff" />
+                            <line x1="-6" y1="-6" x2="6" y2="-6" />
+                            <rect
+                              x="-22"
+                              y="-18"
+                              width="4"
+                              height="10"
+                              rx="1"
+                            />
+                            <rect x="18" y="-18" width="4" height="10" rx="1" />
+                            <line x1="0" y1="2" x2="0" y2="8" />
+                            <rect
+                              x="-20"
+                              y="8"
+                              width="40"
+                              height="30"
+                              rx="5"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="-10"
+                              y="14"
+                              width="20"
+                              height="14"
+                              rx="2"
+                              fill="rgba(255,255,255,0.2)"
+                            />
+                            <path
+                              d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"
+                            />
+                            <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
+                            <circle cx="-24" cy="33" r="3" fill="#fff" />
+                            <circle cx="24" cy="33" r="3" fill="#fff" />
+                            <rect
+                              x="-12"
+                              y="38"
+                              width="8"
+                              height="14"
+                              rx="3"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="4"
+                              y="38"
+                              width="8"
+                              height="14"
+                              rx="3"
+                              fill="rgba(255,255,255,0.1)"
+                            />
+                            <rect
+                              x="-14"
+                              y="50"
+                              width="12"
+                              height="5"
+                              rx="2"
+                              fill="#fff"
+                            />
+                            <rect
+                              x="2"
+                              y="50"
+                              width="12"
+                              height="5"
+                              rx="2"
+                              fill="#fff"
+                            />
                           </g>
                         </svg>
                       </div>
-                      <span data-ru="Профессиональный наставник" data-en="Professional Mentor">Профессиональный наставник</span>
+                      <span
+                        data-ru="Профессиональный наставник"
+                        data-en="Professional Mentor"
+                        >Профессиональный наставник</span
+                      >
                     </div>
                     <div class="chat-header-dots">
                       <span></span><span></span><span></span>
                     </div>
                   </div>
                   <div class="chat-body">
+                    <div
+                      class="chat-bubble"
+                      data-ru="💼 Я — твой профессиональный наставник. Помогу с практикой, интеграцией с LMS, методическими материалами и профилактикой выгорания. Чем могу помочь?"
+                      data-en="💼 I am your professional mentor. I will help with practice, integration with LMS, teaching materials and burnout prevention. How can I help?"
+                    >
+                      💼 Я — твой профессиональный наставник. Помогу с
+                      практикой, интеграцией с LMS, методическими материалами и
+                      профилактикой выгорания. Чем могу помочь?
+                    </div>
                     <div id="chatResponseAreaProfessional"></div>
-                    <div class="chat-bubble">💼 Я — твой профессиональный наставник. Помогу с практикой, интеграцией с LMS, методическими материалами и профилактикой выгорания. Чем могу помочь?</div>
                   </div>
                   <div class="chat-input-area">
-                    <input type="text" class="chat-input" id="chatInputProfessional" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
+                    <input
+                      type="text"
+                      class="chat-input"
+                      id="chatInputProfessional"
+                      data-placeholder-ru="Введите ваш запрос..."
+                      data-placeholder-en="Type your query..."
+                    />
                     <button class="chat-btn chat-btn-emoji">😊</button>
-                    <button class="chat-btn chat-btn-mic" id="sendBtnProfessional">➤</button>
+                    <button
+                      class="chat-btn chat-btn-mic"
+                      id="sendBtnProfessional"
+                    >
+                      ➤
+                    </button>
                   </div>
                 </div>
               </div>
 
               <!-- Интеграция -->
               <div class="integration-card">
-                <div class="integration-title" data-ru="Интеграция преподавательской практики" data-en="Teaching Practice Integration">Интеграция преподавательской практики</div>
+                <div
+                  class="integration-title"
+                  data-ru="Интеграция преподавательской практики"
+                  data-en="Teaching Practice Integration"
+                >
+                  Интеграция преподавательской практики
+                </div>
                 <div class="integration-grid">
                   <div class="integration-item">
                     <div class="integration-icon moodle">M</div>
                     <div>
                       <div class="integration-name">Moodle</div>
-                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
                     </div>
                   </div>
                   <div class="integration-item">
                     <div class="integration-icon mes">MES</div>
                     <div>
                       <div class="integration-name">MES</div>
-                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
                     </div>
                   </div>
                   <div class="integration-item">
                     <div class="integration-icon lms">LMS</div>
                     <div>
-                      <div class="integration-name" data-ru="Университетская LMS" data-en="University LMS">Университетская LMS</div>
-                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
+                      <div
+                        class="integration-name"
+                        data-ru="Университетская LMS"
+                        data-en="University LMS"
+                      >
+                        Университетская LMS
+                      </div>
+                      <div class="integration-status">
+                        <span class="dot"></span>
+                        <span data-ru="Подключено" data-en="Connected"
+                          >Подключено</span
+                        >
+                      </div>
                     </div>
                   </div>
                 </div>
-                <button class="sync-btn" data-ru="Синхронизировать план урока" data-en="Sync Lesson Plan">Синхронизировать план урока</button>
+                <button
+                  class="sync-btn"
+                  data-ru="Синхронизировать план урока"
+                  data-en="Sync Lesson Plan"
+                >
+                  Синхронизировать план урока
+                </button>
               </div>
 
               <!-- Календарь -->
               <div class="schedule-card">
-                <div class="schedule-title" data-ru="Предстоящее расписание практики" data-en="Upcoming Practice Schedule">Предстоящее расписание практики</div>
+                <div
+                  class="schedule-title"
+                  data-ru="Предстоящее расписание практики"
+                  data-en="Upcoming Practice Schedule"
+                >
+                  Предстоящее расписание практики
+                </div>
                 <div class="calendar">
                   <div class="calendar-day" data-ru="Вс" data-en="Sun">Вс</div>
                   <div class="calendar-day" data-ru="Пн" data-en="Mon">Пн</div>
@@ -2881,81 +3400,251 @@
 
               <!-- Материалы -->
               <div class="materials-card">
-                <div class="materials-title" data-ru="Библиотека методических материалов" data-en="Methodological Materials Library">Библиотека методических материалов</div>
+                <div
+                  class="materials-title"
+                  data-ru="Библиотека методических материалов"
+                  data-en="Methodological Materials Library"
+                >
+                  Библиотека методических материалов
+                </div>
                 <div class="materials-search">
                   <span>🔍</span>
-                  <input type="text" data-placeholder-ru="Найти сценарий урока или учебный материал" data-placeholder-en="Find Lesson Scenario or Teaching Material" placeholder="Найти сценарий урока или учебный материал">
+                  <input
+                    type="text"
+                    data-placeholder-ru="Найти сценарий урока или учебный материал"
+                    data-placeholder-en="Find Lesson Scenario or Teaching Material"
+                    placeholder="Найти сценарий урока или учебный материал"
+                  />
                 </div>
                 <div class="materials-tabs">
-                  <div class="material-tab active" data-ru="Начальная школа" data-en="Primary School">Начальная школа</div>
-                  <div class="material-tab" data-ru="Средняя школа" data-en="Secondary School">Средняя школа</div>
-                  <div class="material-tab" data-ru="Инструменты оценки" data-en="Assessment Tools">Инструменты оценки</div>
-                  <div class="material-tab" data-ru="Интерактивные задания" data-en="Interactive Activities">Интерактивные задания</div>
+                  <div
+                    class="material-tab active"
+                    data-ru="Начальная школа"
+                    data-en="Primary School"
+                  >
+                    Начальная школа
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Средняя школа"
+                    data-en="Secondary School"
+                  >
+                    Средняя школа
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Инструменты оценки"
+                    data-en="Assessment Tools"
+                  >
+                    Инструменты оценки
+                  </div>
+                  <div
+                    class="material-tab"
+                    data-ru="Интерактивные задания"
+                    data-en="Interactive Activities"
+                  >
+                    Интерактивные задания
+                  </div>
                 </div>
                 <div class="material-item">
                   <div>
-                    <div class="material-name" data-ru="План урока: Навыки критического мышления" data-en="Lesson Plan: Critical Thinking Skills">План урока: Навыки критического мышления</div>
-                    <div class="material-type"><span class="dot"></span> <span data-ru="Сценарий · Утверждённый методический ресурс" data-en="Scenario · Approved Methodical Resource">Сценарий · Утверждённый методический ресурс</span></div>
+                    <div
+                      class="material-name"
+                      data-ru="План урока: Навыки критического мышления"
+                      data-en="Lesson Plan: Critical Thinking Skills"
+                    >
+                      План урока: Навыки критического мышления
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Сценарий · Утверждённый методический ресурс"
+                        data-en="Scenario · Approved Methodical Resource"
+                        >Сценарий · Утверждённый методический ресурс</span
+                      >
+                    </div>
                   </div>
-                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
                 </div>
                 <div class="material-item">
                   <div>
-                    <div class="material-name" data-ru="Оценка: Форма обратной связи от студентов" data-en="Assessment: Student Feedback Form">Оценка: Форма обратной связи от студентов</div>
-                    <div class="material-type"><span class="dot"></span> <span data-ru="Оценка · Утверждённый методический ресурс" data-en="Assessment · Approved Methodical Resource">Оценка · Утверждённый методический ресурс</span></div>
+                    <div
+                      class="material-name"
+                      data-ru="Оценка: Форма обратной связи от студентов"
+                      data-en="Assessment: Student Feedback Form"
+                    >
+                      Оценка: Форма обратной связи от студентов
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Оценка · Утверждённый методический ресурс"
+                        data-en="Assessment · Approved Methodical Resource"
+                        >Оценка · Утверждённый методический ресурс</span
+                      >
+                    </div>
                   </div>
-                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
                 </div>
                 <div class="material-item">
                   <div>
-                    <div class="material-name" data-ru="Интерактивная игра: Командное задание" data-en="Interactive Game: Teamwork Challenge">Интерактивная игра: Командное задание</div>
-                    <div class="material-type"><span class="dot"></span> <span data-ru="Рабочий лист · Утверждённый методический ресурс" data-en="Worksheet · Approved Methodical Resource">Рабочий лист · Утверждённый методический ресурс</span></div>
+                    <div
+                      class="material-name"
+                      data-ru="Интерактивная игра: Командное задание"
+                      data-en="Interactive Game: Teamwork Challenge"
+                    >
+                      Интерактивная игра: Командное задание
+                    </div>
+                    <div class="material-type">
+                      <span class="dot"></span>
+                      <span
+                        data-ru="Рабочий лист · Утверждённый методический ресурс"
+                        data-en="Worksheet · Approved Methodical Resource"
+                        >Рабочий лист · Утверждённый методический ресурс</span
+                      >
+                    </div>
                   </div>
-                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
+                  <button
+                    class="open-btn"
+                    data-ru="Открыть шаблон"
+                    data-en="Open Template"
+                  >
+                    Открыть шаблон
+                  </button>
                 </div>
               </div>
 
               <!-- Профилактика выгорания -->
               <div class="burnout-card">
-                <div class="burnout-title" data-ru="Профилактика выгорания и управление временем" data-en="Burnout Prevention & Time Management">Профилактика выгорания и управление временем</div>
+                <div
+                  class="burnout-title"
+                  data-ru="Профилактика выгорания и управление временем"
+                  data-en="Burnout Prevention & Time Management"
+                >
+                  Профилактика выгорания и управление временем
+                </div>
                 <div class="bar-chart">
-                  <div class="bar-item"><div class="bar" style="height:60px;"></div><div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div></div>
-                  <div class="bar-item"><div class="bar" style="height:80px;"></div><div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div></div>
-                  <div class="bar-item"><div class="bar" style="height:45px;"></div><div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div></div>
-                  <div class="bar-item"><div class="bar" style="height:90px;"></div><div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div></div>
-                  <div class="bar-item"><div class="bar" style="height:70px;"></div><div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div></div>
-                  <div class="bar-item"><div class="bar" style="height:30px;"></div><div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div></div>
-                  <div class="bar-item"><div class="bar" style="height:20px;"></div><div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div></div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 60px"></div>
+                    <div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 80px"></div>
+                    <div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 45px"></div>
+                    <div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 90px"></div>
+                    <div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 70px"></div>
+                    <div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 30px"></div>
+                    <div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar" style="height: 20px"></div>
+                    <div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div>
+                  </div>
                 </div>
                 <div class="wellbeing-status">
                   <span class="wellbeing-heart">❤</span>
-                  <span data-ru="Статус благополучия:" data-en="Wellbeing Status:">Статус благополучия:</span>
-                  <span class="wellbeing-value" data-ru="Сбалансирован" data-en="Balanced">Сбалансирован</span>
+                  <span
+                    data-ru="Статус благополучия:"
+                    data-en="Wellbeing Status:"
+                    >Статус благополучия:</span
+                  >
+                  <span
+                    class="wellbeing-value"
+                    data-ru="Сбалансирован"
+                    data-en="Balanced"
+                    >Сбалансирован</span
+                  >
                 </div>
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check checked">✓</div>
-                    <span data-ru="Проверить задания" data-en="Grade Assignments">Проверить задания</span>
+                    <span
+                      data-ru="Проверить задания"
+                      data-en="Grade Assignments"
+                      >Проверить задания</span
+                    >
                   </div>
-                  <span class="task-priority high" data-ru="Высокий" data-en="High">Высокий</span>
+                  <span
+                    class="task-priority high"
+                    data-ru="Высокий"
+                    data-en="High"
+                    >Высокий</span
+                  >
                 </div>
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check">✓</div>
-                    <span data-ru="Подготовить слайды урока" data-en="Prepare Lesson Slides">Подготовить слайды урока</span>
+                    <span
+                      data-ru="Подготовить слайды урока"
+                      data-en="Prepare Lesson Slides"
+                      >Подготовить слайды урока</span
+                    >
                   </div>
-                  <span class="task-priority medium" data-ru="Средний" data-en="Medium">Средний</span>
+                  <span
+                    class="task-priority medium"
+                    data-ru="Средний"
+                    data-en="Medium"
+                    >Средний</span
+                  >
                 </div>
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check checked">✓</div>
-                    <span data-ru="Просмотреть отчёты студентов" data-en="Review Student Reports">Просмотреть отчёты студентов</span>
+                    <span
+                      data-ru="Просмотреть отчёты студентов"
+                      data-en="Review Student Reports"
+                      >Просмотреть отчёты студентов</span
+                    >
                   </div>
-                  <span class="task-priority low" data-ru="Низкий" data-en="Low">Низкий</span>
+                  <span class="task-priority low" data-ru="Низкий" data-en="Low"
+                    >Низкий</span
+                  >
                 </div>
-                <button class="action-btn primary" data-ru="Рефлексия практики" data-en="Reflect on Practice">Рефлексия практики</button>
-                <button class="action-btn secondary" data-ru="Самопроверка стресса" data-en="Stress Self-Check">Самопроверка стресса</button>
-                <button class="action-btn secondary" data-ru="Запросить куратора" data-en="Request Human Curator">Запросить куратора</button>
+                <button
+                  class="action-btn primary"
+                  data-ru="Рефлексия практики"
+                  data-en="Reflect on Practice"
+                >
+                  Рефлексия практики
+                </button>
+                <button
+                  class="action-btn secondary"
+                  data-ru="Самопроверка стресса"
+                  data-en="Stress Self-Check"
+                >
+                  Самопроверка стресса
+                </button>
+                <button
+                  class="action-btn secondary"
+                  data-ru="Запросить куратора"
+                  data-en="Request Human Curator"
+                >
+                  Запросить куратора
+                </button>
               </div>
             </div>
 
@@ -2963,39 +3652,74 @@
             <div class="sidebar">
               <div class="sidebar-card">
                 <div class="sidebar-title">
-                  <span data-ru="Профиль студента" data-en="Student Profile">Профиль студента</span>
+                  <span data-ru="Профиль студента" data-en="Student Profile"
+                    >Профиль студента</span
+                  >
                   <div class="sidebar-avatar">АИ</div>
                 </div>
                 <div class="profile-field">
-                  <span class="profile-label" data-ru="Программа:" data-en="Program:">Программа:</span>
-                  <span class="profile-value" data-ru="Педагогика" data-en="Pedagogy">Педагогика</span>
+                  <span
+                    class="profile-label"
+                    data-ru="Программа:"
+                    data-en="Program:"
+                    >Программа:</span
+                  >
+                  <span
+                    class="profile-value"
+                    data-ru="Педагогика"
+                    data-en="Pedagogy"
+                    >Педагогика</span
+                  >
                 </div>
                 <div class="profile-field">
-                  <span class="profile-label" data-ru="Курс:" data-en="Year:">Курс:</span>
+                  <span class="profile-label" data-ru="Курс:" data-en="Year:"
+                    >Курс:</span
+                  >
                   <span class="profile-value">2</span>
                 </div>
-                <div class="profile-university" data-ru="Университет Минина" data-en="Minin University">Университет Минина</div>
+                <div
+                  class="profile-university"
+                  data-ru="Университет Минина"
+                  data-en="Minin University"
+                >
+                  Университет Минина
+                </div>
                 <div class="progress-bar-container">
                   <div class="progress-bar-fill"></div>
                 </div>
                 <div class="status-item green">
                   <div class="status-icon">✓</div>
-                  <span data-ru="Верификация активна" data-en="Verification Active">Верификация активна</span>
+                  <span
+                    data-ru="Верификация активна"
+                    data-en="Verification Active"
+                    >Верификация активна</span
+                  >
                 </div>
                 <div class="status-item blue">
                   <div class="status-icon">✓</div>
-                  <span data-ru="Куратор доступен" data-en="Human Curator Available">Куратор доступен</span>
+                  <span
+                    data-ru="Куратор доступен"
+                    data-en="Human Curator Available"
+                    >Куратор доступен</span
+                  >
                 </div>
                 <div class="status-item gray">
                   <div class="status-icon">🔒</div>
-                  <span data-ru="Конфиденциальный режим" data-en="Confidential Mode On">Конфиденциальный режим</span>
+                  <span
+                    data-ru="Конфиденциальный режим"
+                    data-en="Confidential Mode On"
+                    >Конфиденциальный режим</span
+                  >
                 </div>
               </div>
             </div>
           </div>
-        </div> <!-- конец main-content -->
-      </div> <!-- конец app-layout -->
-    </div> <!-- конец side-nav? (если нужно) -->
+        </div>
+        <!-- конец main-content -->
+      </div>
+      <!-- конец app-layout -->
+    </div>
+    <!-- конец side-nav? (если нужно) -->
     <script>
       let currentLang = "ru";
       let isTextLarge = false;
@@ -3056,24 +3780,24 @@
         }
       });
 
- // Tab switching
-const tabs = document.querySelectorAll(".tab");
-const tabContents = document.querySelectorAll(".tab-content");
+      // Tab switching
+      const tabs = document.querySelectorAll(".tab");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("active"));
-    tabContents.forEach((c) => c.classList.remove("active"));
-    tab.classList.add("active");
-    const targetId = tab.getAttribute("data-tab");
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      targetEl.classList.add("active");
-    } else {
-      console.warn('Элемент с id "' + targetId + '" не найден');
-    }
-  });
-});
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
+          tab.classList.add("active");
+          const targetId = tab.getAttribute("data-tab");
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.classList.add("active");
+          } else {
+            console.warn('Элемент с id "' + targetId + '" не найден');
+          }
+        });
+      });
 
       // Filter tags toggle
       document.querySelectorAll(".filter-tag").forEach((tag) => {
@@ -3135,242 +3859,276 @@ tabs.forEach((tab) => {
       });
 
       // Универсальная функция инициализации чата для любого трека
-function initChatForTrack(inputId, btnId, areaId, trackName) {
-  const input = document.getElementById(inputId);
-  const btn = document.getElementById(btnId);
-  const area = document.getElementById(areaId);
-  if (!input || !btn || !area) {
-    console.warn('Чат для ' + trackName + ' не инициализирован (элементы не найдены)');
-    return;
-  }
-
-  async function sendMessage() {
-    const message = input.value.trim();
-    if (!message) return;
-
-    const userBubble = document.createElement('div');
-    userBubble.className = 'chat-bubble';
-    userBubble.textContent = message;
-    area.appendChild(userBubble);
-    input.value = '';
-
-    const loading = document.createElement('div');
-    loading.className = 'chat-bubble';
-    loading.textContent = '⏳ Думаю...';
-    loading.id = 'loadingBubble_' + trackName;
-    area.appendChild(loading);
-    area.scrollTop = area.scrollHeight;
-
-    try {
-      const activeTab = document.querySelector('.tab.active');
-      const track = activeTab ? activeTab.dataset.tab : 'academic';
-
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, track })
-      });
-      const data = await response.json();
-
-      const loadEl = document.getElementById('loadingBubble_' + trackName);
-      if (loadEl) loadEl.remove();
-
-      if (response.ok) {
-        const aiBubble = document.createElement('div');
-        aiBubble.className = 'chat-bubble';
-        aiBubble.textContent = data.reply || '(пустой ответ)';
-        area.appendChild(aiBubble);
-
-        if (data.sources && data.sources.length > 0) {
-          const sourceDiv = document.createElement('div');
-          sourceDiv.style.fontSize = '11px';
-          sourceDiv.style.color = '#666';
-          sourceDiv.style.marginTop = '6px';
-          sourceDiv.style.borderTop = '1px solid #eee';
-          sourceDiv.style.paddingTop = '6px';
-          sourceDiv.textContent = '📚 Источники: ' + data.sources.join('; ');
-          area.appendChild(sourceDiv);
+      function initChatForTrack(inputId, btnId, areaId, trackName) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        const area = document.getElementById(areaId);
+        if (!input || !btn || !area) {
+          console.warn(
+            "Чат для " +
+              trackName +
+              " не инициализирован (элементы не найдены)",
+          );
+          return;
         }
-      } else {
-        const errBubble = document.createElement('div');
-        errBubble.className = 'chat-bubble';
-        errBubble.textContent = '❌ Ошибка: ' + (data.error || 'неизвестная');
-        area.appendChild(errBubble);
+
+        async function sendMessage() {
+          const message = input.value.trim();
+          if (!message) return;
+
+          const userBubble = document.createElement("div");
+          userBubble.className = "chat-bubble";
+          userBubble.textContent = message;
+          area.appendChild(userBubble);
+          input.value = "";
+
+          const loading = document.createElement("div");
+          loading.className = "chat-bubble";
+          loading.textContent = "⏳ Думаю...";
+          loading.id = "loadingBubble_" + trackName;
+          area.appendChild(loading);
+          area.scrollTop = area.scrollHeight;
+
+          try {
+            const activeTab = document.querySelector(".tab.active");
+            const track = activeTab ? activeTab.dataset.tab : "academic";
+
+            const response = await fetch("/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message, track }),
+            });
+            const data = await response.json();
+
+            const loadEl = document.getElementById(
+              "loadingBubble_" + trackName,
+            );
+            if (loadEl) loadEl.remove();
+
+            if (response.ok) {
+              const aiBubble = document.createElement("div");
+              aiBubble.className = "chat-bubble";
+              aiBubble.textContent = data.reply || "(пустой ответ)";
+              area.appendChild(aiBubble);
+
+              if (data.sources && data.sources.length > 0) {
+                const sourceDiv = document.createElement("div");
+                sourceDiv.style.fontSize = "11px";
+                sourceDiv.style.color = "#666";
+                sourceDiv.style.marginTop = "6px";
+                sourceDiv.style.borderTop = "1px solid #eee";
+                sourceDiv.style.paddingTop = "6px";
+                const sourcesLabel =
+                  currentLang === "ru" ? "📚 Источники: " : "📚 Sources: ";
+                sourceDiv.textContent = sourcesLabel + data.sources.join("; ");
+                area.appendChild(sourceDiv);
+              }
+            } else {
+              const errBubble = document.createElement("div");
+              errBubble.className = "chat-bubble";
+              errBubble.textContent =
+                "❌ Ошибка: " + (data.error || "неизвестная");
+              area.appendChild(errBubble);
+            }
+          } catch (e) {
+            const loadEl = document.getElementById(
+              "loadingBubble_" + trackName,
+            );
+            if (loadEl) loadEl.remove();
+            const errBubble = document.createElement("div");
+            errBubble.className = "chat-bubble";
+            errBubble.textContent = "❌ Ошибка соединения: " + e.message;
+            area.appendChild(errBubble);
+          }
+          area.scrollTop = area.scrollHeight;
+        }
+
+        btn.addEventListener("click", sendMessage);
+        input.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
       }
-    } catch (e) {
-      const loadEl = document.getElementById('loadingBubble_' + trackName);
-      if (loadEl) loadEl.remove();
-      const errBubble = document.createElement('div');
-      errBubble.className = 'chat-bubble';
-      errBubble.textContent = '❌ Ошибка соединения: ' + e.message;
-      area.appendChild(errBubble);
-    }
-    area.scrollTop = area.scrollHeight;
-  }
 
-  btn.addEventListener('click', sendMessage);
-  input.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
-}
+      // Инициализация всех трёх треков
+      document.addEventListener("DOMContentLoaded", function () {
+        initChatForTrack(
+          "chatInput",
+          "sendBtn",
+          "chatResponseArea",
+          "academic",
+        );
+        initChatForTrack(
+          "chatInputResearch",
+          "sendBtnResearch",
+          "chatResponseAreaResearch",
+          "research",
+        );
+        initChatForTrack(
+          "chatInputProfessional",
+          "sendBtnProfessional",
+          "chatResponseAreaProfessional",
+          "professional",
+        );
+      });
 
-// Инициализация всех трёх треков
-document.addEventListener('DOMContentLoaded', function() {
-  initChatForTrack('chatInput', 'sendBtn', 'chatResponseArea', 'academic');
-  initChatForTrack('chatInputResearch', 'sendBtnResearch', 'chatResponseAreaResearch', 'research');
-  initChatForTrack('chatInputProfessional', 'sendBtnProfessional', 'chatResponseAreaProfessional', 'professional');
-});
+      // === УПРАВЛЕНИЕ ЖУРНАЛАМИ (исследовательский трек) ===
+      let allJournals = [];
+      let filteredJournals = [];
+      let currentPage = 0;
+      const pageSize = 10;
+      let currentLevelFilter = "";
+      let currentSearch = "";
 
+      function toArray(value) {
+        if (Array.isArray(value)) return value;
+        if (value === null || value === undefined) return [];
+        return [value];
+      }
 
-// === УПРАВЛЕНИЕ ЖУРНАЛАМИ (исследовательский трек) ===
-let allJournals = [];
-let filteredJournals = [];
-let currentPage = 0;
-const pageSize = 50;
-let currentLevelFilter = '';
-let currentSearch = '';
+      async function loadJournals() {
+        try {
+          const response = await fetch("/data/journals.json");
+          const data = await response.json();
+          allJournals = data.map((j) => ({
+            ...j,
+            title: toArray(j.title),
+            issn: toArray(j.issn),
+            level_2025: j.level_2025 || null,
+            dateAccepted: j.dateAccepted || "",
+          }));
+          console.log("✅ Загружено журналов:", allJournals.length);
+          applyFilters();
+        } catch (error) {
+          console.error("❌ Ошибка загрузки журналов:", error);
+        }
+      }
 
-function toArray(value) {
-  if (Array.isArray(value)) return value;
-  if (value === null || value === undefined) return [];
-  return [value];
-}
+      function applyFilters() {
+        let filtered = allJournals;
+        if (currentLevelFilter !== "") {
+          filtered = filtered.filter(
+            (j) => j.level_2025 === parseInt(currentLevelFilter),
+          );
+        }
+        if (currentSearch.trim() !== "") {
+          const query = currentSearch.trim().toLowerCase();
+          filtered = filtered.filter((j) => {
+            const titles = j.title || [];
+            const issns = j.issn || [];
+            const matchTitle = titles.some((t) =>
+              t.toLowerCase().includes(query),
+            );
+            const matchISSN = issns.some((i) =>
+              i.toLowerCase().includes(query),
+            );
+            return matchTitle || matchISSN;
+          });
+        }
+        filteredJournals = filtered;
+        currentPage = 0;
+        renderJournals();
+      }
 
-async function loadJournals() {
-  try {
-    const response = await fetch('/data/journals.json');
-    const data = await response.json();
-    allJournals = data.map(j => ({
-      ...j,
-      title: toArray(j.title),
-      issn: toArray(j.issn),
-      level_2025: j.level_2025 || null,
-      dateAccepted: j.dateAccepted || ''
-    }));
-    console.log('✅ Загружено журналов:', allJournals.length);
-    applyFilters();
-  } catch (error) {
-    console.error('❌ Ошибка загрузки журналов:', error);
-  }
-}
+      function renderJournals() {
+        const container = document.getElementById("journalsList");
+        if (!container) return;
 
-function applyFilters() {
-  let filtered = allJournals;
-  if (currentLevelFilter !== '') {
-    filtered = filtered.filter(j => j.level_2025 === parseInt(currentLevelFilter));
-  }
-  if (currentSearch.trim() !== '') {
-    const query = currentSearch.trim().toLowerCase();
-    filtered = filtered.filter(j => {
-      const titles = j.title || [];
-      const issns = j.issn || [];
-      const matchTitle = titles.some(t => t.toLowerCase().includes(query));
-      const matchISSN = issns.some(i => i.toLowerCase().includes(query));
-      return matchTitle || matchISSN;
-    });
-  }
-  filteredJournals = filtered;
-  currentPage = 0;
-  renderJournals();
-}
+        const start = currentPage * pageSize;
+        const end = Math.min(start + pageSize, filteredJournals.length);
 
-function renderJournals() {
-  const container = document.getElementById('journalsList');
-  if (!container) return;
+        if (start >= filteredJournals.length) {
+          const loadMoreBtn = document.getElementById("loadMoreBtn");
+          if (loadMoreBtn) loadMoreBtn.style.display = "none";
+          const counter = document.getElementById("journalsCounter");
+          if (counter)
+            counter.textContent = `Показано: 0 из ${filteredJournals.length}`;
+          container.innerHTML =
+            '<p style="text-align:center; color:#999;">Нет журналов по выбранным фильтрам</p>';
+          return;
+        }
 
-  const start = currentPage * pageSize;
-  const end = Math.min(start + pageSize, filteredJournals.length);
+        const pageData = filteredJournals.slice(start, end);
+        container.innerHTML = "";
 
-  if (start >= filteredJournals.length) {
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
-    const counter = document.getElementById('journalsCounter');
-    if (counter) counter.textContent = `Показано: 0 из ${filteredJournals.length}`;
-    container.innerHTML = '<p style="text-align:center; color:#999;">Нет журналов по выбранным фильтрам</p>';
-    return;
-  }
+        pageData.forEach((j) => {
+          const card = document.createElement("div");
+          card.className = "journal-card";
 
-  const pageData = filteredJournals.slice(start, end);
-  container.innerHTML = '';
+          const titles = j.title || ["Без названия"];
+          const title = titles[0] || "Без названия";
+          const issn = (j.issn || [])[0] || "";
+          const level = j.level_2025 ? `К${j.level_2025}` : "—";
+          const dateAccepted = j.dateAccepted || "";
 
-  pageData.forEach(j => {
-    const card = document.createElement('div');
-    card.className = 'journal-card';
-
-    const titles = j.title || ['Без названия'];
-    const title = titles[0] || 'Без названия';
-    const issn = (j.issn || [])[0] || '';
-    const level = j.level_2025 ? `К${j.level_2025}` : '—';
-    const dateAccepted = j.dateAccepted || '';
-
-    card.innerHTML = `
+          card.innerHTML = `
       <div class="journal-info">
         <div class="journal-name">${title}</div>
         <div class="journal-tags">
-          ${issn ? `<span class="journal-tag rsci">ISSN: ${issn}</span>` : ''}
-          ${level !== '—' ? `<span class="journal-tag vak">Уровень: ${level}</span>` : ''}
-          ${dateAccepted ? `<span class="journal-tag" style="background:#4a6fa5;">с ${dateAccepted}</span>` : ''}
+          ${issn ? `<span class="journal-tag rsci">ISSN: ${issn}</span>` : ""}
+          ${level !== "—" ? `<span class="journal-tag vak">Уровень: ${level}</span>` : ""}
+          ${dateAccepted ? `<span class="journal-tag" style="background:#4a6fa5;">с ${dateAccepted}</span>` : ""}
         </div>
         <div class="journal-meta">
-          ${dateAccepted ? `Дата включения: ${dateAccepted}` : ''}
+          ${dateAccepted ? `Дата включения: ${dateAccepted}` : ""}
         </div>
       </div>
       <button class="view-req-btn" onclick="alert('Подробнее о журнале: ${title}')">Просмотреть требования</button>
     `;
-    container.appendChild(card);
-  });
+          container.appendChild(card);
+        });
 
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  if (loadMoreBtn) {
-    if (end >= filteredJournals.length) {
-      loadMoreBtn.style.display = 'none';
-    } else {
-      loadMoreBtn.style.display = 'inline-block';
-    }
-  }
-  const counter = document.getElementById('journalsCounter');
-  if (counter) {
-    counter.textContent = `Показано: ${Math.min(end, filteredJournals.length)} из ${filteredJournals.length}`;
-  }
-}
+        const loadMoreBtn = document.getElementById("loadMoreBtn");
+        if (loadMoreBtn) {
+          if (end >= filteredJournals.length) {
+            loadMoreBtn.style.display = "none";
+          } else {
+            loadMoreBtn.style.display = "inline-block";
+          }
+        }
+        const counter = document.getElementById("journalsCounter");
+        if (counter) {
+          counter.textContent = `Показано: ${Math.min(end, filteredJournals.length)} из ${filteredJournals.length}`;
+        }
+      }
 
-// Инициализация обработчиков
-document.addEventListener('DOMContentLoaded', function() {
-  loadJournals();
+      // Инициализация обработчиков
+      document.addEventListener("DOMContentLoaded", function () {
+        loadJournals();
 
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', function() {
-      currentPage++;
-      renderJournals();
-    });
-  }
+        const loadMoreBtn = document.getElementById("loadMoreBtn");
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener("click", function () {
+            currentPage++;
+            renderJournals();
+          });
+        }
 
-  const searchInput = document.getElementById('journalSearch');
-  if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
-      currentSearch = e.target.value;
-      applyFilters();
-    });
-  }
+        const searchInput = document.getElementById("journalSearch");
+        if (searchInput) {
+          searchInput.addEventListener("input", function (e) {
+            currentSearch = e.target.value;
+            applyFilters();
+          });
+        }
 
-  const levelFilters = document.querySelectorAll('.filter-tag[data-level]');
-  if (levelFilters.length > 0) {
-    levelFilters.forEach(tag => {
-      tag.addEventListener('click', function(e) {
-        const clicked = e.currentTarget;
-        levelFilters.forEach(t => t.classList.remove('active'));
-        clicked.classList.add('active');
-        currentLevelFilter = clicked.dataset.level;
-        applyFilters();
+        const levelFilters = document.querySelectorAll(
+          ".filter-tag[data-level]",
+        );
+        if (levelFilters.length > 0) {
+          levelFilters.forEach((tag) => {
+            tag.addEventListener("click", function (e) {
+              const clicked = e.currentTarget;
+              levelFilters.forEach((t) => t.classList.remove("active"));
+              clicked.classList.add("active");
+              currentLevelFilter = clicked.dataset.level;
+              applyFilters();
+            });
+          });
+        }
       });
-    });
-  }
-});
-
     </script>
   </body>
 </html>
