@@ -1938,6 +1938,12 @@
           left: 0;
         }
       }
+
+      .sidebar-title {
+        display: flex;
+        justify-content: space-between; /* текст слева, аватарка справа */
+        align-items: center; /* выравнивание по вертикали */
+      }
     </style>
   </head>
 
@@ -1945,7 +1951,6 @@
     <!-- Top Navbar -->
     <div class="top-navbar">
       <div style="display: flex; align-items: center; gap: 12px">
-        <button class="mobile-menu-btn" onclick="toggleSideNav()"></button>
         <div class="logo">
           <svg
             class="logo-svg"
@@ -2119,7 +2124,18 @@
             </div>
           </div>
         </div>
-        <div class="avatar">АИ</div>
+        <div class="avatar">
+          <img
+            src="https://i.pravatar.cc/36?img=44"
+            alt="User avatar"
+            style="
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            "
+          />
+        </div>
       </div>
     </div>
 
@@ -2152,18 +2168,6 @@
     </div>
 
     <div class="app-layout">
-      <div
-        class="side-nav-overlay"
-        id="sideNavOverlay"
-        onclick="toggleSideNav()"
-      ></div>
-      <div class="side-nav" id="sideNav">
-        <div class="side-nav-item active" title="Главная"></div>
-        <div class="side-nav-item" title="Библиотека">📖</div>
-        <div class="side-nav-item" title="Исследования">🔬</div>
-        <div class="side-nav-item" title="Задания">✅</div>
-        <div class="side-nav-item" title="Настройки">️</div>
-      </div>
 
       <div class="main-content">
         <!-- ============ ACADEMIC TRACK ============ -->
@@ -2474,7 +2478,18 @@
                   <span data-ru="Профиль студента" data-en="Student Profile"
                     >Профиль студента</span
                   >
-                  <div class="sidebar-avatar">АИ</div>
+                  <div class="avatar">
+                    <img
+                      src="https://i.pravatar.cc/36?img=44"
+                      alt="User avatar"
+                      style="
+                        border-radius: 50%;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
                 </div>
                 <div class="profile-field">
                   <span
@@ -2498,10 +2513,10 @@
                 </div>
                 <div
                   class="profile-university"
-                  data-ru="Университет Минина"
+                  data-ru="НГПУ им. К. Минина"
                   data-en="Minin University"
                 >
-                  Университет Минина
+                  НГПУ им. К. Минина
                 </div>
                 <div class="progress-bar-container">
                   <div class="progress-bar-fill"></div>
@@ -2829,7 +2844,18 @@
                   <span data-ru="Профиль студента" data-en="Student Profile"
                     >Профиль студента</span
                   >
-                  <div class="sidebar-avatar">АИ</div>
+                  <div class="avatar">
+                    <img
+                      src="https://i.pravatar.cc/36?img=44"
+                      alt="User avatar"
+                      style="
+                        border-radius: 50%;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
                 </div>
                 <div class="profile-field">
                   <span
@@ -2853,10 +2879,10 @@
                 </div>
                 <div
                   class="profile-university"
-                  data-ru="Университет Минина"
+                  data-ru="НГПУ им. К. Минина"
                   data-en="Minin University"
                 >
-                  Университет Минина
+                  НГПУ им. К. Минина
                 </div>
                 <div class="progress-bar-container">
                   <div class="progress-bar-fill"></div>
@@ -3027,142 +3053,8 @@
 
         <!-- ============ PROFESSIONAL TRACK ============ -->
         <div class="tab-content" id="professional">
-          <div class="prof-title">
-            <svg
-              class="prof-title-logo"
-              viewBox="0 0 200 200"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient
-                  id="ringGrad3"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" style="stop-color: #1a8fa8" />
-                  <stop offset="100%" style="stop-color: #1a3a6b" />
-                </linearGradient>
-                <path
-                  id="topArc3"
-                  d="M 30,100 A 70,70 0 0,1 170,100"
-                  fill="none"
-                />
-                <path
-                  id="bottomArc3"
-                  d="M 30,100 A 70,70 0 0,0 170,100"
-                  fill="none"
-                />
-              </defs>
-              <circle
-                cx="100"
-                cy="100"
-                r="95"
-                fill="none"
-                stroke="url(#ringGrad3)"
-                stroke-width="8"
-              />
-              <circle
-                cx="100"
-                cy="100"
-                r="70"
-                fill="none"
-                stroke="#4ab8d4"
-                stroke-width="4"
-              />
-              <text
-                font-family="Segoe UI, Arial, sans-serif"
-                font-weight="800"
-                font-size="24"
-                fill="#1a3a6b"
-              >
-                <textPath
-                  href="#topArc3"
-                  startOffset="50%"
-                  text-anchor="middle"
-                >
-                  NeuroMentor
-                </textPath>
-              </text>
-              <text
-                font-family="Segoe UI, Arial, sans-serif"
-                font-weight="800"
-                font-size="22"
-                fill="#1a3a6b"
-              >
-                <textPath
-                  href="#bottomArc3"
-                  startOffset="50%"
-                  text-anchor="middle"
-                >
-                  for Students
-                </textPath>
-              </text>
-              <g
-                transform="translate(100,100)"
-                stroke="#1a3a6b"
-                stroke-width="3"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="0" y1="-32" x2="0" y2="-24" />
-                <circle cx="0" cy="-34" r="3" fill="#1a3a6b" />
-                <rect
-                  x="-18"
-                  y="-24"
-                  width="36"
-                  height="26"
-                  rx="5"
-                  fill="#fff"
-                />
-                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b" />
-                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b" />
-                <line x1="-6" y1="-6" x2="6" y2="-6" />
-                <rect x="-22" y="-18" width="4" height="10" rx="1" />
-                <rect x="18" y="-18" width="4" height="10" rx="1" />
-                <line x1="0" y1="2" x2="0" y2="8" />
-                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff" />
-                <rect
-                  x="-10"
-                  y="14"
-                  width="20"
-                  height="14"
-                  rx="2"
-                  fill="#e8f4f8"
-                />
-                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
-                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
-                <circle cx="-24" cy="33" r="3" fill="#1a3a6b" />
-                <circle cx="24" cy="33" r="3" fill="#1a3a6b" />
-                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff" />
-                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff" />
-                <rect
-                  x="-14"
-                  y="50"
-                  width="12"
-                  height="5"
-                  rx="2"
-                  fill="#1a3a6b"
-                />
-                <rect
-                  x="2"
-                  y="50"
-                  width="12"
-                  height="5"
-                  rx="2"
-                  fill="#1a3a6b"
-                />
-              </g>
-            </svg>
-            <span
-              data-ru="Наставник студента — Преподавательская практика и благополучие"
-              data-en="Student's Mentor — Teaching Practice & Wellbeing"
-              >Наставник студента — Преподавательская практика и
-              благополучие</span
-            >
-          </div>
+          
+          
 
           <div class="prof-layout">
             <div class="prof-main">
@@ -3729,7 +3621,18 @@
                   <span data-ru="Профиль студента" data-en="Student Profile"
                     >Профиль студента</span
                   >
-                  <div class="sidebar-avatar">АИ</div>
+                  <div class="avatar">
+                    <img
+                      src="https://i.pravatar.cc/36?img=44"
+                      alt="User avatar"
+                      style="
+                        border-radius: 50%;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
                 </div>
                 <div class="profile-field">
                   <span
@@ -3753,10 +3656,10 @@
                 </div>
                 <div
                   class="profile-university"
-                  data-ru="Университет Минина"
+                  data-ru="НГПУ им. К. Минина"
                   data-en="Minin University"
                 >
-                  Университет Минина
+                  НГПУ им. К. Минина
                 </div>
                 <div class="progress-bar-container">
                   <div class="progress-bar-fill"></div>
@@ -3825,7 +3728,8 @@
           });
 
         document.querySelectorAll(".source-block").forEach((el) => {
-          const label = currentLang === "ru" ? "📚 Источники: " : "📚 Sources: ";
+          const label =
+            currentLang === "ru" ? "📚 Источники: " : "📚 Sources: ";
           const sourcesText = el.textContent.replace(
             /^📚 (Источники|Sources):\s*/,
             "",
@@ -3934,23 +3838,7 @@
           });
         });
 
-      // Side nav toggle (mobile)
-      function toggleSideNav() {
-        const sideNav = document.getElementById("sideNav");
-        const overlay = document.getElementById("sideNavOverlay");
-        sideNav.classList.toggle("mobile-open");
-        overlay.classList.toggle("active");
-      }
 
-      // Side nav item selection
-      document.querySelectorAll(".side-nav-item").forEach((item) => {
-        item.addEventListener("click", () => {
-          document
-            .querySelectorAll(".side-nav-item")
-            .forEach((i) => i.classList.remove("active"));
-          item.classList.add("active");
-        });
-      });
 
       // Универсальная функция инициализации чата для любого трека
       function initChatForTrack(inputId, btnId, areaId, trackName) {
@@ -4102,7 +3990,9 @@
             en: "View requirements",
           },
         };
-        return (labels[key] && labels[key][currentLang]) || labels[key]?.ru || key;
+        return (
+          (labels[key] && labels[key][currentLang]) || labels[key]?.ru || key
+        );
       }
 
       async function loadJournals() {
@@ -4162,8 +4052,7 @@
           const counter = document.getElementById("journalsCounter");
           if (counter)
             counter.textContent = `${getLabel("shown")} 0 ${getLabel("of")} ${filteredJournals.length}`;
-          container.innerHTML =
-            `<p style="text-align:center; color:#999;">${getLabel("noJournals")}</p>`;
+          container.innerHTML = `<p style="text-align:center; color:#999;">${getLabel("noJournals")}</p>`;
           return;
         }
 
