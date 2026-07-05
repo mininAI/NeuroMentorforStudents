@@ -2534,161 +2534,33 @@
                 Исследовательский наставник — Навигатор журналов
               </div>
 
-              <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input
-                  type="text"
-                  data-placeholder-ru="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)"
-                  data-placeholder-en="Find Target Journal (VAK, RSCI, Student Journals)"
-                  placeholder="Найти целевой журнал (ВАК, РИНЦ, студенческие журналы)"
-                />
-              </div>
 
-              <div class="filters">
-                <span class="filter-label" data-ru="Область:" data-en="Field:"
-                  >Область:</span
-                >
-                <span
-                  class="filter-tag active"
-                  data-ru="Педагогика"
-                  data-en="Pedagogy"
-                  >Педагогика</span
-                >
-                <span
-                  class="filter-label"
-                  style="margin-left: 8px"
-                  data-ru="Индексируется:"
-                  data-en="Indexed:"
-                  >Индексируется:</span
-                >
-                <span class="filter-tag active">ВАК</span>
-                <span class="filter-tag active">РИНЦ</span>
-                <span
-                  class="filter-tag"
-                  data-ru="Открытый доступ"
-                  data-en="Open Access"
-                  >Открытый доступ</span
-                >
-                <span class="filter-tag">Scopus</span>
-              </div>
 
-              <div class="journal-card">
-                <div class="journal-info">
-                  <div
-                    class="journal-name"
-                    data-ru="Журнал педагогических исследований"
-                    data-en="Journal of Educational Studies"
-                  >
-                    Журнал педагогических исследований
-                  </div>
-                  <div class="journal-tags">
-                    <span class="journal-tag vak">ВАК</span>
-                    <span class="journal-tag rsci">РИНЦ</span>
-                  </div>
-                  <div class="journal-meta">
-                    <span
-                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
-                      <strong data-ru="Высокий" data-en="High"
-                        >Высокий</strong
-                      ></span
-                    >
-                    <div class="impact-bar high">
-                      <span></span><span></span><span></span><span></span
-                      ><span></span>
-                    </div>
-                    <span
-                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
-                      25%</span
-                    >
-                  </div>
-                </div>
-                <button
-                  class="view-req-btn"
-                  data-ru="Просмотреть требования"
-                  data-en="View Requirements"
-                >
-                  Просмотреть требования
-                </button>
-              </div>
+              <!-- Поиск по названию/ISSN -->
+<div class="search-box">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="journalSearch" placeholder="Поиск по названию или ISSN...">
+</div>
 
-              <div class="journal-card">
-                <div class="journal-info">
-                  <div
-                    class="journal-name"
-                    data-ru="Образование и инновации"
-                    data-en="Education & Innovation"
-                  >
-                    Образование и инновации
-                  </div>
-                  <div class="journal-tags">
-                    <span class="journal-tag vak">ВАК</span>
-                    <span class="journal-tag rsci">РИНЦ</span>
-                  </div>
-                  <div class="journal-meta">
-                    <span
-                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
-                      <strong data-ru="Средний" data-en="Medium"
-                        >Средний</strong
-                      ></span
-                    >
-                    <div class="impact-bar medium">
-                      <span></span><span></span><span></span><span></span
-                      ><span></span>
-                    </div>
-                    <span
-                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
-                      18%</span
-                    >
-                  </div>
-                </div>
-                <button
-                  class="view-req-btn"
-                  data-ru="Просмотреть требования"
-                  data-en="View Requirements"
-                >
-                  Просмотреть требования
-                </button>
-              </div>
+<!-- Фильтры по уровню -->
+<div class="filters">
+  <span class="filter-label">Уровень:</span>
+  <span class="filter-tag active" data-level="">Все</span>
+  <span class="filter-tag" data-level="1">К1</span>
+  <span class="filter-tag" data-level="2">К2</span>
+  <span class="filter-tag" data-level="3">К3</span>
+  <span class="filter-tag" data-level="4">К4</span>
+</div>
 
-              <div class="journal-card">
-                <div class="journal-info">
-                  <div
-                    class="journal-name"
-                    data-ru="Педагогический исследовательский обзор"
-                    data-en="Pedagogical Research Review"
-                  >
-                    Педагогический исследовательский обзор
-                  </div>
-                  <div class="journal-tags">
-                    <span class="journal-tag vak">ВАК</span>
-                    <span class="journal-tag rsci">РИНЦ</span>
-                  </div>
-                  <div class="journal-meta">
-                    <span
-                      ><span data-ru="Импакт:" data-en="Impact:">Импакт:</span>
-                      <strong data-ru="Низкий" data-en="Low"
-                        >Низкий</strong
-                      ></span
-                    >
-                    <div class="impact-bar low">
-                      <span></span><span></span><span></span><span></span
-                      ><span></span>
-                    </div>
-                    <span
-                      ><span data-ru="Рейтинг:" data-en="Rate:">Рейтинг:</span>
-                      30%</span
-                    >
-                  </div>
-                </div>
-                <button
-                  class="view-req-btn"
-                  data-ru="Просмотреть требования"
-                  data-en="View Requirements"
-                >
-                  Просмотреть требования
-                </button>
-              </div>
-            </div>
+<!-- Контейнер для динамического списка журналов -->
+<div id="journalsContainer">
+  <div id="journalsList" class="journals-list"></div>
+  <div id="journalsPagination" style="text-align:center; margin-top: 20px;">
+    <button id="loadMoreBtn" class="view-req-btn" style="padding: 10px 24px;">Показать ещё 50</button>
+    <span id="journalsCounter" style="margin-left: 15px; font-size: 13px; color: #666;"></span>
+  </div>
+</div>
+
 
             <div class="sidebar">
               <div class="checklist-card">
@@ -2830,280 +2702,151 @@
           </div>
         </div>
 
-        <!-- ============ PROFESSIONAL TRACK ============ -->
+        </div>
+
+      <!-- ============ PROFESSIONAL TRACK ============ -->
         <div class="tab-content" id="professional">
           <div class="prof-title">
-            <svg
-              class="prof-title-logo"
-              viewBox="0 0 200 200"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="prof-title-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient
-                  id="ringGrad3"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" style="stop-color: #1a8fa8" />
-                  <stop offset="100%" style="stop-color: #1a3a6b" />
+                <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1a8fa8"/>
+                  <stop offset="100%" style="stop-color:#1a3a6b"/>
                 </linearGradient>
-                <path
-                  id="topArc3"
-                  d="M 30,100 A 70,70 0 0,1 170,100"
-                  fill="none"
-                />
-                <path
-                  id="bottomArc3"
-                  d="M 30,100 A 70,70 0 0,0 170,100"
-                  fill="none"
-                />
+                <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
+                <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
               </defs>
-              <circle
-                cx="100"
-                cy="100"
-                r="95"
-                fill="none"
-                stroke="url(#ringGrad3)"
-                stroke-width="8"
-              />
-              <circle
-                cx="100"
-                cy="100"
-                r="70"
-                fill="none"
-                stroke="#4ab8d4"
-                stroke-width="4"
-              />
-              <text
-                font-family="Segoe UI, Arial, sans-serif"
-                font-weight="800"
-                font-size="24"
-                fill="#1a3a6b"
-              >
-                <textPath
-                  href="#topArc3"
-                  startOffset="50%"
-                  text-anchor="middle"
-                >
-                  NeuroMentor
-                </textPath>
+              <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#4ab8d4" stroke-width="4"/>
+              <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#1a3a6b">
+                <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
               </text>
-              <text
-                font-family="Segoe UI, Arial, sans-serif"
-                font-weight="800"
-                font-size="22"
-                fill="#1a3a6b"
-              >
-                <textPath
-                  href="#bottomArc3"
-                  startOffset="50%"
-                  text-anchor="middle"
-                >
-                  for Students
-                </textPath>
+              <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#1a3a6b">
+                <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
               </text>
-              <g
-                transform="translate(100,100)"
-                stroke="#1a3a6b"
-                stroke-width="3"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="0" y1="-32" x2="0" y2="-24" />
-                <circle cx="0" cy="-34" r="3" fill="#1a3a6b" />
-                <rect
-                  x="-18"
-                  y="-24"
-                  width="36"
-                  height="26"
-                  rx="5"
-                  fill="#fff"
-                />
-                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b" />
-                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b" />
-                <line x1="-6" y1="-6" x2="6" y2="-6" />
-                <rect x="-22" y="-18" width="4" height="10" rx="1" />
-                <rect x="18" y="-18" width="4" height="10" rx="1" />
-                <line x1="0" y1="2" x2="0" y2="8" />
-                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff" />
-                <rect
-                  x="-10"
-                  y="14"
-                  width="20"
-                  height="14"
-                  rx="2"
-                  fill="#e8f4f8"
-                />
-                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32" />
-                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32" />
-                <circle cx="-24" cy="33" r="3" fill="#1a3a6b" />
-                <circle cx="24" cy="33" r="3" fill="#1a3a6b" />
-                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff" />
-                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff" />
-                <rect
-                  x="-14"
-                  y="50"
-                  width="12"
-                  height="5"
-                  rx="2"
-                  fill="#1a3a6b"
-                />
-                <rect
-                  x="2"
-                  y="50"
-                  width="12"
-                  height="5"
-                  rx="2"
-                  fill="#1a3a6b"
-                />
+              <g transform="translate(100,100)" stroke="#1a3a6b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="0" y1="-32" x2="0" y2="-24"/>
+                <circle cx="0" cy="-34" r="3" fill="#1a3a6b"/>
+                <rect x="-18" y="-24" width="36" height="26" rx="5" fill="#fff"/>
+                <circle cx="-7" cy="-14" r="2.5" fill="#1a3a6b"/>
+                <circle cx="7" cy="-14" r="2.5" fill="#1a3a6b"/>
+                <line x1="-6" y1="-6" x2="6" y2="-6"/>
+                <rect x="-22" y="-18" width="4" height="10" rx="1"/>
+                <rect x="18" y="-18" width="4" height="10" rx="1"/>
+                <line x1="0" y1="2" x2="0" y2="8"/>
+                <rect x="-20" y="8" width="40" height="30" rx="5" fill="#fff"/>
+                <rect x="-10" y="14" width="20" height="14" rx="2" fill="#e8f4f8"/>
+                <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
+                <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
+                <circle cx="-24" cy="33" r="3" fill="#1a3a6b"/>
+                <circle cx="24" cy="33" r="3" fill="#1a3a6b"/>
+                <rect x="-12" y="38" width="8" height="14" rx="3" fill="#fff"/>
+                <rect x="4" y="38" width="8" height="14" rx="3" fill="#fff"/>
+                <rect x="-14" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
+                <rect x="2" y="50" width="12" height="5" rx="2" fill="#1a3a6b"/>
               </g>
             </svg>
-            <span
-              data-ru="Наставник студента — Преподавательская практика и благополучие"
-              data-en="Student's Mentor — Teaching Practice & Wellbeing"
-              >Наставник студента — Преподавательская практика и
-              благополучие</span
-            >
+            <span data-ru="Наставник студента — Преподавательская практика и благополучие" data-en="Student's Mentor — Teaching Practice & Wellbeing">Наставник студента — Преподавательская практика и благополучие</span>
           </div>
 
           <div class="prof-layout">
             <div class="prof-main">
               <!-- Чат для профессионального трека -->
-<div class="chat-area" style="margin-bottom: 24px;">
-  <div class="chat-container">
-    <div class="chat-header">
-      <div class="chat-header-title">
-        <div class="chat-header-icon">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#1a8fa8"/>
-                <stop offset="100%" style="stop-color:#1a3a6b"/>
-              </linearGradient>
-              <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
-              <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
-            </defs>
-            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
-            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
-              <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
-            </text>
-            <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
-              <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
-            </text>
-            <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="0" y1="-32" x2="0" y2="-24"/>
-              <circle cx="0" cy="-34" r="3" fill="#fff"/>
-              <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
-              <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
-              <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
-              <line x1="-6" y1="-6" x2="6" y2="-6"/>
-              <rect x="-22" y="-18" width="4" height="10" rx="1"/>
-              <rect x="18" y="-18" width="4" height="10" rx="1"/>
-              <line x1="0" y1="2" x2="0" y2="8"/>
-              <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
-              <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
-              <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
-              <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
-              <circle cx="-24" cy="33" r="3" fill="#fff"/>
-              <circle cx="24" cy="33" r="3" fill="#fff"/>
-              <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-              <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
-              <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
-              <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
-            </g>
-          </svg>
-        </div>
-        <span data-ru="Профессиональный наставник" data-en="Professional Mentor">Профессиональный наставник</span>
-      </div>
-      <div class="chat-header-dots">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="chat-body">
-      <div id="chatResponseAreaProfessional"></div>
-      <div class="chat-bubble">💼 Я — твой профессиональный наставник. Помогу с практикой, интеграцией с LMS, методическими материалами и профилактикой выгорания. Чем могу помочь?</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" class="chat-input" id="chatInputProfessional" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
-      <button class="chat-btn chat-btn-emoji">😊</button>
-      <button class="chat-btn chat-btn-mic" id="sendBtnProfessional">➤</button>
-    </div>
-  </div>
-</div>
-<!-- Конец чата -->
-              <div class="integration-card">
-                <div
-                  class="integration-title"
-                  data-ru="Интеграция преподавательской практики"
-                  data-en="Teaching Practice Integration"
-                >
-                  Интеграция преподавательской практики
+              <div class="chat-area" style="margin-bottom: 24px;">
+                <div class="chat-container">
+                  <div class="chat-header">
+                    <div class="chat-header-title">
+                      <div class="chat-header-icon">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="ringGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" style="stop-color:#1a8fa8"/>
+                              <stop offset="100%" style="stop-color:#1a3a6b"/>
+                            </linearGradient>
+                            <path id="topArc3" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
+                            <path id="bottomArc3" d="M 30,100 A 70,70 0 0,0 170,100" fill="none"/>
+                          </defs>
+                          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad3)" stroke-width="8"/>
+                          <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4"/>
+                          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="24" fill="#fff">
+                            <textPath href="#topArc3" startOffset="50%" text-anchor="middle">NeuroMentor</textPath>
+                          </text>
+                          <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="22" fill="#fff">
+                            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">for Students</textPath>
+                          </text>
+                          <g transform="translate(100,100)" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="0" y1="-32" x2="0" y2="-24"/>
+                            <circle cx="0" cy="-34" r="3" fill="#fff"/>
+                            <rect x="-18" y="-24" width="36" height="26" rx="5" fill="rgba(255,255,255,0.1)"/>
+                            <circle cx="-7" cy="-14" r="2.5" fill="#fff"/>
+                            <circle cx="7" cy="-14" r="2.5" fill="#fff"/>
+                            <line x1="-6" y1="-6" x2="6" y2="-6"/>
+                            <rect x="-22" y="-18" width="4" height="10" rx="1"/>
+                            <rect x="18" y="-18" width="4" height="10" rx="1"/>
+                            <line x1="0" y1="2" x2="0" y2="8"/>
+                            <rect x="-20" y="8" width="40" height="30" rx="5" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="-10" y="14" width="20" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M -20,16 Q -28,16 -28,24 Q -28,30 -24,32"/>
+                            <path d="M 20,16 Q 28,16 28,24 Q 28,30 24,32"/>
+                            <circle cx="-24" cy="33" r="3" fill="#fff"/>
+                            <circle cx="24" cy="33" r="3" fill="#fff"/>
+                            <rect x="-12" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="4" y="38" width="8" height="14" rx="3" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="-14" y="50" width="12" height="5" rx="2" fill="#fff"/>
+                            <rect x="2" y="50" width="12" height="5" rx="2" fill="#fff"/>
+                          </g>
+                        </svg>
+                      </div>
+                      <span data-ru="Профессиональный наставник" data-en="Professional Mentor">Профессиональный наставник</span>
+                    </div>
+                    <div class="chat-header-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="chat-body">
+                    <div id="chatResponseAreaProfessional"></div>
+                    <div class="chat-bubble">💼 Я — твой профессиональный наставник. Помогу с практикой, интеграцией с LMS, методическими материалами и профилактикой выгорания. Чем могу помочь?</div>
+                  </div>
+                  <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="chatInputProfessional" data-placeholder-ru="Введите ваш запрос..." data-placeholder-en="Type your query...">
+                    <button class="chat-btn chat-btn-emoji">😊</button>
+                    <button class="chat-btn chat-btn-mic" id="sendBtnProfessional">➤</button>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Интеграция -->
+              <div class="integration-card">
+                <div class="integration-title" data-ru="Интеграция преподавательской практики" data-en="Teaching Practice Integration">Интеграция преподавательской практики</div>
                 <div class="integration-grid">
                   <div class="integration-item">
                     <div class="integration-icon moodle">M</div>
                     <div>
                       <div class="integration-name">Moodle</div>
-                      <div class="integration-status">
-                        <span class="dot"></span>
-                        <span data-ru="Подключено" data-en="Connected"
-                          >Подключено</span
-                        >
-                      </div>
+                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
                     </div>
                   </div>
                   <div class="integration-item">
                     <div class="integration-icon mes">MES</div>
                     <div>
                       <div class="integration-name">MES</div>
-                      <div class="integration-status">
-                        <span class="dot"></span>
-                        <span data-ru="Подключено" data-en="Connected"
-                          >Подключено</span
-                        >
-                      </div>
+                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
                     </div>
                   </div>
                   <div class="integration-item">
                     <div class="integration-icon lms">LMS</div>
                     <div>
-                      <div
-                        class="integration-name"
-                        data-ru="Университетская LMS"
-                        data-en="University LMS"
-                      >
-                        Университетская LMS
-                      </div>
-                      <div class="integration-status">
-                        <span class="dot"></span>
-                        <span data-ru="Подключено" data-en="Connected"
-                          >Подключено</span
-                        >
-                      </div>
+                      <div class="integration-name" data-ru="Университетская LMS" data-en="University LMS">Университетская LMS</div>
+                      <div class="integration-status"><span class="dot"></span> <span data-ru="Подключено" data-en="Connected">Подключено</span></div>
                     </div>
                   </div>
                 </div>
-                <button
-                  class="sync-btn"
-                  data-ru="Синхронизировать план урока"
-                  data-en="Sync Lesson Plan"
-                >
-                  Синхронизировать план урока
-                </button>
+                <button class="sync-btn" data-ru="Синхронизировать план урока" data-en="Sync Lesson Plan">Синхронизировать план урока</button>
               </div>
 
+              <!-- Календарь -->
               <div class="schedule-card">
-                <div
-                  class="schedule-title"
-                  data-ru="Предстоящее расписание практики"
-                  data-en="Upcoming Practice Schedule"
-                >
-                  Предстоящее расписание практики
-                </div>
+                <div class="schedule-title" data-ru="Предстоящее расписание практики" data-en="Upcoming Practice Schedule">Предстоящее расписание практики</div>
                 <div class="calendar">
                   <div class="calendar-day" data-ru="Вс" data-en="Sun">Вс</div>
                   <div class="calendar-day" data-ru="Пн" data-en="Mon">Пн</div>
@@ -3112,7 +2855,6 @@
                   <div class="calendar-day" data-ru="Чт" data-en="Thu">Чт</div>
                   <div class="calendar-day" data-ru="Пт" data-en="Fri">Пт</div>
                   <div class="calendar-day" data-ru="Сб" data-en="Sat">Сб</div>
-
                   <div class="calendar-date empty"></div>
                   <div class="calendar-date empty"></div>
                   <div class="calendar-date empty"></div>
@@ -3120,7 +2862,6 @@
                   <div class="calendar-date">2</div>
                   <div class="calendar-date">3</div>
                   <div class="calendar-date">4</div>
-
                   <div class="calendar-date">5</div>
                   <div class="calendar-date">6</div>
                   <div class="calendar-date">7</div>
@@ -3128,7 +2869,6 @@
                   <div class="calendar-date">9</div>
                   <div class="calendar-date selected">10</div>
                   <div class="calendar-date">11</div>
-
                   <div class="calendar-date">12</div>
                   <div class="calendar-date">13</div>
                   <div class="calendar-date">14</div>
@@ -3139,329 +2879,123 @@
                 </div>
               </div>
 
+              <!-- Материалы -->
               <div class="materials-card">
-                <div
-                  class="materials-title"
-                  data-ru="Библиотека методических материалов"
-                  data-en="Methodological Materials Library"
-                >
-                  Библиотека методических материалов
-                </div>
+                <div class="materials-title" data-ru="Библиотека методических материалов" data-en="Methodological Materials Library">Библиотека методических материалов</div>
                 <div class="materials-search">
                   <span>🔍</span>
-                  <input
-                    type="text"
-                    data-placeholder-ru="Найти сценарий урока или учебный материал"
-                    data-placeholder-en="Find Lesson Scenario or Teaching Material"
-                    placeholder="Найти сценарий урока или учебный материал"
-                  />
+                  <input type="text" data-placeholder-ru="Найти сценарий урока или учебный материал" data-placeholder-en="Find Lesson Scenario or Teaching Material" placeholder="Найти сценарий урока или учебный материал">
                 </div>
                 <div class="materials-tabs">
-                  <div
-                    class="material-tab active"
-                    data-ru="Начальная школа"
-                    data-en="Primary School"
-                  >
-                    Начальная школа
-                  </div>
-                  <div
-                    class="material-tab"
-                    data-ru="Средняя школа"
-                    data-en="Secondary School"
-                  >
-                    Средняя школа
-                  </div>
-                  <div
-                    class="material-tab"
-                    data-ru="Инструменты оценки"
-                    data-en="Assessment Tools"
-                  >
-                    Инструменты оценки
-                  </div>
-                  <div
-                    class="material-tab"
-                    data-ru="Интерактивные задания"
-                    data-en="Interactive Activities"
-                  >
-                    Интерактивные задания
-                  </div>
+                  <div class="material-tab active" data-ru="Начальная школа" data-en="Primary School">Начальная школа</div>
+                  <div class="material-tab" data-ru="Средняя школа" data-en="Secondary School">Средняя школа</div>
+                  <div class="material-tab" data-ru="Инструменты оценки" data-en="Assessment Tools">Инструменты оценки</div>
+                  <div class="material-tab" data-ru="Интерактивные задания" data-en="Interactive Activities">Интерактивные задания</div>
                 </div>
-
                 <div class="material-item">
                   <div>
-                    <div
-                      class="material-name"
-                      data-ru="План урока: Навыки критического мышления"
-                      data-en="Lesson Plan: Critical Thinking Skills"
-                    >
-                      План урока: Навыки критического мышления
-                    </div>
-                    <div class="material-type">
-                      <span class="dot"></span>
-                      <span
-                        data-ru="Сценарий · Утверждённый методический ресурс"
-                        data-en="Scenario · Approved Methodical Resource"
-                        >Сценарий · Утверждённый методический ресурс</span
-                      >
-                    </div>
+                    <div class="material-name" data-ru="План урока: Навыки критического мышления" data-en="Lesson Plan: Critical Thinking Skills">План урока: Навыки критического мышления</div>
+                    <div class="material-type"><span class="dot"></span> <span data-ru="Сценарий · Утверждённый методический ресурс" data-en="Scenario · Approved Methodical Resource">Сценарий · Утверждённый методический ресурс</span></div>
                   </div>
-                  <button
-                    class="open-btn"
-                    data-ru="Открыть шаблон"
-                    data-en="Open Template"
-                  >
-                    Открыть шаблон
-                  </button>
+                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
                 </div>
-
                 <div class="material-item">
                   <div>
-                    <div
-                      class="material-name"
-                      data-ru="Оценка: Форма обратной связи от студентов"
-                      data-en="Assessment: Student Feedback Form"
-                    >
-                      Оценка: Форма обратной связи от студентов
-                    </div>
-                    <div class="material-type">
-                      <span class="dot"></span>
-                      <span
-                        data-ru="Оценка · Утверждённый методический ресурс"
-                        data-en="Assessment · Approved Methodical Resource"
-                        >Оценка · Утверждённый методический ресурс</span
-                      >
-                    </div>
+                    <div class="material-name" data-ru="Оценка: Форма обратной связи от студентов" data-en="Assessment: Student Feedback Form">Оценка: Форма обратной связи от студентов</div>
+                    <div class="material-type"><span class="dot"></span> <span data-ru="Оценка · Утверждённый методический ресурс" data-en="Assessment · Approved Methodical Resource">Оценка · Утверждённый методический ресурс</span></div>
                   </div>
-                  <button
-                    class="open-btn"
-                    data-ru="Открыть шаблон"
-                    data-en="Open Template"
-                  >
-                    Открыть шаблон
-                  </button>
+                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
                 </div>
-
                 <div class="material-item">
                   <div>
-                    <div
-                      class="material-name"
-                      data-ru="Интерактивная игра: Командное задание"
-                      data-en="Interactive Game: Teamwork Challenge"
-                    >
-                      Интерактивная игра: Командное задание
-                    </div>
-                    <div class="material-type">
-                      <span class="dot"></span>
-                      <span
-                        data-ru="Рабочий лист · Утверждённый методический ресурс"
-                        data-en="Worksheet · Approved Methodical Resource"
-                        >Рабочий лист · Утверждённый методический ресурс</span
-                      >
-                    </div>
+                    <div class="material-name" data-ru="Интерактивная игра: Командное задание" data-en="Interactive Game: Teamwork Challenge">Интерактивная игра: Командное задание</div>
+                    <div class="material-type"><span class="dot"></span> <span data-ru="Рабочий лист · Утверждённый методический ресурс" data-en="Worksheet · Approved Methodical Resource">Рабочий лист · Утверждённый методический ресурс</span></div>
                   </div>
-                  <button
-                    class="open-btn"
-                    data-ru="Открыть шаблон"
-                    data-en="Open Template"
-                  >
-                    Открыть шаблон
-                  </button>
+                  <button class="open-btn" data-ru="Открыть шаблон" data-en="Open Template">Открыть шаблон</button>
                 </div>
               </div>
 
+              <!-- Профилактика выгорания -->
               <div class="burnout-card">
-                <div
-                  class="burnout-title"
-                  data-ru="Профилактика выгорания и управление временем"
-                  data-en="Burnout Prevention & Time Management"
-                >
-                  Профилактика выгорания и управление временем
-                </div>
+                <div class="burnout-title" data-ru="Профилактика выгорания и управление временем" data-en="Burnout Prevention & Time Management">Профилактика выгорания и управление временем</div>
                 <div class="bar-chart">
-                  <div class="bar-item">
-                    <div class="bar" style="height: 60px"></div>
-                    <div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 80px"></div>
-                    <div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 45px"></div>
-                    <div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 90px"></div>
-                    <div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 70px"></div>
-                    <div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 30px"></div>
-                    <div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div>
-                  </div>
-                  <div class="bar-item">
-                    <div class="bar" style="height: 20px"></div>
-                    <div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div>
-                  </div>
+                  <div class="bar-item"><div class="bar" style="height:60px;"></div><div class="bar-label" data-ru="Пн" data-en="Mon">Пн</div></div>
+                  <div class="bar-item"><div class="bar" style="height:80px;"></div><div class="bar-label" data-ru="Вт" data-en="Tue">Вт</div></div>
+                  <div class="bar-item"><div class="bar" style="height:45px;"></div><div class="bar-label" data-ru="Ср" data-en="Wed">Ср</div></div>
+                  <div class="bar-item"><div class="bar" style="height:90px;"></div><div class="bar-label" data-ru="Чт" data-en="Thu">Чт</div></div>
+                  <div class="bar-item"><div class="bar" style="height:70px;"></div><div class="bar-label" data-ru="Пт" data-en="Fri">Пт</div></div>
+                  <div class="bar-item"><div class="bar" style="height:30px;"></div><div class="bar-label" data-ru="Сб" data-en="Sat">Сб</div></div>
+                  <div class="bar-item"><div class="bar" style="height:20px;"></div><div class="bar-label" data-ru="Вс" data-en="Sun">Вс</div></div>
                 </div>
-
                 <div class="wellbeing-status">
                   <span class="wellbeing-heart">❤</span>
-                  <span
-                    data-ru="Статус благополучия:"
-                    data-en="Wellbeing Status:"
-                    >Статус благополучия:</span
-                  >
-                  <span
-                    class="wellbeing-value"
-                    data-ru="Сбалансирован"
-                    data-en="Balanced"
-                    >Сбалансирован</span
-                  >
+                  <span data-ru="Статус благополучия:" data-en="Wellbeing Status:">Статус благополучия:</span>
+                  <span class="wellbeing-value" data-ru="Сбалансирован" data-en="Balanced">Сбалансирован</span>
                 </div>
-
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check checked">✓</div>
-                    <span
-                      data-ru="Проверить задания"
-                      data-en="Grade Assignments"
-                      >Проверить задания</span
-                    >
+                    <span data-ru="Проверить задания" data-en="Grade Assignments">Проверить задания</span>
                   </div>
-                  <span
-                    class="task-priority high"
-                    data-ru="Высокий"
-                    data-en="High"
-                    >Высокий</span
-                  >
+                  <span class="task-priority high" data-ru="Высокий" data-en="High">Высокий</span>
                 </div>
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check">✓</div>
-                    <span
-                      data-ru="Подготовить слайды урока"
-                      data-en="Prepare Lesson Slides"
-                      >Подготовить слайды урока</span
-                    >
+                    <span data-ru="Подготовить слайды урока" data-en="Prepare Lesson Slides">Подготовить слайды урока</span>
                   </div>
-                  <span
-                    class="task-priority medium"
-                    data-ru="Средний"
-                    data-en="Medium"
-                    >Средний</span
-                  >
+                  <span class="task-priority medium" data-ru="Средний" data-en="Medium">Средний</span>
                 </div>
                 <div class="task-item">
                   <div class="task-left">
                     <div class="task-check checked">✓</div>
-                    <span
-                      data-ru="Просмотреть отчёты студентов"
-                      data-en="Review Student Reports"
-                      >Просмотреть отчёты студентов</span
-                    >
+                    <span data-ru="Просмотреть отчёты студентов" data-en="Review Student Reports">Просмотреть отчёты студентов</span>
                   </div>
-                  <span class="task-priority low" data-ru="Низкий" data-en="Low"
-                    >Низкий</span
-                  >
+                  <span class="task-priority low" data-ru="Низкий" data-en="Low">Низкий</span>
                 </div>
-
-                <button
-                  class="action-btn primary"
-                  data-ru="Рефлексия практики"
-                  data-en="Reflect on Practice"
-                >
-                  Рефлексия практики
-                </button>
-                <button
-                  class="action-btn secondary"
-                  data-ru="Самопроверка стресса"
-                  data-en="Stress Self-Check"
-                >
-                  Самопроверка стресса
-                </button>
-                <button
-                  class="action-btn secondary"
-                  data-ru="Запросить куратора"
-                  data-en="Request Human Curator"
-                >
-                  Запросить куратора
-                </button>
+                <button class="action-btn primary" data-ru="Рефлексия практики" data-en="Reflect on Practice">Рефлексия практики</button>
+                <button class="action-btn secondary" data-ru="Самопроверка стресса" data-en="Stress Self-Check">Самопроверка стресса</button>
+                <button class="action-btn secondary" data-ru="Запросить куратора" data-en="Request Human Curator">Запросить куратора</button>
               </div>
             </div>
 
+            <!-- Сайдбар -->
             <div class="sidebar">
               <div class="sidebar-card">
                 <div class="sidebar-title">
-                  <span data-ru="Профиль студента" data-en="Student Profile"
-                    >Профиль студента</span
-                  >
+                  <span data-ru="Профиль студента" data-en="Student Profile">Профиль студента</span>
                   <div class="sidebar-avatar">АИ</div>
                 </div>
                 <div class="profile-field">
-                  <span
-                    class="profile-label"
-                    data-ru="Программа:"
-                    data-en="Program:"
-                    >Программа:</span
-                  >
-                  <span
-                    class="profile-value"
-                    data-ru="Педагогика"
-                    data-en="Pedagogy"
-                    >Педагогика</span
-                  >
+                  <span class="profile-label" data-ru="Программа:" data-en="Program:">Программа:</span>
+                  <span class="profile-value" data-ru="Педагогика" data-en="Pedagogy">Педагогика</span>
                 </div>
                 <div class="profile-field">
-                  <span class="profile-label" data-ru="Курс:" data-en="Year:"
-                    >Курс:</span
-                  >
+                  <span class="profile-label" data-ru="Курс:" data-en="Year:">Курс:</span>
                   <span class="profile-value">2</span>
                 </div>
-                <div
-                  class="profile-university"
-                  data-ru="Университет Минина"
-                  data-en="Minin University"
-                >
-                  Университет Минина
-                </div>
+                <div class="profile-university" data-ru="Университет Минина" data-en="Minin University">Университет Минина</div>
                 <div class="progress-bar-container">
                   <div class="progress-bar-fill"></div>
                 </div>
                 <div class="status-item green">
                   <div class="status-icon">✓</div>
-                  <span
-                    data-ru="Верификация активна"
-                    data-en="Verification Active"
-                    >Верификация активна</span
-                  >
+                  <span data-ru="Верификация активна" data-en="Verification Active">Верификация активна</span>
                 </div>
                 <div class="status-item blue">
                   <div class="status-icon">✓</div>
-                  <span
-                    data-ru="Куратор доступен"
-                    data-en="Human Curator Available"
-                    >Куратор доступен</span
-                  >
+                  <span data-ru="Куратор доступен" data-en="Human Curator Available">Куратор доступен</span>
                 </div>
                 <div class="status-item gray">
                   <div class="status-icon">🔒</div>
-                  <span
-                    data-ru="Конфиденциальный режим"
-                    data-en="Confidential Mode On"
-                    >Конфиденциальный режим</span
-                  >
+                  <span data-ru="Конфиденциальный режим" data-en="Confidential Mode On">Конфиденциальный режим</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
+        </div> <!-- конец main-content -->
+      </div> <!-- конец app-layout -->
+    </div> <!-- конец side-nav? (если нужно) -->
     <script>
       let currentLang = "ru";
       let isTextLarge = false;
@@ -3522,19 +3056,24 @@
         }
       });
 
-      // Tab switching
-      const tabs = document.querySelectorAll(".tab");
-      const tabContents = document.querySelectorAll(".tab-content");
+ // Tab switching
+const tabs = document.querySelectorAll(".tab");
+const tabContents = document.querySelectorAll(".tab-content");
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          tabs.forEach((t) => t.classList.remove("active"));
-          tabContents.forEach((c) => c.classList.remove("active"));
-          tab.classList.add("active");
-          const targetId = tab.getAttribute("data-tab");
-          document.getElementById(targetId).classList.add("active");
-        });
-      });
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.classList.remove("active"));
+    tabContents.forEach((c) => c.classList.remove("active"));
+    tab.classList.add("active");
+    const targetId = tab.getAttribute("data-tab");
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      targetEl.classList.add("active");
+    } else {
+      console.warn('Элемент с id "' + targetId + '" не найден');
+    }
+  });
+});
 
       // Filter tags toggle
       document.querySelectorAll(".filter-tag").forEach((tag) => {
@@ -3684,6 +3223,154 @@ document.addEventListener('DOMContentLoaded', function() {
   initChatForTrack('chatInputResearch', 'sendBtnResearch', 'chatResponseAreaResearch', 'research');
   initChatForTrack('chatInputProfessional', 'sendBtnProfessional', 'chatResponseAreaProfessional', 'professional');
 });
+
+
+// === УПРАВЛЕНИЕ ЖУРНАЛАМИ (исследовательский трек) ===
+let allJournals = [];
+let filteredJournals = [];
+let currentPage = 0;
+const pageSize = 50;
+let currentLevelFilter = '';
+let currentSearch = '';
+
+function toArray(value) {
+  if (Array.isArray(value)) return value;
+  if (value === null || value === undefined) return [];
+  return [value];
+}
+
+async function loadJournals() {
+  try {
+    const response = await fetch('/data/journals.json');
+    const data = await response.json();
+    allJournals = data.map(j => ({
+      ...j,
+      title: toArray(j.title),
+      issn: toArray(j.issn),
+      level_2025: j.level_2025 || null,
+      dateAccepted: j.dateAccepted || ''
+    }));
+    console.log('✅ Загружено журналов:', allJournals.length);
+    applyFilters();
+  } catch (error) {
+    console.error('❌ Ошибка загрузки журналов:', error);
+  }
+}
+
+function applyFilters() {
+  let filtered = allJournals;
+  if (currentLevelFilter !== '') {
+    filtered = filtered.filter(j => j.level_2025 === parseInt(currentLevelFilter));
+  }
+  if (currentSearch.trim() !== '') {
+    const query = currentSearch.trim().toLowerCase();
+    filtered = filtered.filter(j => {
+      const titles = j.title || [];
+      const issns = j.issn || [];
+      const matchTitle = titles.some(t => t.toLowerCase().includes(query));
+      const matchISSN = issns.some(i => i.toLowerCase().includes(query));
+      return matchTitle || matchISSN;
+    });
+  }
+  filteredJournals = filtered;
+  currentPage = 0;
+  renderJournals();
+}
+
+function renderJournals() {
+  const container = document.getElementById('journalsList');
+  if (!container) return;
+
+  const start = currentPage * pageSize;
+  const end = Math.min(start + pageSize, filteredJournals.length);
+
+  if (start >= filteredJournals.length) {
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+    const counter = document.getElementById('journalsCounter');
+    if (counter) counter.textContent = `Показано: 0 из ${filteredJournals.length}`;
+    container.innerHTML = '<p style="text-align:center; color:#999;">Нет журналов по выбранным фильтрам</p>';
+    return;
+  }
+
+  const pageData = filteredJournals.slice(start, end);
+  container.innerHTML = '';
+
+  pageData.forEach(j => {
+    const card = document.createElement('div');
+    card.className = 'journal-card';
+
+    const titles = j.title || ['Без названия'];
+    const title = titles[0] || 'Без названия';
+    const issn = (j.issn || [])[0] || '';
+    const level = j.level_2025 ? `К${j.level_2025}` : '—';
+    const dateAccepted = j.dateAccepted || '';
+
+    card.innerHTML = `
+      <div class="journal-info">
+        <div class="journal-name">${title}</div>
+        <div class="journal-tags">
+          ${issn ? `<span class="journal-tag rsci">ISSN: ${issn}</span>` : ''}
+          ${level !== '—' ? `<span class="journal-tag vak">Уровень: ${level}</span>` : ''}
+          ${dateAccepted ? `<span class="journal-tag" style="background:#4a6fa5;">с ${dateAccepted}</span>` : ''}
+        </div>
+        <div class="journal-meta">
+          ${dateAccepted ? `Дата включения: ${dateAccepted}` : ''}
+        </div>
+      </div>
+      <button class="view-req-btn" onclick="alert('Подробнее о журнале: ${title}')">Просмотреть требования</button>
+    `;
+    container.appendChild(card);
+  });
+
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  if (loadMoreBtn) {
+    if (end >= filteredJournals.length) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'inline-block';
+    }
+  }
+  const counter = document.getElementById('journalsCounter');
+  if (counter) {
+    counter.textContent = `Показано: ${Math.min(end, filteredJournals.length)} из ${filteredJournals.length}`;
+  }
+}
+
+// Инициализация обработчиков
+document.addEventListener('DOMContentLoaded', function() {
+  loadJournals();
+
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function() {
+      currentPage++;
+      renderJournals();
+    });
+  }
+
+  const searchInput = document.getElementById('journalSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+      currentSearch = e.target.value;
+      applyFilters();
+    });
+  }
+
+  const levelFilters = document.querySelectorAll('.filter-tag[data-level]');
+  if (levelFilters.length > 0) {
+    levelFilters.forEach(tag => {
+      tag.addEventListener('click', function(e) {
+        const clicked = e.currentTarget;
+        levelFilters.forEach(t => t.classList.remove('active'));
+        clicked.classList.add('active');
+        currentLevelFilter = clicked.dataset.level;
+        applyFilters();
+      });
+    });
+  }
+});
+
     </script>
   </body>
 </html>
