@@ -1,25 +1,19 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { GigaChat } from "gigachat";
 
-// Функция для установки CORS-заголовков
-function setCorsHeaders(res) {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // или конкретный домен: 'https://neuromentor-for-students.website.yandexcloud.net'
+export default async function handler(req, res) {
+  // Установка CORS-заголовков для всех ответов
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-}
 
-export default async function handler(req, res) {
   // Обработка preflight (OPTIONS)
   if (req.method === 'OPTIONS') {
-    setCorsHeaders(res);
     res.status(200).end();
     return;
   }
 
-  // Установка заголовков для всех ответов
-  setCorsHeaders(res);
-
-  // Проверка метода
+  // Далее ваш существующий код проверки метода POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
