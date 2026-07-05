@@ -122,6 +122,7 @@ export default async function handler(req, res) {
     function extractSources(text) {
       const patterns = [
         /=== ИСТОЧНИКИ ===/i,
+        /== ИСТОЧНИКИ ==/i,
         /=== SOURCES ===/i,
         /== SOURCES ==/i,
         /### ИСТОЧНИКИ/i,

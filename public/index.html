@@ -678,7 +678,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        min-height: 600px;
+        min-height: auto;
       }
       .chat-header {
         background: #2c3e6b;
@@ -720,10 +720,12 @@
         border-radius: 50%;
       }
       .chat-body {
-        padding: 20px;
-        flex: 1;
-        overflow-y: auto;
         max-height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px;
       }
       .chat-bubble {
         background: #f5f7fa;
@@ -733,6 +735,30 @@
         max-width: 90%;
         font-size: 14px;
         line-height: 1.6;
+      }
+      .chat-bubble.user {
+        align-self: flex-end;
+        background: #2c3e6b;
+        color: #fff;
+        border-radius: 12px 12px 0 12px;
+        max-width: 80%;
+      }
+      .chat-bubble.ai {
+        align-self: flex-start;
+        background: #f5f7fa;
+        color: #333;
+        border-radius: 12px 12px 12px 0;
+        max-width: 80%;
+      }
+      .message-wrapper {
+        align-self: flex-start;
+        max-width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .message-wrapper .chat-bubble.ai {
+        max-width: 100%;
       }
       .chat-section {
         background: #fff;
@@ -776,11 +802,13 @@
         margin-left: 6px;
       }
       .chat-input-area {
-        padding: 14px 20px;
+        padding: 12px 20px;
         border-top: 1px solid #e8eaed;
         display: flex;
         gap: 10px;
         align-items: center;
+        background: #fff;
+        flex-shrink: 0;
       }
       .chat-input {
         flex: 1;
@@ -1847,6 +1875,47 @@
         display: block;
       }
 
+      /* Animated typing dots */
+      .loading-dots {
+        display: inline-block;
+        min-width: 60px;
+      }
+      .loading-dots::after {
+        content: "...";
+        animation: dots 1.2s steps(4, end) infinite;
+      }
+      @keyframes dots {
+        0% {
+          content: "";
+        }
+        25% {
+          content: ".";
+        }
+        50% {
+          content: "..";
+        }
+        75% {
+          content: "...";
+        }
+      }
+      .source-block {
+        font-size: 11px;
+        color: #555;
+        background: #f0f2f5;
+        padding: 6px 12px;
+        border-radius: 8px;
+        margin-top: 4px;
+        border-left: 3px solid #2c3e6b;
+        width: 100%;
+        align-self: flex-start;
+      }
+
+      /* Равномерные отступы для статических секций под чатом в академическом треке */
+      #academic .chat-section {
+        margin-top: 24px; /* нужное расстояние — можно подогнать */
+        margin-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .side-nav {
           position: fixed;
@@ -2266,118 +2335,6 @@
                   <div id="chatResponseArea">
                     <!-- Сюда будут приходить ответы от GigaChat -->
                   </div>
-
-                  <div class="chat-section">
-                    <div
-                      class="chat-section-title"
-                      data-ru="1. Курсовая работа:"
-                      data-en="1. Coursework:"
-                    >
-                      1. Курсовая работа:
-                    </div>
-                    <ul>
-                      <li
-                        data-ru='Изучить "Педагогическую психологию" и "Разработку учебных программ".'
-                        data-en='Study "Educational Psychology" and "Curriculum Development".'
-                      >
-                        Изучить "Педагогическую психологию" и "Разработку
-                        учебных программ".
-                      </li>
-                      <li
-                        data-ru="Выполнять еженедельные задания."
-                        data-en="Complete weekly assignments."
-                      >
-                        Выполнять еженедельные задания.
-                      </li>
-                      <li
-                        data-ru="Обратиться к: Smith, J. (2020). Педагогическая психология. "
-                        data-en="Refer to: Smith, J. (2020). Educational Psychology. "
-                      >
-                        Обратиться к: Smith, J. (2020). Педагогическая
-                        психология.
-                        <span
-                          class="verified-tag"
-                          data-ru="Проверенный источник"
-                          data-en="Verified Source"
-                          >Проверенный источник</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="chat-section">
-                    <div
-                      class="chat-section-title"
-                      data-ru="2. Учебные цели:"
-                      data-en="2. Study Goals:"
-                    >
-                      2. Учебные цели:
-                    </div>
-                    <ul>
-                      <li
-                        data-ru="Подготовиться к предстоящим экзаменам по педагогике."
-                        data-en="Prepare for upcoming exams in Pedagogy."
-                      >
-                        Подготовиться к предстоящим экзаменам по педагогике.
-                      </li>
-                      <li
-                        data-ru="Сосредоточиться на методах управления классом."
-                        data-en="Focus on classroom management techniques."
-                      >
-                        Сосредоточиться на методах управления классом.
-                      </li>
-                      <li
-                        data-ru="Проверить: Johnson, L. (2019). Управление классом. "
-                        data-en="Check: Johnson, L. (2019). Classroom Management. "
-                      >
-                        Проверить: Johnson, L. (2019). Управление классом.
-                        <span
-                          class="verified-tag"
-                          data-ru="Проверенный источник"
-                          data-en="Verified Source"
-                          >Проверенный источник</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="chat-section">
-                    <div
-                      class="chat-section-title"
-                      data-ru="3. Развитие навыков:"
-                      data-en="3. Skill Development:"
-                    >
-                      3. Развитие навыков:
-                    </div>
-                    <ul>
-                      <li
-                        data-ru="Развивать преподавательские навыки через семинары."
-                        data-en="Enhance your teaching skills through workshops."
-                      >
-                        Развивать преподавательские навыки через семинары.
-                      </li>
-                      <li
-                        data-ru='Участвовать в семинаре "Эффективное преподавание" в следующем месяце.'
-                        data-en='Participate in the "Effective Teaching Seminar" next month.'
-                      >
-                        Участвовать в семинаре "Эффективное преподавание" в
-                        следующем месяце.
-                      </li>
-                      <li
-                        data-ru="Изучить: Brown, A. (2021). Эффективные методы преподавания. "
-                        data-en="Review: Brown, A. (2021). Effective Teaching Practices. "
-                      >
-                        Изучить: Brown, A. (2021). Эффективные методы
-                        преподавания.
-                        <span
-                          class="verified-tag"
-                          data-ru="Проверенный источник"
-                          data-en="Verified Source"
-                          >Проверенный источник</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
                 </div>
                 <div class="chat-input-area">
                   <input
@@ -2388,9 +2345,117 @@
                     data-placeholder-en="Type your message here..."
                     placeholder="Введите ваше сообщение..."
                   />
-                  <button class="chat-btn chat-btn-emoji">😊</button>
                   <button class="chat-btn chat-btn-mic" id="sendBtn">➤</button>
                 </div>
+              </div>
+              <div class="chat-section">
+                <div
+                  class="chat-section-title"
+                  data-ru="1. Курсовая работа:"
+                  data-en="1. Coursework:"
+                >
+                  1. Курсовая работа:
+                </div>
+                <ul>
+                  <li
+                    data-ru='Изучить "Педагогическую психологию" и "Разработку учебных программ".'
+                    data-en='Study "Educational Psychology" and "Curriculum Development".'
+                  >
+                    Изучить "Педагогическую психологию" и "Разработку учебных
+                    программ".
+                  </li>
+                  <li
+                    data-ru="Выполнять еженедельные задания."
+                    data-en="Complete weekly assignments."
+                  >
+                    Выполнять еженедельные задания.
+                  </li>
+                  <li
+                    data-ru="Обратиться к: Smith, J. (2020). Педагогическая психология. "
+                    data-en="Refer to: Smith, J. (2020). Educational Psychology. "
+                  >
+                    Обратиться к: Smith, J. (2020). Педагогическая психология.
+                    <span
+                      class="verified-tag"
+                      data-ru="Проверенный источник"
+                      data-en="Verified Source"
+                      >Проверенный источник</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="chat-section">
+                <div
+                  class="chat-section-title"
+                  data-ru="2. Учебные цели:"
+                  data-en="2. Study Goals:"
+                >
+                  2. Учебные цели:
+                </div>
+                <ul>
+                  <li
+                    data-ru="Подготовиться к предстоящим экзаменам по педагогике."
+                    data-en="Prepare for upcoming exams in Pedagogy."
+                  >
+                    Подготовиться к предстоящим экзаменам по педагогике.
+                  </li>
+                  <li
+                    data-ru="Сосредоточиться на методах управления классом."
+                    data-en="Focus on classroom management techniques."
+                  >
+                    Сосредоточиться на методах управления классом.
+                  </li>
+                  <li
+                    data-ru="Проверить: Johnson, L. (2019). Управление классом. "
+                    data-en="Check: Johnson, L. (2019). Classroom Management. "
+                  >
+                    Проверить: Johnson, L. (2019). Управление классом.
+                    <span
+                      class="verified-tag"
+                      data-ru="Проверенный источник"
+                      data-en="Verified Source"
+                      >Проверенный источник</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="chat-section">
+                <div
+                  class="chat-section-title"
+                  data-ru="3. Развитие навыков:"
+                  data-en="3. Skill Development:"
+                >
+                  3. Развитие навыков:
+                </div>
+                <ul>
+                  <li
+                    data-ru="Развивать преподавательские навыки через семинары."
+                    data-en="Enhance your teaching skills through workshops."
+                  >
+                    Развивать преподавательские навыки через семинары.
+                  </li>
+                  <li
+                    data-ru='Участвовать в семинаре "Эффективное преподавание" в следующем месяце.'
+                    data-en='Participate in the "Effective Teaching Seminar" next month.'
+                  >
+                    Участвовать в семинаре "Эффективное преподавание" в
+                    следующем месяце.
+                  </li>
+                  <li
+                    data-ru="Изучить: Brown, A. (2021). Эффективные методы преподавания. "
+                    data-en="Review: Brown, A. (2021). Effective Teaching Practices. "
+                  >
+                    Изучить: Brown, A. (2021). Эффективные методы преподавания.
+                    <span
+                      class="verified-tag"
+                      data-ru="Проверенный источник"
+                      data-en="Verified Source"
+                      >Проверенный источник</span
+                    >
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -2658,7 +2723,6 @@
                       data-placeholder-ru="Введите ваш запрос..."
                       data-placeholder-en="Type your query..."
                     />
-                    <button class="chat-btn chat-btn-emoji">😊</button>
                     <button class="chat-btn chat-btn-mic" id="sendBtnResearch">
                       ➤
                     </button>
@@ -2738,7 +2802,7 @@
                     class="view-req-btn"
                     style="padding: 10px 24px"
                   >
-                    Показать ещё 50
+                    Показать ещё 10
                   </button>
                   <span
                     id="journalsCounter"
@@ -3284,7 +3348,6 @@
                       data-placeholder-ru="Введите ваш запрос..."
                       data-placeholder-en="Type your query..."
                     />
-                    <button class="chat-btn chat-btn-emoji">😊</button>
                     <button
                       class="chat-btn chat-btn-mic"
                       id="sendBtnProfessional"
@@ -3725,6 +3788,15 @@
       let isTextLarge = false;
       let isColorInverted = false;
 
+      function updateLoadingText() {
+        document.querySelectorAll('[id^="loadingBubble_"]').forEach((el) => {
+          const textSpan = el.querySelector(".loading-text");
+          if (textSpan) {
+            textSpan.textContent = currentLang === "ru" ? "Думаю" : "Thinking";
+          }
+        });
+      }
+
       function toggleLanguage() {
         currentLang = currentLang === "ru" ? "en" : "ru";
         document.getElementById("langText").textContent =
@@ -3745,6 +3817,7 @@
           currentLang === "ru"
             ? "NeuroMentor | Minin.AI"
             : "NeuroMentor | Minin.AI";
+        updateLoadingText();
       }
 
       function toggleAccDropdown(event) {
@@ -3877,15 +3950,16 @@
           if (!message) return;
 
           const userBubble = document.createElement("div");
-          userBubble.className = "chat-bubble";
+          userBubble.className = "chat-bubble user";
           userBubble.textContent = message;
           area.appendChild(userBubble);
           input.value = "";
 
+          const loadingText = currentLang === "ru" ? "Думаю" : "Thinking";
           const loading = document.createElement("div");
-          loading.className = "chat-bubble";
-          loading.textContent = "⏳ Думаю...";
+          loading.className = "chat-bubble ai";
           loading.id = "loadingBubble_" + trackName;
+          loading.innerHTML = `<span class="loading-text">${loadingText}</span><span class="loading-dots"></span>`;
           area.appendChild(loading);
           area.scrollTop = area.scrollHeight;
 
@@ -3906,26 +3980,27 @@
             if (loadEl) loadEl.remove();
 
             if (response.ok) {
+              const messageWrapper = document.createElement("div");
+              messageWrapper.className = "message-wrapper";
+
               const aiBubble = document.createElement("div");
-              aiBubble.className = "chat-bubble";
+              aiBubble.className = "chat-bubble ai";
               aiBubble.textContent = data.reply || "(пустой ответ)";
-              area.appendChild(aiBubble);
+              messageWrapper.appendChild(aiBubble);
 
               if (data.sources && data.sources.length > 0) {
                 const sourceDiv = document.createElement("div");
-                sourceDiv.style.fontSize = "11px";
-                sourceDiv.style.color = "#666";
-                sourceDiv.style.marginTop = "6px";
-                sourceDiv.style.borderTop = "1px solid #eee";
-                sourceDiv.style.paddingTop = "6px";
-                const sourcesLabel =
+                sourceDiv.className = "source-block";
+                const label =
                   currentLang === "ru" ? "📚 Источники: " : "📚 Sources: ";
-                sourceDiv.textContent = sourcesLabel + data.sources.join("; ");
-                area.appendChild(sourceDiv);
+                sourceDiv.textContent = label + data.sources.join("; ");
+                messageWrapper.appendChild(sourceDiv);
               }
+
+              area.appendChild(messageWrapper);
             } else {
               const errBubble = document.createElement("div");
-              errBubble.className = "chat-bubble";
+              errBubble.className = "chat-bubble ai";
               errBubble.textContent =
                 "❌ Ошибка: " + (data.error || "неизвестная");
               area.appendChild(errBubble);
@@ -3936,7 +4011,7 @@
             );
             if (loadEl) loadEl.remove();
             const errBubble = document.createElement("div");
-            errBubble.className = "chat-bubble";
+            errBubble.className = "chat-bubble ai";
             errBubble.textContent = "❌ Ошибка соединения: " + e.message;
             area.appendChild(errBubble);
           }
